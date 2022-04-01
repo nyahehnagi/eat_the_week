@@ -1,0 +1,41 @@
+{
+  "name": "eattheweek",
+  "version": "0.0.0",
+  "description": "Eat the Week, receipe ideas and planner",
+  "license": "CC BY-NC-SA",
+  "private": true,
+  "scripts": {
+    "lint": "prettier --write .",
+    "start": "nodemon ./bin/www",
+    "start:test": "PORT=3030 MONGODB_URL='mongodb://127.0.0.1/eattheweek_test' npm start",
+    "test": "npm run lint && npm run test:unit && npm run test:integration",
+    "test:unit": "jest",
+    "test:integration": "cypress run",
+    "build:instagram": "rm -rf build && cd client && npm run build && cd .. && cp -r client/build ."
+  },
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-session": "^1.17.2",
+    "http-errors": "~1.6.3",
+    "method-override": "^3.0.0",
+    "mongodb": "^3.4.1",
+    "mongoose": "^5.8.11",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.1"
+  },
+  "devDependencies": {
+    "cypress": "^9.5.1",
+    "jest": "^27.5.1"
+  },
+  "nodemonConfig": {
+    "ext": "js"
+  }
+}
