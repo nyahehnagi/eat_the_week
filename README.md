@@ -5,11 +5,13 @@
 ## Tech Used
 
 - Javascript with Node
-- Jest for testing
-- Prettier for linting
-- MongoDB
+- Mongodb
 - Express
 - React
+- Jest - Unit Testing
+- Cypress - Integration Testing
+- Prettier - Linting
+- Bootstrap/CSS - Look and Feel
 
 ## Installation
 
