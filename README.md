@@ -21,8 +21,16 @@ Install node via your favourite package manager if required, see [here](https://
 
 To install this code from the latest source
 
+
+If you have SSH setup:
 ```
 $> git clone git@github.com:nyahehnagi/eat_the_week.git
+```
+
+Otherwise:
+
+```
+$> git clone https://github.com/nyahehnagi/eat_the_week.git
 
 ```
 
