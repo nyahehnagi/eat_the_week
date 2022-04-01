@@ -1,6 +1,6 @@
 describe("Home page", () => {
-  xit("has a title", () => {
+  it("has a title", () => {
     cy.visit("/");
-    cy.get(".title").should("contain", "Eat The Week");
+    cy.get("h3").should("contain", "Eat The Week");
   });
 });
