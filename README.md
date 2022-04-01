@@ -17,12 +17,6 @@
 
 Install node via your favourite package manager if required, see [here](https://nodejs.org/en/ "Node") for more details
 
-Install packges
-
-```
-$> npm install
-```
-
 To install this code from the latest source
 
 ```
@@ -30,12 +24,23 @@ $> git clone git@github.com:nyahehnagi/eat_the_week.git
 
 ```
 
+Install package dependancies
+
+```
+$> npm install
+```
+
 ## Testing
 
 ---
 
-To run jest tests
+To run tests
 
 ```
+// Jest tests
 $> npx jest
+
+//Cypress Integration tests
+$> npm run test:integration
+
 ```
