@@ -15,6 +15,9 @@ app.use(express.json());
 // Tell app to use the routes
 // e.g app.use("/posts", postsRouter);
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
