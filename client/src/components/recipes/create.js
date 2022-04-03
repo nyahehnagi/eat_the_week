@@ -22,7 +22,7 @@ export default function Create() {
  
    // When a post request is sent to the create url, add a new record to the database.
    const recipe = { ...form };
-  console.log(JSON.stringify(recipe))
+    
    await fetch("/recipes", {
      method: "POST",
      headers: {
@@ -39,7 +39,7 @@ export default function Create() {
    navigate("/recipe");
  }
  
- // This following section will display the form that takes the input from the user.
+ // This following section will display the form that takes the input from the recipe.
  return (
    <div>
      <h3>Create Recipe</h3>
