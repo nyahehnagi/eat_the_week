@@ -7,7 +7,7 @@ const Recipe = (props) => (
 export default function ShowRecipes() {
   const [recipes, setRecipes] = useState([]);
 
- // This method fetches the posts from the database.
+  // This method fetches the posts from the database.
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(`/recipes`);
@@ -19,7 +19,6 @@ export default function ShowRecipes() {
       }
 
       const recipes = await response.json();
-      {console.log("Recipes are", recipes)}
       setRecipes(recipes);
     }
     
