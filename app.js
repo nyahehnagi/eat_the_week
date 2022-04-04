@@ -10,10 +10,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // route setup - Insert routes here
-// e.g const postsRouter = require("./routes/posts");
+const recipesRouter = require("./routes/recipes");
 
 // Tell app to use the routes
-// e.g app.use("/posts", postsRouter);
+app.use("/recipes", recipesRouter);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -23,6 +23,13 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
+app.get("*", (req, res) => {
+  let url = path.join(__dirname, 'client/build', 'index.html');
+  if (!url.startsWith('/app/')) // since we're on local windows
+    url = url.substring(1);
+  res.sendFile(url);
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

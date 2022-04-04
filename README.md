@@ -55,6 +55,31 @@ $> npm run test:integration
 
 ```
 
+# REST API
+
+## Recipe
+
+GET /recipes
+Returns a list of all recipes.
+
+curl "http://localhost:4000/recipes"
+On success, the above command returns JSON structured like this:
+
+[
+  {
+    "name": "sausage sandwich",
+    "created_at": "2018-06-23T13:21:23.317Z",
+    "updated_at": "2018-06-23T13:21:23.317Z"
+  }
+]
+
+POST /recipes
+Creates a new Recipe.
+
+~~~
+ curl "http://localhost:4000/recipes"   -X POST   -H "Content-Type: application/json"   -d '{"recipe": {"name":"beans on toast"}}
+~~~
+
 ## MVP
 
 The functionality we expect for the MVP is:
