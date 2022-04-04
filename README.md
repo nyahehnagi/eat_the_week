@@ -85,10 +85,19 @@ Creates a new User.
 
 ## Session
 
+Creates a new session, giving you a user_id and a token required to perform actions on behalf of the user (e.g. creating recipes).
+
 ~~~~
 curl "http://localhost:4000/sessions" -X POST -H "Content-Type: application/json" -d '{"session": {"email":"funkyfood@food.com", "password":"password"}}'
-~~~
+~~~~
 
+On success, the above command returns JSON structured like this:
+~~~
+{
+  "id": 1,
+  "token": "a_valid_token"
+}
+~~~
 --------
 ## Recipe
 

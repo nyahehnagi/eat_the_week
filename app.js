@@ -47,13 +47,13 @@ app.get("*", (req, res) => {
   res.sendFile(url);
 });
 
-app.use(session({
-    key: "user_sid",
-    secret: "SUPER_SECRET",
-    resave: false,
-    saveUninitialized: false
-  })
-);
+// app.use(session({
+//     key: "user_sid",
+//     secret: "SUPER_SECRET",
+//     resave: false,
+//     saveUninitialized: false
+//   })
+// );
 
 passport.use(
   'jwt',
