@@ -37,6 +37,7 @@ $> git clone https://github.com/nyahehnagi/eat_the_week.git
 Install package dependancies
 
 ```
+// From root of project
 $> npm install
 // change to client directory
 $> cd client
@@ -45,8 +46,8 @@ $> npm install
 ```
 To run locally
 
-from root of project
 ~~~~
+// from root of project
 $> npm start // this starts the express server
 // In a new terminal, change directory to the react client
 $> cd client
