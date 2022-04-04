@@ -74,6 +74,7 @@ $> npm run test:integration
 ## Recipe
 
 GET /recipes
+
 Returns a list of all recipes.
 ~~~
 curl "http://localhost:4000/recipes"
@@ -89,6 +90,7 @@ On success, the above command returns JSON structured like this:
 ]
 
 POST /recipes
+
 Creates a new Recipe.
 
 ~~~
