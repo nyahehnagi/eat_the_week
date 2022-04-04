@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !=='production'){
+  require('dotenv').config()
+}
+
 const createError = require("http-errors");
 const express = require("express");
 const app = express();
@@ -8,6 +12,11 @@ const session = require("express-session");
 const path = require("path");
 const logger = require("morgan");
 const methodOverride = require("method-override");
+
+const passport = require('passport');
+const JWTstrategy = require('passport-jwt').Strategy;
+const ExtractJWT = require('passport-jwt').ExtractJwt;
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -33,41 +42,35 @@ app.use(cookieParser());
 
 app.get("*", (req, res) => {
   let url = path.join(__dirname, 'client/build', 'index.html');
-  //console.log("URL", url)
   if (!url.startsWith('/app/')) // since we're on local windows
     url = url.substring(1);
   res.sendFile(url);
 });
 
-app.use(
-  session({
+app.use(session({
     key: "user_sid",
-    secret: "super_secret",
+    secret: "SUPER_SECRET",
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 600000,
-    },
+    saveUninitialized: false
   })
 );
 
-// middleware function to check for logged-in users
-const sessionChecker = (req, res, next) => {
-  if (!req.session.user && !req.cookies.user_sid) {
-    res.redirect("/");
-  } else {
-    next();
-  }
-};
-
-// // clear the cookies after user logs out
-// app.use((req, res, next) => {
-//   if (req.cookies.user_sid && !req.session.user) {
-//     res.clearCookie("user_sid");
-//   }
-//   res.locals.loggedInUser = req.session.user
-//   next();
-// });
+passport.use(
+  'jwt',
+  new JWTstrategy(
+    {
+      secretOrKey: process.env.SESSION_SECRET,
+      jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
+    },
+    async (token, done) => {
+      try {
+        return done(null, token.user);
+      } catch (error) {
+        done(error);
+      }
+    }
+  )
+);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

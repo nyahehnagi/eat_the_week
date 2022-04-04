@@ -1,23 +1,25 @@
 const User = require('../models/user')
-const bcrypt = require("bcrypt")
+const jwt = require('jsonwebtoken');
 
 const SessionsController = {
 
-  Create: (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+  Create: (req, res, next) => {
 
+    const email = req.body.session.email;
+    const password = req.body.session.password;
+    let payload = ""
     User.findOne({ email: email }).then((user) => {
       if (!user) {
-        // return something to say not logged in
-        res.json('{"loggedin": "false"}')
-      } else if (bcrypt.compareSync(password, user.password) == false) {
-        // password fail, cannot login 
-        res.json('{"loggedin": "false"}')
+        payload = {message: 'No user found'}
+        res.json(payload)
+      } else if (!user.isValidPassword(password)) {
+        payload = {message: 'Incorrect Password'}
+        res.json(payload)
       } else {
-        req.session.user = user;
-        // return good
-        res.json('{"loggedin": "true"}')
+        const body = { _id: user._id, email: user.email };
+        const token = jwt.sign({ user: body }, process.env.SESSION_SECRET, { expiresIn: '1h' });
+        const payload = {id: user._id, token: token}
+        res.json(payload)
       }
     });
   },

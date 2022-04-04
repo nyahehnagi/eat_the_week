@@ -82,6 +82,13 @@ Creates a new User.
  curl "http://localhost:4000/users"   -X POST   -H "Content-Type: application/json"   -d '{"user": {"email":"funkyfood@food.com","password":"password", "name":"Funky Food"}}'
 ~~~~
 
+
+## Session
+
+~~~~
+curl "http://localhost:4000/sessions" -X POST -H "Content-Type: application/json" -d '{"session": {"email":"funkyfood@food.com", "password":"password"}}'
+~~~
+
 --------
 ## Recipe
 
