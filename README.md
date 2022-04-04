@@ -72,6 +72,17 @@ $> npm run test:integration
 
 # REST API
 
+## User
+
+POST /users
+
+Creates a new User.
+
+~~~~
+ curl "http://localhost:4000/users"   -X POST   -H "Content-Type: application/json"   -d '{"user": {"email":"funkyfood@food.com","password":"password", "name":"Funky Food"}}
+~~~~
+
+--------
 ## Recipe
 
 GET /recipes

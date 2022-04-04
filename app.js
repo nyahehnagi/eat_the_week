@@ -11,9 +11,11 @@ app.use(express.json());
 
 // route setup - Insert routes here
 const recipesRouter = require("./routes/recipes");
+const usersRouter = require("./routes/users");
 
 // Tell app to use the routes
 app.use("/recipes", recipesRouter);
+app.use("/users", usersRouter);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
