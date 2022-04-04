@@ -38,7 +38,21 @@ Install package dependancies
 
 ```
 $> npm install
+// change to client directory
+$> cd client
+$> npm install
+
 ```
+To run locally
+
+from root of project
+~~~~
+$> npm start // this starts the express server
+// In a new terminal, change directory to the react client
+$> cd client
+$> npm start
+~~~~
+Navigate to http://localhost:3000/
 
 ## Testing
 
