@@ -2,6 +2,8 @@ const createError = require("http-errors");
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 
 const path = require("path");
 const logger = require("morgan");
@@ -12,10 +14,12 @@ app.use(express.json());
 // route setup - Insert routes here
 const recipesRouter = require("./routes/recipes");
 const usersRouter = require("./routes/users");
+const sessionsRouter = require("./routes/sessions");
 
 // Tell app to use the routes
 app.use("/recipes", recipesRouter);
 app.use("/users", usersRouter);
+app.use("/sessions", sessionsRouter);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -25,6 +29,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(cookieParser());
 
 app.get("*", (req, res) => {
   let url = path.join(__dirname, 'client/build', 'index.html');
@@ -32,6 +37,36 @@ app.get("*", (req, res) => {
   if (!url.startsWith('/app/')) // since we're on local windows
     url = url.substring(1);
   res.sendFile(url);
+});
+
+app.use(
+  session({
+    key: "user_sid",
+    secret: "super_secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 600000,
+    },
+  })
+);
+
+// middleware function to check for logged-in users
+const sessionChecker = (req, res, next) => {
+  if (!req.session.user && !req.cookies.user_sid) {
+    res.redirect("/");
+  } else {
+    next();
+  }
+};
+
+// clear the cookies after user logs out
+app.use((req, res, next) => {
+  if (req.cookies.user_sid && !req.session.user) {
+    res.clearCookie("user_sid");
+  }
+  res.locals.loggedInUser = req.session.user
+  next();
 });
 
 // catch 404 and forward to error handler
