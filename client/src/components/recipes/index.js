@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 const Recipe = (props) => (
   <div>{props.recipe.name}</div>
@@ -6,11 +7,21 @@ const Recipe = (props) => (
 
 export default function ShowRecipes() {
   const [recipes, setRecipes] = useState([]);
+  const [cookies, setCookie] = useCookies();
+
+  {console.log(cookies.token)}
 
   // This method fetches the posts from the database.
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch(`/recipes`);
+      //const response = await fetch(`/recipes`);
+
+      const response = await fetch("/recipes", {
+        method: "GET",
+        headers: {
+          'Authorization': `Bearer ${cookies.token}`,
+        },
+      })
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;

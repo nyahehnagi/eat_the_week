@@ -25,7 +25,7 @@ export default function Logon() {
   // When a post request is sent to the create url, add a new record to the database.
   const session = { ...form };
    
-  await fetch("/sessions", {
+  await fetch("/auth", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
