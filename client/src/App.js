@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/home/index";
 import CreateRecipe from "./components/recipes/create";
@@ -8,7 +8,7 @@ import Logon from "./components/auth/create";
 import "bootstrap/dist/css/bootstrap.css";
 
 const App = () => {
-  return (  
+  return (
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -18,7 +18,6 @@ const App = () => {
       </Routes>
     </div>
   );
- };
-
+};
 
 export default App;

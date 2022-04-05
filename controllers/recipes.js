@@ -1,28 +1,26 @@
-const Recipe = require('../models/recipe')
+const Recipe = require("../models/recipe");
 
 const RecipesController = {
   Index: (req, res) => {
     Recipe.find((err, recipes) => {
       if (err) {
-        throw err
+        throw err;
       }
 
-      res.json(recipes)
-    })
-  },
-
-  Create: (req, res) => {
-    const recipe = new Recipe({ name: req.body.recipe.name })
-    recipe.save((err, result) => {
-      if (err) {
-        throw err
-      }
-
-      res.json(result)
+      res.json(recipes);
     });
   },
 
+  Create: (req, res) => {
+    const recipe = new Recipe({ name: req.body.recipe.name });
+    recipe.save((err, result) => {
+      if (err) {
+        throw err;
+      }
 
+      res.json(result);
+    });
+  },
 };
 
 module.exports = RecipesController;

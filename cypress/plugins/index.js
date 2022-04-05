@@ -16,47 +16,42 @@
  * @type {Cypress.PluginConfig}
  */
 
+var mongoose = require("mongoose");
+var Recipe = require("../../models/recipe");
 
- var mongoose = require('mongoose');
- var Recipe = require("../../models/recipe");
+module.exports = (on, config) => {
+  on("task", {
+    async resetDb() {
+      mongoose.connect("mongodb://127.0.0.1/eattheweek_test", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
 
- module.exports = (on, config) => {
-   on('task', {
-     async 'resetDb'() {
-      
-       mongoose.connect('mongodb://127.0.0.1/eattheweek_test', {
-         useNewUrlParser: true,
-         useUnifiedTopology: true
-       });
-     
-       let db = mongoose.connection;
- 
-       db.on('error', console.error.bind(console, 'MongoDB connection error:'));
- 
-       //open is Emitted after 'connected' and 'onOpen' is executed on all of this connection's models.
-       // It means we can now work against these models on the database
-       // https://mongoosejs.com/docs/connections.html
-       db.on('open', function() {
- 
-         Recipe.deleteMany({}).then( () => {
-         }).catch(function(error){
-           console.log(error); 
-         });
- 
-       });      
-       return null
-     },
-   })
- 
-   on('task', {
-     async 'closeDbConnection'() {
-       mongoose.connection.close(() => {
-         console.log("Database Connection Closed");
-       });
- 
-       return null
-     } 
-   })
- 
- 
- }
+      let db = mongoose.connection;
+
+      db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+      //open is Emitted after 'connected' and 'onOpen' is executed on all of this connection's models.
+      // It means we can now work against these models on the database
+      // https://mongoosejs.com/docs/connections.html
+      db.on("open", function () {
+        Recipe.deleteMany({})
+          .then(() => {})
+          .catch(function (error) {
+            console.log(error);
+          });
+      });
+      return null;
+    },
+  });
+
+  on("task", {
+    async closeDbConnection() {
+      mongoose.connection.close(() => {
+        console.log("Database Connection Closed");
+      });
+
+      return null;
+    },
+  });
+};

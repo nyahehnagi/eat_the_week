@@ -1,45 +1,42 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
- 
 
 export default function Home() {
-
   const [form, setForm] = useState({
     email: "",
     password: "",
-    name: ""
+    name: "",
   });
 
   const navigate = useNavigate();
 
   // This method will update the state properties.
   function updateForm(value) {
-   return setForm((prev) => {
-    return { ...prev, ...value };
+    return setForm((prev) => {
+      return { ...prev, ...value };
     });
   }
 
   // This function will handle the submission.
- async function onSubmit(e) {
-  e.preventDefault();
+  async function onSubmit(e) {
+    e.preventDefault();
 
-  // When a post request is sent to the create url, add a new record to the database.
-  const user = { ...form };
-   
-  await fetch("/users", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({user}),
-  })
-  .catch(error => {
-    window.alert(error);
-    return;
-  });
+    // When a post request is sent to the create url, add a new record to the database.
+    const user = { ...form };
 
-  setForm({ email: "", password: "", name: ""});
-  navigate("/recipe");
+    await fetch("/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user }),
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
+
+    setForm({ email: "", password: "", name: "" });
+    navigate("/recipe");
   }
 
   return (
@@ -58,7 +55,7 @@ export default function Home() {
             onChange={(e) => updateForm({ email: e.target.value })}
           />
         </div>
-       
+
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
@@ -92,4 +89,4 @@ export default function Home() {
       </form>
     </div>
   );
- }
+}

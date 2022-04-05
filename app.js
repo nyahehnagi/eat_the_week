@@ -1,5 +1,5 @@
-if(process.env.NODE_ENV !=='production'){
-  require('dotenv').config()
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
 }
 
 const createError = require("http-errors");
@@ -12,9 +12,9 @@ const path = require("path");
 const logger = require("morgan");
 const methodOverride = require("method-override");
 
-const passport = require('passport');
-const JWTstrategy = require('passport-jwt').Strategy;
-const ExtractJWT = require('passport-jwt').ExtractJwt;
+const passport = require("passport");
+const JWTstrategy = require("passport-jwt").Strategy;
+const ExtractJWT = require("passport-jwt").ExtractJwt;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -30,7 +30,7 @@ app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, "client/build")));
 
 app.use(cors());
 app.use(logger("dev"));
@@ -40,18 +40,19 @@ app.use(methodOverride("_method"));
 app.use(cookieParser());
 
 app.get("*", (req, res) => {
-  let url = path.join(__dirname, 'client/build', 'index.html');
-  if (!url.startsWith('/app/')) // since we're on local windows
+  let url = path.join(__dirname, "client/build", "index.html");
+  if (!url.startsWith("/app/"))
+    // since we're on local windows
     url = url.substring(1);
   res.sendFile(url);
 });
 
 passport.use(
-  'jwt',
+  "jwt",
   new JWTstrategy(
     {
       secretOrKey: process.env.AUTH_KEY,
-      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
     },
     async (token, done) => {
       try {

@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useCookies } from "react-cookie";
 
-const Recipe = (props) => (
-  <div>{props.recipe.name}</div>
- );
-
+const Recipe = (props) => <div>{props.recipe.name}</div>;
 
 export default function ShowRecipes() {
   const [recipes, setRecipes] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  {console.log(cookies.token)}
+  {
+    console.log(cookies.token);
+  }
   const navigate = useNavigate();
 
   // This method fetches the posts from the database.
@@ -22,9 +21,9 @@ export default function ShowRecipes() {
       const response = await fetch("/recipes", {
         method: "GET",
         headers: {
-          'Authorization': `Bearer ${cookies.token}`,
+          Authorization: `Bearer ${cookies.token}`,
         },
-      })
+      });
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -35,37 +34,30 @@ export default function ShowRecipes() {
       const recipes = await response.json();
       setRecipes(recipes);
     }
-    
 
     getRecipes();
 
     return;
   }, [recipes.length]);
 
-
   // This method will map out the recipes
   function recipeList() {
     return recipes.map((recipe) => {
-      return (
-        <Recipe
-          recipe={recipe}
-          key={recipe._id}
-        />
-      );
+      return <Recipe recipe={recipe} key={recipe._id} />;
     });
   }
 
   const handleClick = () => {
-    removeCookie('token')
-    navigate("/")
+    removeCookie("token");
+    navigate("/");
   };
 
-  // This following  will display the recipes 
+  // This following  will display the recipes
   return (
     <div>
       <button onClick={handleClick}>Log Out</button>
       <h3>Recipes</h3>
-        {recipeList()}
+      {recipeList()}
     </div>
   );
 }
