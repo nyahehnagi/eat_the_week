@@ -1,5 +1,5 @@
 describe("Create a Recipe", () => {
-  xit("creates a recipe", () => {
+  it("creates a recipe", () => {
     // sign up
     cy.visit("/recipe/new");
     cy.get("#name").type("bacon and eggs");
