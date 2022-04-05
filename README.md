@@ -126,6 +126,21 @@ Creates a new Recipe.
   curl "http://localhost:4000/recipes"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{"recipe": {"name":"eggs"}}'
 ~~~
 
+
+## Environment Configuration
+
+For Production, setup config on Heroku for the following:
+~~~~
+NODE_ENV=production
+AUTH_KEY=<somesupersecretkey>
+MONGODB_URL=<connectionstring_to_Prod>
+~~~~
+
+For Local. setup config in `.env`:
+~~~~
+AUTH_KEY=supersecret
+~~~~
+
 ## MVP
 
 The functionality we expect for the MVP is:
