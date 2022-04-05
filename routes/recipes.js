@@ -5,7 +5,7 @@ const passport = require('passport');
 const RecipesController = require("../controllers/recipes");
 
 router.get("/", passport.authenticate('jwt', { session: false }), RecipesController.Index);
-router.post("/", RecipesController.Create);
+router.post("/",passport.authenticate('jwt', { session: false }),  RecipesController.Create);
 
 module.exports = router;
 

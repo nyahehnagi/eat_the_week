@@ -105,7 +105,8 @@ GET /recipes
 
 Returns a list of all recipes.
 ~~~
-curl "http://localhost:4000/recipes"
+curl "http://localhost:4000/recipes" \
+  -H "Authorization: Bearer <token_here>" 
 ~~~
 On success, the above command returns JSON structured like this:
 
