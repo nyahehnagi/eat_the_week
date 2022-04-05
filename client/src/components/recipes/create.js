@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { useCookies } from "react-cookie";
 
 export default function Create() {
   const [form, setForm] = useState({
     name: "",
   });
+
+  const [cookies, setCookie] = useCookies();
 
   const navigate = useNavigate();
 
@@ -25,6 +28,7 @@ export default function Create() {
     await fetch("/recipes", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${cookies.token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ recipe }),
