@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { useCookies } from "react-cookie";
 
 const Recipe = (props) => (
   <div>{props.recipe.name}</div>
  );
 
+
 export default function ShowRecipes() {
   const [recipes, setRecipes] = useState([]);
-  const [cookies, setCookie] = useCookies();
+  const [cookies, setCookie, removeCookie] = useCookies();
 
   {console.log(cookies.token)}
+  const navigate = useNavigate();
 
   // This method fetches the posts from the database.
   useEffect(() => {
@@ -50,11 +53,17 @@ export default function ShowRecipes() {
         />
       );
     });
-}
+  }
+
+  const handleClick = () => {
+    removeCookie('token')
+    navigate("/")
+  };
 
   // This following  will display the recipes 
   return (
     <div>
+      <button onClick={handleClick}>Log Out</button>
       <h3>Recipes</h3>
         {recipeList()}
     </div>
