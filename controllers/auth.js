@@ -7,6 +7,7 @@ const SessionsController = {
 
     const email = req.body.session.email;
     const password = req.body.session.password;
+    
     let payload = ""
     User.findOne({ email: email }).then((user) => {
       if (!user) {
@@ -17,7 +18,7 @@ const SessionsController = {
         res.json(payload)
       } else {
         const body = { _id: user._id, email: user.email };
-        const token = jwt.sign({ user: body }, process.env.SESSION_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ user: body }, process.env.AUTH_KEY, { expiresIn: '1h' });
         const payload = {id: user._id, token: token}
         res.json(payload)
       }

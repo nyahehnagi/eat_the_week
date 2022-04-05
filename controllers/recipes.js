@@ -12,7 +12,6 @@ const RecipesController = {
   },
 
   Create: (req, res) => {
-    console.log(req.body)
     console.log(req.body.recipe.name)
 
     const recipe = new Recipe({ name: req.body.recipe.name })

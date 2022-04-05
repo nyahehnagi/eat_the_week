@@ -83,12 +83,12 @@ Creates a new User.
 ~~~~
 
 
-## Session
+## Auth
 
-Creates a new session, giving you a user_id and a token required to perform actions on behalf of the user (e.g. creating recipes).
+Auths a user, giving you a user_id and a token required to perform actions on behalf of the user (e.g. creating recipes).
 
 ~~~~
-curl "http://localhost:4000/sessions" -X POST -H "Content-Type: application/json" -d '{"session": {"email":"funkyfood@food.com", "password":"password"}}'
+curl "http://localhost:4000/auth" -X POST -H "Content-Type: application/json" -d '{"session": {"email":"funkyfood@food.com", "password":"password"}}'
 ~~~~
 
 On success, the above command returns JSON structured like this:
@@ -123,7 +123,7 @@ POST /recipes
 Creates a new Recipe.
 
 ~~~
- curl "http://localhost:4000/recipes"   -X POST   -H "Content-Type: application/json"   -d '{"recipe": {"name":"beans on toast"}}
+  curl "http://localhost:4000/recipes"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{"recipe": {"name":"eggs"}}'
 ~~~
 
 ## MVP

@@ -7,7 +7,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
 
 const path = require("path");
 const logger = require("morgan");
@@ -23,12 +22,12 @@ app.use(express.json());
 // route setup - Insert routes here
 const recipesRouter = require("./routes/recipes");
 const usersRouter = require("./routes/users");
-const sessionsRouter = require("./routes/sessions");
+const authRouter = require("./routes/auth");
 
 // Tell app to use the routes
 app.use("/recipes", recipesRouter);
 app.use("/users", usersRouter);
-app.use("/sessions", sessionsRouter);
+app.use("/auth", authRouter);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -47,19 +46,11 @@ app.get("*", (req, res) => {
   res.sendFile(url);
 });
 
-// app.use(session({
-//     key: "user_sid",
-//     secret: "SUPER_SECRET",
-//     resave: false,
-//     saveUninitialized: false
-//   })
-// );
-
 passport.use(
   'jwt',
   new JWTstrategy(
     {
-      secretOrKey: process.env.SESSION_SECRET,
+      secretOrKey: process.env.AUTH_KEY,
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
     },
     async (token, done) => {
