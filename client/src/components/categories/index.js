@@ -49,7 +49,6 @@ export default function ShowCategories() {
   // This following  will display the categories
   return (
     <div>
-      <button onClick={handleClick}>Log Out</button>
       <h3>Categories</h3>
       <div id="categoryList">
         {categoryList()}

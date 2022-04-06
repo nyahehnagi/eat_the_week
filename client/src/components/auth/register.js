@@ -43,14 +43,15 @@ export default function Register() {
     <div>
       <h3>Create User</h3>
       <form onSubmit={onSubmit}>
+
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="name">Name</label>
           <input
-            type="email"
+            type="name"
             className="form-control"
-            id="email"
-            value={form.email}
-            onChange={(e) => updateForm({ email: e.target.value })}
+            id="name"
+            value={form.name}
+            onChange={(e) => updateForm({ name: e.target.value })}
           />
         </div>
 
@@ -66,13 +67,13 @@ export default function Register() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="email">Email</label>
           <input
-            type="name"
+            type="email"
             className="form-control"
-            id="name"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
+            id="email"
+            value={form.email}
+            onChange={(e) => updateForm({ email: e.target.value })}
           />
         </div>
 

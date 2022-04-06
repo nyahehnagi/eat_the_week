@@ -49,7 +49,6 @@ export default function ShowIngredients() {
   // This following  will display the ingredients
   return (
     <div>
-      <button onClick={handleClick}>Log Out</button>
       <h3>Ingredients</h3>
       <div id="ingredientList">
         {ingredientList()}
