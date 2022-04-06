@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-export default function Home() {
+export default function Logon() {
   const [form, setForm] = useState({
     email: "",
     password: "",
-    name: "",
   });
 
   const navigate = useNavigate();
@@ -22,28 +21,26 @@ export default function Home() {
     e.preventDefault();
 
     // When a post request is sent to the create url, add a new record to the database.
-    const user = { ...form };
+    const session = { ...form };
 
-    await fetch("/users", {
+    await fetch("/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user }),
+      body: JSON.stringify({ session }),
     }).catch((error) => {
       window.alert(error);
       return;
     });
 
-    setForm({ email: "", password: "", name: "" });
+    setForm({ email: "", password: "" });
     navigate("/recipe");
   }
 
   return (
     <div>
-      <h3>Welcome to Eat The Week</h3>
-
-      <h3>Create User</h3>
+      <h3>Log on</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
@@ -68,21 +65,10 @@ export default function Home() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="name"
-            className="form-control"
-            id="name"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
-          />
-        </div>
-
-        <div className="form-group">
           <input
             type="submit"
-            id="create-user"
-            value="Create User"
+            id="logon"
+            value="Log On"
             className="btn btn-primary"
           />
         </div>

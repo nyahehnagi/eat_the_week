@@ -1,10 +1,10 @@
-const Recipe = require('../models/recipe')
+const Recipe = require("../models/recipe");
 
 const RecipesController = {
   Index: (req, res) => {
     Recipe.find((err, recipes) => {
       if (err) {
-        throw err
+        throw err;
       }
 
       res.json(recipes)
@@ -32,8 +32,6 @@ const RecipesController = {
       res.json(result)
     });
   },
-
-
 };
 
 module.exports = RecipesController;
