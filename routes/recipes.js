@@ -7,5 +7,3 @@ router.get("/", RecipesController.Index);
 router.post("/", RecipesController.Create);
 
 module.exports = router;
-
-

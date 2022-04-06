@@ -6,6 +6,7 @@ const RecipesController = {
       if (err) {
         throw err
       }
+
       res.json(recipes)
     })
   },

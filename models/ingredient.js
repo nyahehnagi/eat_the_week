@@ -6,7 +6,7 @@ const IngredientSchema = new mongoose.Schema(
     unit: String,
     image: String
   }
-)
+);
 
 const Ingredient = mongoose.model('Ingredient', IngredientSchema)
 

@@ -1,7 +1,7 @@
 {
   "name": "eattheweek",
   "version": "0.0.0",
-  "description": "Eat the Week, receipe ideas and planner",
+  "description": "Eat the Week, recipe ideas and planner",
   "license": "CC BY-NC-SA",
   "private": true,
   "scripts": {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+//import Select from 'react-select';
 import Select from 'react-dropdown-select';
  
 export default function Create() {
@@ -8,7 +9,8 @@ export default function Create() {
    name: "",
    description: "",
    serves: 0,
-   prep_time: 0
+   prep_time: 0,
+   ingredient: ""
  });
 
  const navigate = useNavigate();
@@ -43,12 +45,20 @@ export default function Create() {
    navigate("/recipe");
  }
 
- const Ingredient = [
-  { label: "Flour", value: 1 },
-  { label: "Milk", value: 2 },
-  { label: "Sugar", value: 3 },
-  { label: "Salt", value: 4 },
-  { label: "Eggs", value: 5 }
+//  const Ingredient = [
+//   { label: "Flour", value: 1 },
+//   { label: "Milk", value: 2 },
+//   { label: "Sugar", value: 3 },
+//   { label: "Salt", value: 4 },
+//   { label: "Eggs", value: 5 }
+// ];
+
+const Ingredient = [
+  { value: "flour", label: "Flour" },
+  { value: "milk", label: "Milk" },
+  { value: "sugar", label: "Sugar" },
+  { value: "salt", label: "Salt" },
+  { value: "eggs", label: "Eggs" }
 ];
 
 const Category = [
@@ -113,14 +123,9 @@ const Category = [
            value={form.image}
            onChange={(e) => updateForm({image: e.target.value})}
          />
-
-         <label htmlFor="ingredient">Select Ingredient</label>
-         <Select options={Ingredient}
-          className="form-control"
-          id="ingredient"
-          value={form.ingredient}
-          onSelect={(e) => updateForm({ingredient: e.target.value})}
-        />
+ 
+         <label htmlFor="category">Select Ingredients</label>
+         <Select options={Ingredient} /> 
 
          <label htmlFor="category">Select Category</label>
          <Select options={Category} /> 

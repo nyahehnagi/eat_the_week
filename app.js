@@ -17,8 +17,6 @@ const ingredientsRouter = require("./routes/ingredients");
 app.use("/recipes", recipesRouter);
 app.use("/ingredients", ingredientsRouter);
 
-
-
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 

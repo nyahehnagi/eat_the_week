@@ -8,10 +8,7 @@ const RecipeSchema = new mongoose.Schema(
     description: String,
     method: String,
    // ingredient: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient'}],
-    ingredient: {
-     type: String,
-    default: "Broccoli", 
-   },
+    ingredient: String,
     image: String,
    // category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
    category: { 
