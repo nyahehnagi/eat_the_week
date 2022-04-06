@@ -20,7 +20,7 @@ export default function Navigation() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/auth/">Login</Nav.Link>
+            <Nav.Link href="/auth">Login</Nav.Link>
             <Nav.Link onClick={handleClick}>Log Out</Nav.Link>
             <NavDropdown title="Get Cooking" id="basic-nav-dropdown">
               <NavDropdown.Item href="/recipe">My Recipes</NavDropdown.Item>
@@ -29,8 +29,17 @@ export default function Navigation() {
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">Edit Profile</NavDropdown.Item>
             </NavDropdown>
+
           </Nav>
         </Navbar.Collapse>
+        <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ms-auto">
+        <Navbar.Text >
+              Signed in as: <a href="/auth">Add Name Here</a>
+            </Navbar.Text>
+            </Nav>
+        </Navbar.Collapse>
+
       </Container>
     </Navbar>
   </>
