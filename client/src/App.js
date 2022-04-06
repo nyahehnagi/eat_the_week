@@ -5,6 +5,8 @@ import CreateRecipe from "./components/recipes/create";
 import ShowRecipes from "./components/recipes/index";
 import ShowIngredients from "./components/ingredients/index";
 import CreateIngredients from "./components/ingredients/create";
+import CreateCategories from "./components/categories/create";
+import ShowCategories from "./components/categories/index";
 import Logon from "./components/auth/create";
 import Register from "./components/auth/register";
 import Navigation from "./components/navigation"
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/recipe/" element={<ShowRecipes />} />
         <Route path="/ingredient/" element={<ShowIngredients />} />
         <Route path="/ingredient/create" element={<CreateIngredients />} />
+        <Route path="/category/" element={<ShowCategories />} />
+        <Route path="/category/create" element={<CreateCategories />} />
         <Route path="/auth/" element={<Logon />} />
         <Route path="/auth/register" element={<Register />} />
       </Routes>

@@ -6,6 +6,8 @@ import Select from 'react-dropdown-select';
 export default function Create() {
   const [form, setForm] = useState({
     name: "",
+    ingredient: "Flour",
+    category: "Vegan",
   });
 
   const [cookies, setCookie] = useCookies();
@@ -38,9 +40,10 @@ export default function Create() {
       return;
     });
 
-    setForm({ name: "" });
+    setForm({ name: "", ingredient: "Flour", category: "Vegan" });
     navigate("/recipe");
   }
+
   const Ingredient = [
     { label: "Flour", value: 1 },
     { label: "Milk", value: 2 },
@@ -103,18 +106,48 @@ return (
         
          <label htmlFor="image">Image</label>
         <input
-          type="input"
+          type="file"
           className="form-control"
           id="image"
           value={form.image}
           onChange={(e) => updateForm({image: e.target.value})}
         />
 
-        <label htmlFor="category">Select Ingredients</label>
-        <Select options={Ingredient} /> 
-
         <label htmlFor="category">Select Category</label>
-        <Select options={Category} /> 
+        <select
+          type="input"
+          className="form-control"
+          id="category"
+          isMulti={true}
+          value={form.category} 
+          onChange={(e) => updateForm({category: e.target.value})}>
+             {Category.map((category) => <option value={category.label}>{category.label}</option>)} 
+          </select>
+
+
+        <label htmlFor="ingredient"></label>
+          Select Ingredients
+          <select
+          type="input"
+          className="form-control"
+          id="ingredient"
+          isMulti={true}
+          value={form.ingredient} 
+          onChange={(e) => updateForm({ingredient: e.target.value})}>
+             {Ingredient.map((ingredient) => <option value={ingredient.label}>{ingredient.label}</option>)} 
+          </select>
+
+      
+        {/* <label htmlFor="ingredient">
+          Select Ingredients
+          <Select
+          type="input"
+          className="form-control"
+          id="ingredient"
+          isMulti={true}
+          options={Ingredient}
+          />
+        </label> */}
       </div>
      
       <div className="form-group">
@@ -129,3 +162,4 @@ return (
   </div>
   );
 }
+
