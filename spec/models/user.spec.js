@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const sinon = require("sinon")
 
 require("../mongodb_helper");
 const User = require("../../models/user");
@@ -32,7 +34,7 @@ describe("User model", () => {
       email: "someone@example.com",
       password: "Password1",
     });
-    expect(user.password).toEqual("password");
+    expect(user.password).toEqual("Password1");
   });
 
   it("can save a user", (done) => {
@@ -50,11 +52,21 @@ describe("User model", () => {
 
         expect(users[0]).toMatchObject({
           email: "someone@example.com",
-          password: "Password1",
           name: "test name",
         });
         done();
       });
     });
   });
+
+  it("password should be hashed", async () => {
+    const spy = sinon.spy(bcrypt, 'hash');
+    await User.create({
+      email: "someone@example.com",
+      password: "Password1",
+      name: "test name",
+    });
+
+    expect(spy.called).toEqual(true);
+  })
 });

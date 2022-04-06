@@ -6,7 +6,9 @@ const UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   name: String,
-});
+},
+  { timestamps: true }
+);
 
 UserSchema.pre("save", async function (next) {
   const hash = await bcrypt.hash(this.password, saltRounds);

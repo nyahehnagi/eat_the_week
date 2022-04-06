@@ -34,7 +34,8 @@
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "prettier": "^2.6.1"
+    "prettier": "^2.6.1",
+    "sinon": "^13.0.1"
   },
   "devDependencies": {
     "cypress": "^9.5.1",
