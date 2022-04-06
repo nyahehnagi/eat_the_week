@@ -195,6 +195,35 @@ Creates a new Recipe.
   curl "http://localhost:4000/recipes"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{"recipe": {"name":"eggs"}}'
 ```
 
+## Ingredient
+
+GET /ingredients
+
+Returns a list of all recipes.
+
+```
+curl "http://localhost:4000/ingredients" \
+  -H "Authorization: Bearer <token_here>"
+```
+
+On success, the above command returns JSON structured like this:
+
+[
+{
+"name":"flour",
+"unit":"grams",
+"image":"Default image"}
+}
+]
+
+POST /ingredients
+
+Creates a new Ingredient.
+
+```
+  curl "http://localhost:4000/ingredients"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ ingredient: { name: 'butter', unit: 'grams' } } 
+```
+
 ## Environment Configuration
 
 For Production, setup config on Heroku for the following:
