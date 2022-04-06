@@ -19,6 +19,8 @@
 // Alternatively you can use CommonJS syntax:
 require('./commands');
 require('./signUp.js')
+require('./localStorage.js')
+
 
 beforeEach(() => {
   // This runs prior to every test and clears all the data
