@@ -13,7 +13,7 @@ export default function ShowRecipes() {
   }
   const navigate = useNavigate();
 
-  // This method fetches the posts from the database.
+  // This method fetches the recipes from the database.
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch("/recipes", {
