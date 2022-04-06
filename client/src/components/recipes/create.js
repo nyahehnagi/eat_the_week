@@ -9,8 +9,6 @@ export default function Create(props) {
 
   const [cookies, setCookie] = useCookies();
 
-  //const navigate = useNavigate();
-
   // This method will update the state properties.
   function updateForm(value) {
     return setForm((prev) => {
@@ -38,7 +36,7 @@ export default function Create(props) {
     });
 
     setForm({ name: "" });
-    props.setState(!props.state)
+    props.setReload(!props.state)
   }
 
   const Ingredient = [

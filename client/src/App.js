@@ -1,12 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/home/index";
-import CreateRecipe from "./components/recipes/create";
-import ShowRecipes from "./components/recipes/index";
 import MyRecipes from "./components/recipes/myRecipes";
 import ShowIngredients from "./components/ingredients/index";
-
-
 import CreateIngredients from "./components/ingredients/create";
 import Logon from "./components/auth/create";
 import Register from "./components/auth/register";
@@ -21,7 +17,6 @@ const App = () => {
       <Navigation/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/recipe/create" element={<CreateRecipe />} />
         <Route path="/recipe/" element={<MyRecipes />} />
         <Route path="/ingredient/" element={<ShowIngredients />} />
         <Route path="/ingredient/create" element={<CreateIngredients />} />
