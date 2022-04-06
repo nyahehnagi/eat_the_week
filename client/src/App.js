@@ -4,12 +4,15 @@ import Home from "./components/home/index";
 import CreateRecipe from "./components/recipes/create";
 import ShowRecipes from "./components/recipes/index";
 import Logon from "./components/auth/create";
+import Navigation from "./components/navigation"
 
 import "bootstrap/dist/css/bootstrap.css";
 
 const App = () => {
   return (
-    <div>
+    <>
+    <div className="App">
+      <Navigation/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipe/create" element={<CreateRecipe />} />
@@ -17,6 +20,7 @@ const App = () => {
         <Route path="/auth/" element={<Logon />} />
       </Routes>
     </div>
+    </>
   );
 };
 

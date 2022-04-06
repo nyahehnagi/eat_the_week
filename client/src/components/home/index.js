@@ -41,8 +41,6 @@ export default function Home() {
 
   return (
     <div>
-      <h3>Welcome to Eat The Week</h3>
-
       <h3>Create User</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
