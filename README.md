@@ -1,19 +1,80 @@
 # Eat The Week
-
----
+An app designed to allow users to save their favourite recipes, shop for ingredients and find new inspiration for cooking.
 
 ---
 
 ## Tech Used
 
-- Javascript with Node
-- Mongodb
-- Express
-- React
-- Jest - Unit Testing
-- Cypress - Integration Testing
-- Prettier - Linting
-- Bootstrap/CSS - Look and Feel
+- [Node](https://nodejs.org/en/) - Back End
+- [MongoDB](https://www.mongodb.com/) - Database
+- [Express](https://expressjs.com/) - Web framework for Node.js
+- [React](https://reactjs.org/) - Front End
+- [Jest](https://jestjs.io/) - Unit Testing
+- [Cypress](https://www.cypress.io/) - Integration Testing
+- [Prettier](https://prettier.io/) - Linting
+- [Bootstrap/CSS](https://getbootstrap.com/docs/3.4/css/) - Look and Feel
+- [Bcrypt](https://www.npmjs.com/package/bcrypt) - Encryption
+
+## MVP
+
+<img src="./img/mvpJira.png" width="600" height="350" />
+
+The functionality we expect for the MVP is:
+
+* Sign Up
+
+```
+As a Customer
+So that I can access Eat the Week
+I need to be able to create an account
+```
+
+* Login
+
+```
+As a Customer
+So that I can access my account
+I need to be able to login to my account
+```
+
+* Logout
+
+```
+As a Customer
+So that I can keep my profile secure
+I want to be able to logout
+```
+
+* Show Ingredients
+
+```
+As a Customer
+So that I can create tasty tasty recipes
+I need to be able to see available ingredients
+```
+
+* Create Recipe
+
+```
+As a Customer
+So that I can store my own recipes
+I want to be able to create a recipe
+```
+
+# Future Enhancements
+
+Longer term we would like the following functionality:
+
+* Associate recipes with a customer profile
+* Create weekly planner of meals
+* Auto-add items from a recipe to the basket
+* Mock checkout
+* Pre-created recipes to help people be creative with their cooking!
+* Make recipe selections seasonal
+* Identify Vegan/Vegetarian/allergy safe recipes
+* Enhanced profile (add dietary requirements)
+* Handle substitutions/out of stock items
+
 
 ## Installation
 
@@ -150,26 +211,3 @@ For Local. setup config in `.env`:
 AUTH_KEY=supersecret
 ```
 
-## MVP
-
-The functionality we expect for the MVP is:
-
-- Sign Up
-- Login
-- Logout
-- Show Ingredients
-- Create Recipe
-
-# Future Enhancements
-
-Longer term we would like the following functionality:
-
-- Associate recipes with a customer profile
-- Create weekly planner of meals
-- Auto-add items from a recipe to the basket
-- Mock checkout
-- Pre-created recipes to help people be creative with their cooking!
-- Make recipe selections seasonal
-- Identify Vegan/Vegetarian/allergy safe recipes
-- Enhanced profile (add dietary requirements)
-- Handle substitutions/out of stock items

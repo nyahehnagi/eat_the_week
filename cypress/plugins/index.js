@@ -22,6 +22,7 @@ var Recipe = require("../../models/recipe");
 module.exports = (on, config) => {
   on("task", {
     async resetDb() {
+      
       mongoose.connect("mongodb://127.0.0.1/eattheweek_test", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
