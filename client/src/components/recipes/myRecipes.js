@@ -9,7 +9,7 @@ export default function MyRecipes () {
   const [state, setReload] = useState(false)
 
   return (
-    <Container>
+    <Container className="container-sm">
       <Row>
         <Col>
           <CreateRecipe state={state} setReload={setReload} />
