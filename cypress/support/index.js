@@ -19,7 +19,6 @@
 // Alternatively you can use CommonJS syntax:
 require('./commands');
 require('./signUp.js')
-require('./localStorage.js')
 
 
 beforeEach(() => {
