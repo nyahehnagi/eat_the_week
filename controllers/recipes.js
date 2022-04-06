@@ -15,7 +15,8 @@ const RecipesController = {
     console.log(req.body)
     console.log(req.body.recipe.name)
 
-    const recipe = new Recipe({ name: req.body.recipe.name, 
+    const recipe = new Recipe({ 
+      name: req.body.recipe.name, 
       serves: req.body.recipe.serves,
       prep_time: req.body.recipe.prep_time,
       description: req.body.recipe.description,
