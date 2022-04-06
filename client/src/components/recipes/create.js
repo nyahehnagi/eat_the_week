@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import { useCookies } from "react-cookie";
 import Select from 'react-dropdown-select';
 
-export default function Create() {
+export default function Create(props) {
   const [form, setForm] = useState({
     name: "",
   });
 
   const [cookies, setCookie] = useCookies();
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   // This method will update the state properties.
   function updateForm(value) {
@@ -39,8 +38,9 @@ export default function Create() {
     });
 
     setForm({ name: "" });
-    navigate("/recipe");
+    props.setState(!props.state)
   }
+
   const Ingredient = [
     { label: "Flour", value: 1 },
     { label: "Milk", value: 2 },
@@ -72,7 +72,7 @@ return (
           type="input"
           className="form-control"
           id="description"
-          value={form.description}
+          value={form.description || ""}
           onChange={(e) => updateForm({description: e.target.value})}
         />
          <label htmlFor="serves">Serves</label>
@@ -80,7 +80,7 @@ return (
           type="input"
           className="form-control"
           id="serves"
-          value={form.serves}
+          value={form.serves || ""} 
           onChange={(e) => updateForm({ serves: e.target.value})}
         />
          <label htmlFor="prep_time">Preparation Time</label>
@@ -88,7 +88,7 @@ return (
           type="input"
           className="form-control"
           id="prep_time"
-          value={form.prep_time}
+          value={form.prep_time || ""}
           onChange={(e) => updateForm({prep_time: e.target.value})}
         />
 
@@ -97,7 +97,7 @@ return (
           type="input"
           className="form-control"
           id="method"
-          value={form.method}
+          value={form.method || ""}
           onChange={(e) => updateForm({method: e.target.value})}
         />
         
@@ -106,7 +106,7 @@ return (
           type="input"
           className="form-control"
           id="image"
-          value={form.image}
+          value={form.image || ""}
           onChange={(e) => updateForm({image: e.target.value})}
         />
 
