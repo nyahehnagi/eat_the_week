@@ -1,9 +1,9 @@
 describe("Create a Recipe", () => {
-  xit("creates a recipe", () => {
-    // sign up
-    cy.visit("/recipe/new");
+  it("creates a recipe", () => {
+    cy.eattheweek.signUp();
+    cy.visit("/recipe/create");
     cy.get("#name").type("bacon and eggs");
     cy.get("#create-recipe").click();
-    cy.get("#recipeList").eq(0).should("contain_text", "bacon and eggs");
+    cy.get("#recipeList").contains("bacon and eggs");
   });
 });
