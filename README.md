@@ -175,7 +175,9 @@ On success, the above command returns JSON structured like this:
 
 GET /recipes
 
-Returns a list of all recipes.
+Returns a list of all recipes associated with a user.
+
+This endpoint requires a user_id given as a token in the authorization header.
 
 ```
 curl "http://localhost:4000/recipes" \
@@ -199,6 +201,19 @@ Creates a new Recipe.
 ```
   curl "http://localhost:4000/recipes"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{"recipe": {"name":"eggs"}}'
 ```
+
+DELETE /recipe/:id
+
+Deletes a Recipe.
+
+This endpoint requires a user_id given as a token in the authorization header.
+
+
+curl "http://localhost:4000/recipes/1" \
+  -X DELETE \
+  -H "Authorization: Bearer <token_here>"
+The above command returns a 204: No Content response on success.
+
 
 ## Ingredient
 

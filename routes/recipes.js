@@ -15,4 +15,10 @@ router.post(
   RecipesController.Create
 );
 
+router.delete(
+  "/:id", 
+  passport.authenticate("jwt", { session: false }),
+  RecipesController.Delete
+);
+
 module.exports = router;

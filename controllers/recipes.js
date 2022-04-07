@@ -18,9 +18,6 @@ const RecipesController = {
 
   Create: (req, res) => {
 
-    console.log("User Info", req.user)
-    console.log("User Info", req.user._id)
-
     const recipe = new Recipe({ 
       name: req.body.recipe.name, 
       serves: req.body.recipe.serves,
@@ -39,6 +36,21 @@ const RecipesController = {
       res.json(result)
     });
   },
+
+  Delete: (req, res) => {
+
+    console.log("Inside Delete Recipe")
+    Recipe.deleteOne({
+      _id: req.params.id
+    })
+    .exec((err, _) => {
+      if (err) throw err;
+
+      res.status(204)
+      res.send()
+    }) 
+  },
+
 };
 
 module.exports = RecipesController;
