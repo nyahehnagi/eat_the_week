@@ -16,11 +16,10 @@ export default function Navigation() {
   <>
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="/">Eat The Week</Navbar.Brand>
+      <Navbar.Brand href="/"><img src="/logo.png" height="80" width="130" alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link id="logout" onClick={handleClick}>Log Out</Nav.Link>
             <NavDropdown title="Get Cooking" id="basic-nav-dropdown">
               <NavDropdown.Item href="/recipe">My Recipes</NavDropdown.Item>
               <NavDropdown.Item href="/ingredient">My Ingredients</NavDropdown.Item>
@@ -39,6 +38,7 @@ export default function Navigation() {
            </Navbar.Text>
            <Nav.Link href="/auth">Login</Nav.Link>
            <Nav.Link href="/auth/register">Register</Nav.Link>
+           <Nav.Link id="logout" onClick={handleClick}>Log Out</Nav.Link>
         </Nav>
         </Navbar.Collapse>
 
