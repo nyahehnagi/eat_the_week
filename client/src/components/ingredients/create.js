@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import { useCookies } from "react-cookie"; 
 
-export default function Create() {
+export default function Create(props) {
   const [form, setForm] = useState({
     name: "",
   });
 
   const [cookies, setCookie] = useCookies();
-
-  const navigate = useNavigate();
 
   // This method will update the state properties.
   function updateForm(value) {
@@ -38,7 +35,7 @@ export default function Create() {
     });
 
     setForm({ name: "" });
-    navigate("/ingredient");
+    props.setReload(!props.state)
   }
 // This following section will display the form that takes the input from the ingredient.
 return (

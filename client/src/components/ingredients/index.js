@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 
 const Ingredient = (props) => <div>{props.ingredient.name}</div>;
 
-export default function ShowIngredients() {
+export default function ShowIngredients(props) {
   const [ingredients, setIngredients] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies();
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ export default function ShowIngredients() {
     getIngredients();
 
     return;
-  }, [ingredients.length]);
+  }, [ingredients.length, props.state]);
 
   // This method will map out the ingredients
   function ingredientList() {
@@ -49,7 +49,6 @@ export default function ShowIngredients() {
   // This following  will display the ingredients
   return (
     <div>
-      <button onClick={handleClick}>Log Out</button>
       <h3>Ingredients</h3>
       <div id="ingredientList">
         {ingredientList()}

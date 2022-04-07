@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
+import { Card, Row, Col } from 'react-bootstrap';
 
-const Recipe = (props) => <div>{props.recipe.name}</div>;
-
-export default function ShowRecipes() {
+export default function ShowRecipes(props) {
+  const Recipe = (props) => <div>{props.recipe.name}</div>;
   const [recipes, setRecipes] = useState([]);
   const [cookies, setCookie] = useCookies();
 
-  // This method fetches the recipes from the database.
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch("/recipes", {
@@ -23,27 +21,36 @@ export default function ShowRecipes() {
         window.alert(message);
         return;
       }
-
+      
       const recipes = await response.json();
       setRecipes(recipes);
     }
 
     getRecipes();
-
     return;
-  }, [recipes.length]);
+  }, [recipes.length, props.state]);
+
 
   // This method will map out the recipes
   function recipeList() {
     return recipes.map((recipe) => {
-      return <Recipe recipe={recipe} key={recipe._id} />;
+      return (
+        // This should be a new component as it will get larger and more
+        // complicated
+        <Card>
+        <Card.Body>
+          <Card.Title>{recipe.name}</Card.Title>
+          <Card.Text>{recipe.description}</Card.Text>
+        </Card.Body>
+        </Card>
+      )
     });
   }
 
-  // This following  will display the recipes
+  // This following will display the recipes
   return (
     <div>
-      <h3>Recipes</h3>
+      <h3>My Recipes</h3>
       <div id="recipeList">
         {recipeList()}
       </div>
