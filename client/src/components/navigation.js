@@ -9,6 +9,7 @@ export default function Navigation() {
 
   const handleClick = () => {
     removeCookie("token", {path:'/'});
+    removeCookie("name", {path:'/'});
     navigate("/");
   }  
 
@@ -34,8 +35,8 @@ export default function Navigation() {
         </Navbar.Collapse>
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">
-          <Navbar.Text >
-              Signed in as: <a href="/auth">Add Name Here</a>
+            <Navbar.Text >
+              Signed in as: <a href="/auth">{document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1")}</a>
            </Navbar.Text>
            <Nav.Link href="/auth">Login</Nav.Link>
            <Nav.Link href="/auth/register">Register</Nav.Link>

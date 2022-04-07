@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/home/index";
 import CreateCategories from "./components/categories/create";
 import ShowCategories from "./components/categories/index";
 import MyRecipes from "./components/recipes/myRecipes";
 import MyIngredients from "./components/ingredients/myIngredients";
-import Logon from "./components/auth/create";
+import Logon from "./components/auth/logon";
 import Register from "./components/auth/register";
 import Navigation from "./components/navigation"
 
@@ -13,10 +13,13 @@ import "bootstrap/dist/css/bootstrap.css";
 
 
 const App = () => {
+  const [user, setUser] = useState({})
+
   return (
     <>
     <div className="App">
-      <Navigation/>
+      <h3>{user.name}</h3>
+      <Navigation user={user} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/" element={<ShowCategories />} />
@@ -29,6 +32,7 @@ const App = () => {
     </div>
     </>
   );
+
 };
 
 export default App;

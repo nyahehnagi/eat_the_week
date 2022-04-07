@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Container } from 'react-bootstrap';
 
-export default function Logon() {
+export default function Logon(props) {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -23,14 +23,15 @@ export default function Logon() {
 
     // When a post request is sent to the create url, add a new record to the database.
     const session = { ...form };
-
+  
     await fetch("/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ session }),
-    }).catch((error) => {
+    })
+    .catch((error) => {
       window.alert(error);
       return;
     });
