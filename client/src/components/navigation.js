@@ -20,7 +20,7 @@ export default function Navigation() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link onClick={handleClick}>Log Out</Nav.Link>
+            <Nav.Link id="logout" onClick={handleClick}>Log Out</Nav.Link>
             <NavDropdown title="Get Cooking" id="basic-nav-dropdown">
               <NavDropdown.Item href="/recipe">My Recipes</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Weekly Planner</NavDropdown.Item>
