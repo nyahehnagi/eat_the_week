@@ -9,6 +9,7 @@ const IngredientsController = {
        res.json(ingredients)
     })
   },
+  
   Create: (req, res) => {
     const ingredient = new Ingredient({ 
       name: req.body.ingredient.name, 

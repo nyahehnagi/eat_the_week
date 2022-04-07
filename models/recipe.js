@@ -7,19 +7,18 @@ const RecipeSchema = new mongoose.Schema(
     prep_time: Number,
     description: String,
     method: String,
-   // ingredient: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient'}],
+    // ingredient: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient'}],
     ingredient: String,
     image: String,
-   // category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
-   category: { 
+    // category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
+    category: { 
     type: String,
     default: "Vegan", 
-  },
-   user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
-  //  user_id: { 
-  //   type: String,
-  //   default: "12345678", 
-  // },
+    },
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    },
+
   },
   { timestamps: true }
 );

@@ -9,6 +9,7 @@ const CategoriesController = {
        res.json(categories)
     })
   },
+  
   Create: (req, res) => {
     const category = new Category({ 
       name: req.body.category.name

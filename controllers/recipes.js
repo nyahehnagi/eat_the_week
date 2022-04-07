@@ -2,18 +2,24 @@ const Recipe = require("../models/recipe");
 
 const RecipesController = {
   Index: (req, res) => {
-    Recipe.find((err, recipes) => {
-      if (err) {
-        throw err;
-      }
 
-      res.json(recipes)
-    })
+    userId = req.user._id
+
+    Recipe.
+      find({
+        user_id: userId
+      }).
+      exec((err, recipes) => {
+        if (err) throw err;
+
+        res.json(recipes)
+      }) 
   },
 
   Create: (req, res) => {
-    console.log(req.body)
-    console.log(req.body.recipe.name)
+
+    console.log("User Info", req.user)
+    console.log("User Info", req.user._id)
 
     const recipe = new Recipe({ 
       name: req.body.recipe.name, 
@@ -24,7 +30,7 @@ const RecipesController = {
       ingredient: req.body.recipe.ingredient,
       image: req.body.recipe.image,
       category: req.body.recipe.category,
-      user_id: req.body.recipe.user_id
+      user_id: req.user._id
      })
     recipe.save((err, result) => {
       if (err) {
