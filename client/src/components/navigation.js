@@ -9,8 +9,11 @@ export default function Navigation() {
 
   const handleClick = () => {
     removeCookie("token", {path:'/'});
+    removeCookie("name", {path:'/'});
     navigate("/");
   }  
+
+  const cookie = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1")
 
   return(
   <>
@@ -19,8 +22,8 @@ export default function Navigation() {
         <Navbar.Brand href="/">Eat The Week</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+        {cookie ?
           <Nav className="me-auto">
-            <Nav.Link id="logout" onClick={handleClick}>Log Out</Nav.Link>
             <NavDropdown title="Get Cooking" id="basic-nav-dropdown">
               <NavDropdown.Item href="/recipe">My Recipes</NavDropdown.Item>
               <NavDropdown.Item href="/ingredient">My Ingredients</NavDropdown.Item>
@@ -29,16 +32,25 @@ export default function Navigation() {
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">Edit Profile</NavDropdown.Item>
             </NavDropdown>
-
           </Nav>
+          : ""
+        }
         </Navbar.Collapse>
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">
-          <Navbar.Text >
-              Signed in as: <a href="/auth">Add Name Here</a>
+          {cookie ?
+          <>
+            <Navbar.Text >
+              Signed in as: <a href="/auth">{document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1")}</a>
            </Navbar.Text>
+           <Nav.Link id="logout" onClick={handleClick}>Log Out</Nav.Link>
+           </>
+           :
+           <> 
            <Nav.Link href="/auth">Login</Nav.Link>
            <Nav.Link href="/auth/register">Register</Nav.Link>
+           </>
+          }
         </Nav>
         </Navbar.Collapse>
 

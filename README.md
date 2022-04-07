@@ -164,6 +164,7 @@ On success, the above command returns JSON structured like this:
 ```
 {
   "id": 1,
+  "name": "your name",
   "token": "a_valid_token"
 }
 ```

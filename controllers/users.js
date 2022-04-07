@@ -19,6 +19,7 @@ const UsersController = {
       const payload = { id: result._id, name: result.name };
 
       res.cookie("token", token);
+      res.cookie("name", result.name);
       res.json(payload);
     });
   },
