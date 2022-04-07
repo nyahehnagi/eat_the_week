@@ -46,7 +46,6 @@ export default function ShowRecipes(props) {
     props.setReload(!props.state)
   }
 
-
   // This method will map out the recipes
   function recipeList() {
     return recipes.map((recipe) => {

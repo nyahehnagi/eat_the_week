@@ -16,6 +16,16 @@ const RecipesController = {
       }) 
   },
 
+  Show: (req, res) => {
+    Recipe.
+      findOne({_id: req.params.id})
+      .exec((err, recipe) => {
+        if (err) throw err;
+        res.json(recipe)
+      }) 
+  },
+
+
   Create: (req, res) => {
 
     const recipe = new Recipe({ 
@@ -27,7 +37,7 @@ const RecipesController = {
       ingredient: req.body.recipe.ingredient,
       image: req.body.recipe.image,
       category: req.body.recipe.category,
-      user_id: req.user._id
+      user_id: req.body.recipe.user_id
      })
     recipe.save((err, result) => {
       if (err) {
@@ -39,7 +49,6 @@ const RecipesController = {
 
   Delete: (req, res) => {
 
-    console.log("Inside Delete Recipe")
     Recipe.deleteOne({
       _id: req.params.id
     })
@@ -50,6 +59,17 @@ const RecipesController = {
       res.send()
     }) 
   },
+
+
+  Update: (req, res) => {
+
+    Recipe.
+      findOneAndUpdate({_id: req.params.id}, req.body.recipe)
+      .exec((err, recipe) => {
+        if (err) throw err;
+        res.json(recipe)
+      }) 
+    }
 
 };
 

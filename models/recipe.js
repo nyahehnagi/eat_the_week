@@ -15,9 +15,7 @@ const RecipeSchema = new mongoose.Schema(
     type: String,
     default: "Vegan", 
     },
-    user_id: {
-      type: mongoose.Schema.Types.ObjectId, ref: 'User'
-    },
+    user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 
   },
   { timestamps: true }

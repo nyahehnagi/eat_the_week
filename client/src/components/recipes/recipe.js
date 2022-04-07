@@ -12,7 +12,8 @@ export default function Recipe (props) {
     <Card.Body>
       <Card.Title>{props.recipe.name}</Card.Title>
       <Card.Text>{props.recipe.description}</Card.Text>
-      <Button onClick={handleClick} variant="secondary">Remove</Button>
+      <Button onClick={handleClick} className="btn btn-danger btn-sm me-1" >Remove</Button>
+      <Button className="btn btn-dark btn-sm">Edit</Button>
     </Card.Body>
     </Card>
   );
