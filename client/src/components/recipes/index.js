@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { Card, Row, Col } from 'react-bootstrap';
+import Recipe from "./recipe";
 
 export default function ShowRecipes(props) {
-  const Recipe = (props) => <div>{props.recipe.name}</div>;
+
   const [recipes, setRecipes] = useState([]);
   const [cookies, setCookie] = useCookies();
 
@@ -31,18 +31,27 @@ export default function ShowRecipes(props) {
   }, [recipes.length, props.state]);
 
 
+  async function removeRecipe(recipeId) {
+
+    await fetch(`/recipes/${recipeId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${cookies.token}`,
+      },
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
+
+    props.setReload(!props.state)
+  }
+
+
   // This method will map out the recipes
   function recipeList() {
     return recipes.map((recipe) => {
       return (
-        // This should be a new component as it will get larger and more
-        // complicated
-        <Card>
-        <Card.Body>
-          <Card.Title>{recipe.name}</Card.Title>
-          <Card.Text>{recipe.description}</Card.Text>
-        </Card.Body>
-        </Card>
+        <Recipe recipe={recipe} removeRecipe={removeRecipe}/>
       )
     });
   }
