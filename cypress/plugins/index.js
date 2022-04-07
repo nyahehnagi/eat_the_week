@@ -18,6 +18,7 @@
 
 var mongoose = require("mongoose");
 var Recipe = require("../../models/recipe");
+var User = require("../../models/user")
 
 module.exports = (on, config) => {
   on("task", {
@@ -37,7 +38,17 @@ module.exports = (on, config) => {
       // https://mongoosejs.com/docs/connections.html
       db.on("open", function () {
         Recipe.deleteMany({})
-          .then(() => {})
+          .then(() => {
+            console.log("Recipe Test Data Deleted")
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+          User.deleteMany({})
+          .then(() => {
+            console.log("User Test Data Deleted")
+          })
           .catch(function (error) {
             console.log(error);
           });
