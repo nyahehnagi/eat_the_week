@@ -3,7 +3,6 @@ import { useCookies } from "react-cookie";
 import Recipe from "./recipe";
 
 export default function ShowRecipes(props) {
-
   const [recipes, setRecipes] = useState([]);
   const [cookies, setCookie] = useCookies();
 
@@ -21,7 +20,7 @@ export default function ShowRecipes(props) {
         window.alert(message);
         return;
       }
-      
+
       const recipes = await response.json();
       setRecipes(recipes);
     }
@@ -30,9 +29,7 @@ export default function ShowRecipes(props) {
     return;
   }, [recipes.length, props.state]);
 
-
   async function removeRecipe(recipeId) {
-
     await fetch(`/recipes/${recipeId}`, {
       method: "DELETE",
       headers: {
@@ -43,15 +40,13 @@ export default function ShowRecipes(props) {
       return;
     });
 
-    props.setReload(!props.state)
+    props.setReload(!props.state);
   }
 
   // This method will map out the recipes
   function recipeList() {
     return recipes.map((recipe) => {
-      return (
-        <Recipe recipe={recipe} removeRecipe={removeRecipe}/>
-      )
+      return <Recipe recipe={recipe} removeRecipe={removeRecipe} />;
     });
   }
 
@@ -59,9 +54,7 @@ export default function ShowRecipes(props) {
   return (
     <div>
       <h3>My Recipes</h3>
-      <div id="recipeList">
-        {recipeList()}
-      </div>
+      <div id="recipeList">{recipeList()}</div>
     </div>
   );
 }

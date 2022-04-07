@@ -11,12 +11,11 @@ const RecipeSchema = new mongoose.Schema(
     ingredient: String,
     image: String,
     // category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
-    category: { 
-    type: String,
-    default: "Vegan", 
+    category: {
+      type: String,
+      default: "Vegan",
     },
-    user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }
 );

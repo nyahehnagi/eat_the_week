@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const sinon = require("sinon")
+const sinon = require("sinon");
 
 require("../mongodb_helper");
 const User = require("../../models/user");
@@ -11,7 +11,7 @@ describe("User model", () => {
       done();
     });
   });
-  
+
   it("has a name", () => {
     const user = new User({
       email: "someone@example.com",
@@ -60,7 +60,7 @@ describe("User model", () => {
   });
 
   it("password should be hashed", async () => {
-    const spy = sinon.spy(bcrypt, 'hash');
+    const spy = sinon.spy(bcrypt, "hash");
     await User.create({
       email: "someone@example.com",
       password: "Password1",
@@ -68,5 +68,5 @@ describe("User model", () => {
     });
 
     expect(spy.called).toEqual(true);
-  })
+  });
 });

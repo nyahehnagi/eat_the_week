@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const CategorySchema = new mongoose.Schema(
   {
@@ -6,8 +6,8 @@ const CategorySchema = new mongoose.Schema(
     image: String,
   },
   { timestamps: true }
-)
+);
 
-const Category = mongoose.model('Category', CategorySchema)
+const Category = mongoose.model("Category", CategorySchema);
 
-module.exports = Category
+module.exports = Category;

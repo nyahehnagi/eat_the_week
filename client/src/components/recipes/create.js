@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
-import Select from 'react-dropdown-select';
+import Select from "react-dropdown-select";
 
 export default function Create(props) {
   const [form, setForm] = useState({
@@ -36,9 +36,9 @@ export default function Create(props) {
       window.alert(error);
       return;
     });
-    
+
     setForm({ name: "", ingredient: "Flour", category: "Vegan" });
-    props.setReload(!props.state)
+    props.setReload(!props.state);
   }
 
   const Ingredient = [
@@ -46,105 +46,105 @@ export default function Create(props) {
     { label: "Milk", value: 2 },
     { label: "Sugar", value: 3 },
     { label: "Salt", value: 4 },
-    { label: "Eggs", value: 5 }
+    { label: "Eggs", value: 5 },
   ];
   const Category = [
     { label: "Vegan", value: 1 },
     { label: "BBQ", value: 2 },
-    { label: "Wheat Free", value: 3 }
+    { label: "Wheat Free", value: 3 },
   ];
-// This following section will display the form that takes the input from the recipe.
-return (
-  <div>
-    <h3>Create Recipe</h3>
-    <form onSubmit={onSubmit}>
-     <div className="form-group">
-        <label htmlFor="name">Recipe Name</label>
-        <input
-          type="input"
-          className="form-control"
-          id="name"
-          value={form.name}
-          onChange={(e) => updateForm({ name: e.target.value})}
-        />
-       <label htmlFor="description">Recipe Description</label>
-        <input
-          type="input"
-          className="form-control"
-          id="description"
-          value={form.description || ""}
-          onChange={(e) => updateForm({description: e.target.value})}
-        />
-         <label htmlFor="serves">Serves</label>
-        <input
-          type="input"
-          className="form-control"
-          id="serves"
-          value={form.serves || ""} 
-          onChange={(e) => updateForm({ serves: e.target.value})}
-        />
-         <label htmlFor="prep_time">Preparation Time</label>
-        <input
-          type="input"
-          className="form-control"
-          id="prep_time"
-          value={form.prep_time || ""}
-          onChange={(e) => updateForm({prep_time: e.target.value})}
-        />
-
-         <label htmlFor="method">Method</label>
-        <input
-          type="input"
-          className="form-control"
-          id="method"
-          value={form.method || ""}
-          onChange={(e) => updateForm({method: e.target.value})}
-        />
-        
-         <label htmlFor="image">Image</label>
-        <input
-          type="file"
-          className="form-control"
-          id="image"
-          value={form.image || ""}
-          onChange={(e) => updateForm({image: e.target.value})}
-        />
-
-        <label htmlFor="category">Select Category</label>
-        <select
-          type="input"
-          className="form-control"
-          id="category"
-          isMulti={true}
-          value={form.category} 
-          onChange={(e) => updateForm({category: e.target.value})}>
-             {Category.map((category) => <option value={category.label}>{category.label}</option>)} 
+  // This following section will display the form that takes the input from the recipe.
+  return (
+    <div>
+      <h3>Create Recipe</h3>
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Recipe Name</label>
+          <input
+            type="input"
+            className="form-control"
+            id="name"
+            value={form.name}
+            onChange={(e) => updateForm({ name: e.target.value })}
+          />
+          <label htmlFor="description">Recipe Description</label>
+          <input
+            type="input"
+            className="form-control"
+            id="description"
+            value={form.description || ""}
+            onChange={(e) => updateForm({ description: e.target.value })}
+          />
+          <label htmlFor="serves">Serves</label>
+          <input
+            type="input"
+            className="form-control"
+            id="serves"
+            value={form.serves || ""}
+            onChange={(e) => updateForm({ serves: e.target.value })}
+          />
+          <label htmlFor="prep_time">Preparation Time</label>
+          <input
+            type="input"
+            className="form-control"
+            id="prep_time"
+            value={form.prep_time || ""}
+            onChange={(e) => updateForm({ prep_time: e.target.value })}
+          />
+          <label htmlFor="method">Method</label>
+          <input
+            type="input"
+            className="form-control"
+            id="method"
+            value={form.method || ""}
+            onChange={(e) => updateForm({ method: e.target.value })}
+          />
+          <label htmlFor="image">Image</label>
+          <input
+            type="file"
+            className="form-control"
+            id="image"
+            value={form.image || ""}
+            onChange={(e) => updateForm({ image: e.target.value })}
+          />
+          <label htmlFor="category">Select Category</label>
+          <select
+            type="input"
+            className="form-control"
+            id="category"
+            isMulti={true}
+            value={form.category}
+            onChange={(e) => updateForm({ category: e.target.value })}
+          >
+            {Category.map((category) => (
+              <option value={category.label}>{category.label}</option>
+            ))}
           </select>
-
-        <label htmlFor="ingredient"></label>
+          <label htmlFor="ingredient"></label>
           Select Ingredients
           <select
-          type="input"
-          className="form-control"
-          id="ingredient"
-          isMulti={true}
-          value={form.ingredient} 
-          onChange={(e) => updateForm({ingredient: e.target.value})}>
-             {Ingredient.map((ingredient) => <option value={ingredient.label}>{ingredient.label}</option>)} 
+            type="input"
+            className="form-control"
+            id="ingredient"
+            isMulti={true}
+            value={form.ingredient}
+            onChange={(e) => updateForm({ ingredient: e.target.value })}
+          >
+            {Ingredient.map((ingredient) => (
+              <option value={ingredient.label}>{ingredient.label}</option>
+            ))}
           </select>
+        </div>
 
-      </div>
-     
-      <div className="form-group">
-        <input
-          type="submit"
-          id="create-recipe"
-          value="Create Recipe"
-          className="btn btn-dark mt-2"
-        />
-      </div>
-    </form>
-  </div>
+        <div className="form-group">
+          <input
+            type="submit"
+            id="create-recipe"
+            value="Create Recipe"
+            className="btn btn-dark mt-2"
+          />
+        </div>
+      </form>
+    </div>
   );
 }
-

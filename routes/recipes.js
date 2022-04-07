@@ -23,16 +23,15 @@ router.post(
 );
 
 router.delete(
-  "/:id", 
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   RecipesController.Delete
 );
 
 router.put(
-  "/:id", 
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   RecipesController.Update
 );
-
 
 module.exports = router;
