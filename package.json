@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "prettier --write .",
     "start": "nodemon ./bin/www",
-    "start:test": "PORT=3030 MONGODB_URL='mongodb://127.0.0.1/eattheweek_test' npm start",
+    "start:test": "PORT=4000 MONGODB_URL='mongodb://127.0.0.1/eattheweek_test' npm start",
     "test": "npm run lint && npm run test:unit && npm run test:integration",
     "test:unit": "jest",
     "test:integration": "cypress run",
@@ -31,11 +31,11 @@
     "mongoose": "^5.8.11",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.15",
-    "react-select": "^5.2.2",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "prettier": "^2.6.1",
+    "react-select": "^5.2.2",
     "sinon": "^13.0.1"
   },
   "devDependencies": {

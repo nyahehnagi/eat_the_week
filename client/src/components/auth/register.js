@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { Container } from 'react-bootstrap';
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -40,8 +41,9 @@ export default function Register() {
   }
 
   return (
-    <div>
-      <h3>Create User</h3>
+
+    <Container className="container-sm">
+      <h3>Register User</h3>
       <form onSubmit={onSubmit}>
 
         <div className="form-group">
@@ -86,6 +88,6 @@ export default function Register() {
           />
         </div>
       </form>
-    </div>
+      </Container>
   );
 }
