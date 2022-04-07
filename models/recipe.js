@@ -15,11 +15,11 @@ const RecipeSchema = new mongoose.Schema(
     type: String,
     default: "Vegan", 
   },
-   /// id: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
-   user_id: { 
-    type: String,
-    default: "12345678", 
-  },
+   user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  //  user_id: { 
+  //   type: String,
+  //   default: "12345678", 
+  // },
   },
   { timestamps: true }
 );

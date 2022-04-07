@@ -5,6 +5,8 @@ import Select from 'react-dropdown-select';
 export default function Create(props) {
   const [form, setForm] = useState({
     name: "",
+    ingredient: "Flour",
+    category: "Vegan",
   });
 
   const [cookies, setCookie] = useCookies();
@@ -34,8 +36,8 @@ export default function Create(props) {
       window.alert(error);
       return;
     });
-
-    setForm({ name: "" });
+    
+    setForm({ name: "", ingredient: "Flour", category: "Vegan" });
     props.setReload(!props.state)
   }
 
@@ -101,18 +103,36 @@ return (
         
          <label htmlFor="image">Image</label>
         <input
-          type="input"
+          type="file"
           className="form-control"
           id="image"
           value={form.image || ""}
           onChange={(e) => updateForm({image: e.target.value})}
         />
 
-        <label htmlFor="category">Select Ingredients</label>
-        <Select options={Ingredient} /> 
-
         <label htmlFor="category">Select Category</label>
-        <Select options={Category} /> 
+        <select
+          type="input"
+          className="form-control"
+          id="category"
+          isMulti={true}
+          value={form.category} 
+          onChange={(e) => updateForm({category: e.target.value})}>
+             {Category.map((category) => <option value={category.label}>{category.label}</option>)} 
+          </select>
+
+        <label htmlFor="ingredient"></label>
+          Select Ingredients
+          <select
+          type="input"
+          className="form-control"
+          id="ingredient"
+          isMulti={true}
+          value={form.ingredient} 
+          onChange={(e) => updateForm({ingredient: e.target.value})}>
+             {Ingredient.map((ingredient) => <option value={ingredient.label}>{ingredient.label}</option>)} 
+          </select>
+
       </div>
      
       <div className="form-group">
@@ -127,3 +147,4 @@ return (
   </div>
   );
 }
+
