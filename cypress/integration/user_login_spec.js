@@ -1,5 +1,5 @@
 describe("Login", () => {
-  it("A user completes login and is redirected to recipe page", () => {
+  it("allows a user completes login and is redirected to recipe page", () => {
     cy.eattheweek.signUp();
     cy.get("#logout").click();
     cy.eattheweek.signIn();
