@@ -76,6 +76,10 @@ Longer term we would like the following functionality:
 * Handle substitutions/out of stock items
 
 
+## Design Diagrams
+
+<img src="./img/classDiagram.png" width="600" height="350" />
+
 ## Installation
 
 ---
