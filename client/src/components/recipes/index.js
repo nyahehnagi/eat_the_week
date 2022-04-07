@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { Card } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 
 export default function ShowRecipes(props) {
   const Recipe = (props) => <div>{props.recipe.name}</div>;
@@ -35,6 +35,8 @@ export default function ShowRecipes(props) {
   function recipeList() {
     return recipes.map((recipe) => {
       return (
+        // This should be a new component as it will get larger and more
+        // complicated
         <Card>
         <Card.Body>
           <Card.Title>{recipe.name}</Card.Title>
@@ -48,7 +50,7 @@ export default function ShowRecipes(props) {
   // This following will display the recipes
   return (
     <div>
-      <h3>Recipes</h3>
+      <h3>My Recipes</h3>
       <div id="recipeList">
         {recipeList()}
       </div>
