@@ -26,7 +26,7 @@ export default function Navigation() {
               <NavDropdown.Item href="#action/3.2">Weekly Planner</NavDropdown.Item>
 
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Edit Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/user">Edit Profile</NavDropdown.Item>
             </NavDropdown>
 
           </Nav>

@@ -32,6 +32,19 @@ const UsersController = {
       res.json(payload);
     });
   },
+
+  Update: (req, res) => {
+    // console.log("Inside Update user Id",req.user._id )
+    // console.log("Inside Update Body",req.body.user)
+     User.findOneAndUpdate({ _id: req.user._id}, req.body.user ).exec(
+      user.save((err, result) => {
+      if (err) {
+        res.status(500).send("Error registering new password please try again.");
+        throw err;
+      }
+     })
+    );
+  },
 };
 
 module.exports = UsersController;

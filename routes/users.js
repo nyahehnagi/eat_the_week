@@ -12,4 +12,10 @@ router.get(
     UsersController.Index
   );
 
+  router.put(
+    "/",
+    passport.authenticate("jwt", { session: false }),
+    UsersController.Update
+  );
+
 module.exports = router;

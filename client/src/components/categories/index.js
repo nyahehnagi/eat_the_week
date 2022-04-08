@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 
 const Category = (props) => <div>{props.category.name}</div>;
 
-export default function ShowCategories() {
+export default function ShowCategories(props) {
   const [categories, setCategories] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies();
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ export default function ShowCategories() {
     getCategories();
 
     return;
-  }, [categories.length]);
+  }, [categories.length, props.state]);
 
   // This method will map out the categories
   function categoryList() {

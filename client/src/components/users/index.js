@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useCookies } from "react-cookie";
+import { Container } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
- const User = (props) => <div>{props.user.name}</div>;
+//  const User = (props) => <div>{props.user.name}</div>;
 
 export default function GetUser(props) {
-  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies();
-  const navigate = useNavigate();
-  let counter = 0;
 
-  // This method fetches the ingredients from the database.
+  const [form, setForm] = useState({
+    password: "",
+  });
+
+  const navigate = useNavigate();
+    // This method will update the state properties.
+    function updateForm(value) {
+      return setForm((prev) => {
+        return { ...prev, ...value };
+      });
+    }
+
+  // This method fetches the user details from the database.
   useEffect(() => {
-    console.log("HERE 1111111")
-    
-    console.log("HERE 1111111")
-    async function getUsers() {
+   
+    async function getUser() {
       const response = await fetch("/users", {
         method: "GET",
         headers: {
@@ -28,17 +38,15 @@ export default function GetUser(props) {
         window.alert(message);
         return;
       } 
-      const users = await response.json();
-      console.log(users)
-      counter += 1
-      console.log(counter)
-      setUsers(users);
+      const user = await response.json();
+      console.log(user)
+      setUser(user);
     }
 
-    getUsers();
+    getUser();
 
     return; 
-  } , [users.length, props.state]);
+  } , [user.length, props.state ]);
 
  
   const handleClick = () => {
@@ -46,14 +54,62 @@ export default function GetUser(props) {
     navigate("/");
   };
 
-  // This following  will display the user
+  async function onSubmit(e) {
+    e.preventDefault();
+
+    const user = { ...form };
+ 
+
+    // This will send a put request to update the data in the database.
+   
+    await fetch("/users", {
+   // await fetch(`/user/${props.user._id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${cookies.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({user}),
+    });
+
+   // props.setUserId("")
+    props.setReload(!props.state); 
+    navigate("/recipe");
+  }
+ 
   return (
-    <div>
-    <h3>User Details</h3>
-    <div>
-      {users.email}
-      {users.name}
+  <Container className="container-sm">
+  <h3>Password Reset</h3>
+  <Card>
+      <Card.Body>
+        <Card.Title>User Name: {user.name}</Card.Title>
+        <Card.Text>User Email: {user.email}</Card.Text>
+      </Card.Body>
+ 
+  </Card>
+  <form onSubmit={onSubmit}>
+    <div className="form-group">
+    <br></br>
+      <label htmlFor="password">Please enter the new Password</label>
+      <input
+        type="password"
+        className="form-control"
+        id="password"
+        value={form.password}
+        onChange={(e) => updateForm({ password: e.target.value })}
+      />
     </div>
+    <br></br>
+    <div className="form-group">
+      <input
+        type="submit"
+        id="update"
+        value="Update"
+        className="btn btn-primary"
+      />
     </div>
-  );
+  </form>
+
+  </Container>
+  ); 
 }
