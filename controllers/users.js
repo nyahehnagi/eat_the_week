@@ -2,6 +2,16 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
 const UsersController = {
+
+  Index: (req, res) => {
+    User.findOne({_id: req.user._id}, function( err, users) {
+      if (err) {
+        throw err
+      } 
+       res.json(users)
+    })
+  },
+
   Create: async (req, res) => {
     const userExists = await User.findOne({ email: req.body.user.email })
     if (userExists) {
@@ -27,6 +37,31 @@ const UsersController = {
       }
     )} 
   },
+
+
+  Update: (req, res) => {
+
+    User.findOne({_id: req.user._id}, function( err, user) {
+      if (err) {
+        throw err
+      }
+      user.password = req.body.user.password;
+
+      user.save((err, result) => {
+        if (err) {
+          res.status(500).send("Error registering new password please try again.");
+          throw err;
+        }
+        res.status(200)
+        res.send()
+      })
+
+    })
+  },
 };
+
+
+
+
 
 module.exports = UsersController;
