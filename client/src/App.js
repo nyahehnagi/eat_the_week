@@ -5,6 +5,7 @@ import CreateCategories from "./components/categories/create";
 import ShowCategories from "./components/categories/index";
 import MyRecipes from "./components/recipes/myRecipes";
 import MyIngredients from "./components/ingredients/myIngredients";
+import MyUsers from "./components/users/myUsers";
 import Logon from "./components/auth/logon";
 import Register from "./components/auth/register";
 import Navigation from "./components/navigation";
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/ingredient/" element={<MyIngredients />} />
           <Route path="/auth/" element={<Logon />} />
           <Route path="/auth/register" element={<Register />} />
+          <Route path="/user/" element={<MyUsers />} />
         </Routes>
       </div>
     </>
