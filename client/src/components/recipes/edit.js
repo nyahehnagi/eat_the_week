@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
+import { Button } from "react-bootstrap";
 
 export default function EditRecipe(props) {
   const [form, setForm] = useState({});
@@ -58,6 +59,11 @@ export default function EditRecipe(props) {
       body: JSON.stringify({recipe}),
     });
 
+    props.setRecipeId("")
+    props.setReload(!props.state);
+  }
+
+  function handleCancelClick(){
     props.setRecipeId("")
     props.setReload(!props.state);
   }
@@ -163,9 +169,11 @@ export default function EditRecipe(props) {
             type="submit"
             id="update-recipe"
             value="Edit Recipe"
-            className="btn btn-dark mt-2"
+            className="btn btn-dark mt-2 me-1"
           />
+          <Button onClick={handleCancelClick} className="btn btn-dark mt-2">Cancel</Button>
         </div>
+        
       </form>
     </div>
   );
