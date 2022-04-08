@@ -19,8 +19,9 @@ const AuthController = {
         const token = jwt.sign({ user: body }, process.env.AUTH_KEY, {
           expiresIn: "1h",
         });
-        const payload = { id: user._id, token: token };
+        const payload = { id: user._id, name: user.name, token: token };
         res.cookie("token", token);
+        res.cookie("name", user.name);
         res.json(payload);
       }
     });

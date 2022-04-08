@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import Select from "react-dropdown-select";
+import { Button } from "react-bootstrap";
 
-export default function Create(props) {
-  const [form, setForm] = useState({
-    name: "",
-    ingredient: "Flour",
-    category: "Vegan",
-  });
-
+export default function EditRecipe(props) {
+  const [form, setForm] = useState({});
   const [cookies, setCookie] = useCookies();
 
   // This method will update the state properties.
@@ -18,28 +13,58 @@ export default function Create(props) {
     });
   }
 
-  // This function will handle the submission.
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(`/recipes/${props.recipeId}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${cookies.token}`,
+        },
+      })
+
+      if (!response.ok) {
+        const message = `An error has occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const recipe = await response.json();
+      if (!recipe) {
+        window.alert(`Record with id ${props.recipeId} not found`);
+        return;
+      }
+
+      setForm(recipe);
+    }
+
+    fetchData();
+
+    return;
+  }, [props.recipeId]);
+
   async function onSubmit(e) {
     e.preventDefault();
 
-    // When a post request is sent to the create url, add a new record to the database.
     const recipe = { ...form };
 
-    console.log("Create Recipe", JSON.stringify({ recipe }))
+    console.log("edited recipe",recipe )
 
-    await fetch("/recipes", {
-      method: "POST",
+    // This will send a put request to update the data in the database.
+    await fetch(`/recipes/${props.recipeId}`, {
+      method: "PUT",
       headers: {
         Authorization: `Bearer ${cookies.token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ recipe }),
-    }).catch((error) => {
-      window.alert(error);
-      return;
+      body: JSON.stringify({recipe}),
     });
 
-    setForm({ name: "", ingredient: "Flour", category: "Vegan" });
+    props.setRecipeId("")
+    props.setReload(!props.state);
+  }
+
+  function handleCancelClick(){
+    props.setRecipeId("")
     props.setReload(!props.state);
   }
 
@@ -55,10 +80,11 @@ export default function Create(props) {
     { label: "BBQ", value: 2 },
     { label: "Wheat Free", value: 3 },
   ];
+
   // This following section will display the form that takes the input from the recipe.
   return (
     <div>
-      <h3>Create Recipe</h3>
+      <h3>Edit Recipe</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="name">Recipe Name</label>
@@ -66,7 +92,7 @@ export default function Create(props) {
             type="input"
             className="form-control"
             id="name"
-            value={form.name}
+            value={form.name || ""}
             onChange={(e) => updateForm({ name: e.target.value })}
           />
           <label htmlFor="description">Recipe Description</label>
@@ -141,11 +167,13 @@ export default function Create(props) {
         <div className="form-group">
           <input
             type="submit"
-            id="create-recipe"
-            value="Create Recipe"
-            className="btn btn-dark mt-2"
+            id="update-recipe"
+            value="Edit Recipe"
+            className="btn btn-dark mt-2 me-1"
           />
+          <Button onClick={handleCancelClick} className="btn btn-dark mt-2">Cancel</Button>
         </div>
+        
       </form>
     </div>
   );

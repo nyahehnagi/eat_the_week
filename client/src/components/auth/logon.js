@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { Container } from 'react-bootstrap';
+import { Container } from "react-bootstrap";
 
-export default function Logon() {
+export default function Logon(props) {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -74,6 +74,6 @@ export default function Logon() {
           />
         </div>
       </form>
-      </Container >
+    </Container>
   );
 }

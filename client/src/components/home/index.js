@@ -1,6 +1,4 @@
-
 export default function Home() {
-
   return (
     <>
      <div className="p-3 mb-2 bg-body text-dark">

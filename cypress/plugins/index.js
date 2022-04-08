@@ -18,12 +18,11 @@
 
 var mongoose = require("mongoose");
 var Recipe = require("../../models/recipe");
-var User = require("../../models/user")
+var User = require("../../models/user");
 
 module.exports = (on, config) => {
   on("task", {
     async resetDb() {
-      
       mongoose.connect("mongodb://127.0.0.1/eattheweek_test", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -39,15 +38,15 @@ module.exports = (on, config) => {
       db.on("open", function () {
         Recipe.deleteMany({})
           .then(() => {
-            console.log("Recipe Test Data Deleted")
+            console.log("Recipe Test Data Deleted");
           })
           .catch(function (error) {
             console.log(error);
           });
 
-          User.deleteMany({})
+        User.deleteMany({})
           .then(() => {
-            console.log("User Test Data Deleted")
+            console.log("User Test Data Deleted");
           })
           .catch(function (error) {
             console.log(error);

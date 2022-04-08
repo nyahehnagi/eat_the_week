@@ -50,9 +50,7 @@ export default function ShowCategories(props) {
   return (
     <div>
       <h3>Categories</h3>
-      <div id="categoryList">
-        {categoryList()}
-      </div>
+      <div id="categoryList">{categoryList()}</div>
     </div>
   );
 }
