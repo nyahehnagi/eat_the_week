@@ -50,9 +50,7 @@ export default function ShowCategories() {
   return (
     <div>
       <h3>Categories</h3>
-      <div id="categoryList">
-        {categoryList()}
-      </div>
+      <div id="categoryList">{categoryList()}</div>
     </div>
   );
 }

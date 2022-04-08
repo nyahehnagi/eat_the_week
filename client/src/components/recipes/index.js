@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { Card, Row, Col } from 'react-bootstrap';
+import Recipe from "./recipe";
 
 export default function ShowRecipes(props) {
-  const Recipe = (props) => <div>{props.recipe.name}</div>;
   const [recipes, setRecipes] = useState([]);
   const [cookies, setCookie] = useCookies();
 
@@ -21,7 +20,7 @@ export default function ShowRecipes(props) {
         window.alert(message);
         return;
       }
-      
+
       const recipes = await response.json();
       setRecipes(recipes);
     }
@@ -30,20 +29,28 @@ export default function ShowRecipes(props) {
     return;
   }, [recipes.length, props.state]);
 
+  async function removeRecipe(recipeId) {
+    await fetch(`/recipes/${recipeId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${cookies.token}`,
+      },
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
+
+    props.setReload(!props.state);
+  }
+
+  function editRecipe(recipeId){
+    props.setRecipeId(recipeId)
+  }
 
   // This method will map out the recipes
   function recipeList() {
     return recipes.map((recipe) => {
-      return (
-        // This should be a new component as it will get larger and more
-        // complicated
-        <Card>
-        <Card.Body>
-          <Card.Title>{recipe.name}</Card.Title>
-          <Card.Text>{recipe.description}</Card.Text>
-        </Card.Body>
-        </Card>
-      )
+      return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} />;
     });
   }
 
@@ -51,9 +58,7 @@ export default function ShowRecipes(props) {
   return (
     <div>
       <h3>My Recipes</h3>
-      <div id="recipeList">
-        {recipeList()}
-      </div>
+      <div id="recipeList">{recipeList()}</div>
     </div>
   );
 }

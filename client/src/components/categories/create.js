@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { useCookies } from "react-cookie"; 
+import { useCookies } from "react-cookie";
 
 export default function Create() {
   const [form, setForm] = useState({
@@ -40,39 +40,39 @@ export default function Create() {
     setForm({ name: "" });
     navigate("/category");
   }
-// This following section will display the form that takes the input from the category.
-return (
-  <div>
-    <h3>Create Category</h3>
-    <form onSubmit={onSubmit}>
-     <div className="form-group">
-        <label htmlFor="name">Category Name</label>
-        <input
-          type="input"
-          className="form-control"
-          id="name"
-          value={form.name}
-          onChange={(e) => updateForm({ name: e.target.value})}
-        />
-         <label htmlFor="image">Image</label>
-        <input
-          type="input"
-          className="form-control"
-          id="image"
-          value={form.image}
-          onChange={(e) => updateForm({image: e.target.value})}
-        />
-      </div>
-     
-      <div className="form-group">
-        <input
-          type="submit"
-          id="create-category"
-          value="Create Category"
-          className="btn btn-primary"
-        />
-      </div>
-    </form>
-  </div>
+  // This following section will display the form that takes the input from the category.
+  return (
+    <div>
+      <h3>Create Category</h3>
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Category Name</label>
+          <input
+            type="input"
+            className="form-control"
+            id="name"
+            value={form.name}
+            onChange={(e) => updateForm({ name: e.target.value })}
+          />
+          <label htmlFor="image">Image</label>
+          <input
+            type="input"
+            className="form-control"
+            id="image"
+            value={form.image}
+            onChange={(e) => updateForm({ image: e.target.value })}
+          />
+        </div>
+
+        <div className="form-group">
+          <input
+            type="submit"
+            id="create-category"
+            value="Create Category"
+            className="btn btn-primary"
+          />
+        </div>
+      </form>
+    </div>
   );
 }
