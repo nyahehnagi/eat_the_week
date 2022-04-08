@@ -10,6 +10,12 @@ router.get(
   RecipesController.Index
 );
 
+router.put(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  RecipesController.Update
+);
+
 router.get(
   "/:id",
   passport.authenticate("jwt", { session: false }),
@@ -28,10 +34,6 @@ router.delete(
   RecipesController.Delete
 );
 
-router.put(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  RecipesController.Update
-);
+
 
 module.exports = router;

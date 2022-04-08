@@ -44,16 +44,18 @@ export default function EditRecipe(props) {
   async function onSubmit(e) {
     e.preventDefault();
 
-    const editedRecipe = { ...form };
+    const recipe = { ...form };
+
+    console.log("edited recipe",recipe )
 
     // This will send a put request to update the data in the database.
-    await fetch(`/update/${props.recipeId}`, {
+    await fetch(`/recipes/${props.recipeId}`, {
       method: "PUT",
-      body: JSON.stringify(editedRecipe),
       headers: {
         Authorization: `Bearer ${cookies.token}`,
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({recipe}),
     });
 
     props.setRecipeId("")
