@@ -43,10 +43,14 @@ export default function ShowRecipes(props) {
     props.setReload(!props.state);
   }
 
+  function editRecipe(recipeId){
+    props.setRecipeId(recipeId)
+  }
+
   // This method will map out the recipes
   function recipeList() {
     return recipes.map((recipe) => {
-      return <Recipe recipe={recipe} removeRecipe={removeRecipe} />;
+      return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} />;
     });
   }
 

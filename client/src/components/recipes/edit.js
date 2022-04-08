@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 
-export default function Edit(props) {
+export default function EditRecipe(props) {
   const [form, setForm] = useState({});
   const [cookies, setCookie] = useCookies();
 
@@ -14,7 +14,7 @@ export default function Edit(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`/recipes/${props.recipe._id}`);
+      const response = await fetch(`/recipes/${props.recipeid}`);
 
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
@@ -23,8 +23,8 @@ export default function Edit(props) {
       }
 
       const recipe = await response.json();
-      if (!record) {
-        window.alert(`Record with id ${props.recipe._id} not found`);
+      if (!recipe) {
+        window.alert(`Record with id ${props.recipeId} not found`);
         return;
       }
 
@@ -34,16 +34,16 @@ export default function Edit(props) {
     fetchData();
 
     return;
-  }, [recipe._id]);
+  }, [props.recipeId]);
 
   async function onSubmit(e) {
     e.preventDefault();
 
     const editedRecipe = { ...form };
 
-    // This will send a post request to update the data in the database.
-    await fetch(`/update/${props.recipe._id}`, {
-      method: "POST",
+    // This will send a put request to update the data in the database.
+    await fetch(`/update/${props.recipeId}`, {
+      method: "PUT",
       body: JSON.stringify(editedRecipe),
       headers: {
         Authorization: `Bearer ${cookies.token}`,
@@ -51,6 +51,7 @@ export default function Edit(props) {
       },
     });
 
+    props.setRecipeId("")
     props.setReload(!props.state);
   }
 

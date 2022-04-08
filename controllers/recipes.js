@@ -21,6 +21,8 @@ const RecipesController = {
   },
 
   Create: (req, res) => {
+
+    console.log("UserId", )
     const recipe = new Recipe({
       name: req.body.recipe.name,
       serves: req.body.recipe.serves,
@@ -30,7 +32,7 @@ const RecipesController = {
       ingredient: req.body.recipe.ingredient,
       image: req.body.recipe.image,
       category: req.body.recipe.category,
-      user_id: req.body.recipe.user_id,
+      user_id: req.user._id
     });
     recipe.save((err, result) => {
       if (err) {
