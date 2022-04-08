@@ -301,6 +301,25 @@ Creates a new Ingredient.
   curl "http://localhost:4000/ingredients"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ ingredient: { name: 'butter', unit: 'grams' } }
 ```
 
+### GET /planners
+
+Returns a list of recipes for the planner
+
+```
+curl "http://localhost:4000/planners" \
+  -H "Authorization: Bearer <token_here>"
+```
+
+On success, the above command returns JSON structured like this:
+
+[
+{
+"_id":"1",
+"user_id":"1",
+"plan":"{day: "Monday", recipe_id: "1"}"
+}
+]
+
 ## Environment Configuration
 
 For Production, setup config on Heroku for the following:
