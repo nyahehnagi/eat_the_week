@@ -4,6 +4,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import ShowRecipes from "./index";
 import CreateRecipe from "./create";
 import EditRecipe from "./edit";
+import Planner from "../planner/index";
 
 export default function MyRecipes() {
   const [state, setReload] = useState(false);
@@ -11,6 +12,11 @@ export default function MyRecipes() {
 
   return (
     <Container fluid="md">
+      <Row>
+        <Col>
+          <Planner state={state} setReload={setReload} />
+        </Col>
+      </Row>
       <Row>
         <Col>
         {!recipeId ? (
