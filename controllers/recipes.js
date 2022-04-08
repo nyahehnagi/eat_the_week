@@ -14,6 +14,8 @@ const RecipesController = {
   },
 
   Show: (req, res) => {
+    console.log("Recipe Id",req.params.id )
+
     Recipe.findOne({ _id: req.params.id }).exec((err, recipe) => {
       if (err) throw err;
       res.json(recipe);
@@ -21,8 +23,6 @@ const RecipesController = {
   },
 
   Create: (req, res) => {
-
-    console.log("UserId", )
     const recipe = new Recipe({
       name: req.body.recipe.name,
       serves: req.body.recipe.serves,

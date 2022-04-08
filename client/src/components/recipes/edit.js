@@ -14,7 +14,12 @@ export default function EditRecipe(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`/recipes/${props.recipeid}`);
+      const response = await fetch(`/recipes/${props.recipeId}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${cookies.token}`,
+        },
+      })
 
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
