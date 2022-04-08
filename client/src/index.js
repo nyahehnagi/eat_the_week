@@ -6,11 +6,11 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   // <React.StrictMode>
-    <CookiesProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </CookiesProvider>,
+  <CookiesProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </CookiesProvider>,
   // </React.StrictMode>,
   document.getElementById("root")
 );

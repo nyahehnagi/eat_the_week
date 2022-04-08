@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useCookies } from "react-cookie"; 
+import { useCookies } from "react-cookie";
 
 export default function Create(props) {
   const [form, setForm] = useState({
@@ -35,49 +35,49 @@ export default function Create(props) {
     });
 
     setForm({ name: "" });
-    props.setReload(!props.state)
+    props.setReload(!props.state);
   }
-// This following section will display the form that takes the input from the ingredient.
-return (
-  <div>
-    <h3>Create Ingredient</h3>
-    <form onSubmit={onSubmit}>
-     <div className="form-group">
-        <label htmlFor="name">Ingredient Name</label>
-        <input
-          type="input"
-          className="form-control"
-          id="name"
-          value={form.name}
-          onChange={(e) => updateForm({ name: e.target.value})}
-        />
-       <label htmlFor="unit">Ingredient Unit</label>
-        <input
-          type="input"
-          className="form-control"
-          id="unit"
-          value={form.unit}
-          onChange={(e) => updateForm({unit: e.target.value})}
-        />
-         <label htmlFor="image">Image</label>
-        <input
-          type="input"
-          className="form-control"
-          id="image"
-          value={form.image}
-          onChange={(e) => updateForm({image: e.target.value})}
-        />
-      </div>
-     
-      <div className="form-group">
-        <input
-          type="submit"
-          id="create-ingredient"
-          value="Create Ingredient"
-          className="btn btn-primary"
-        />
-      </div>
-    </form>
-  </div>
+  // This following section will display the form that takes the input from the ingredient.
+  return (
+    <div>
+      <h3>Create Ingredient</h3>
+      <form onSubmit={onSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Ingredient Name</label>
+          <input
+            type="input"
+            className="form-control"
+            id="name"
+            value={form.name}
+            onChange={(e) => updateForm({ name: e.target.value })}
+          />
+          <label htmlFor="unit">Ingredient Unit</label>
+          <input
+            type="input"
+            className="form-control"
+            id="unit"
+            value={form.unit}
+            onChange={(e) => updateForm({ unit: e.target.value })}
+          />
+          <label htmlFor="image">Image</label>
+          <input
+            type="input"
+            className="form-control"
+            id="image"
+            value={form.image}
+            onChange={(e) => updateForm({ image: e.target.value })}
+          />
+        </div>
+
+        <div className="form-group">
+          <input
+            type="submit"
+            id="create-ingredient"
+            value="Create Ingredient"
+            className="btn btn-primary"
+          />
+        </div>
+      </form>
+    </div>
   );
 }

@@ -50,9 +50,7 @@ export default function ShowIngredients(props) {
   return (
     <div>
       <h3>Ingredients</h3>
-      <div id="ingredientList">
-        {ingredientList()}
-      </div>
+      <div id="ingredientList">{ingredientList()}</div>
     </div>
   );
 }

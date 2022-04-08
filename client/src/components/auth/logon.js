@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { Container } from 'react-bootstrap';
+import { Container } from "react-bootstrap";
 
 export default function Logon(props) {
   const [form, setForm] = useState({
@@ -23,15 +23,14 @@ export default function Logon(props) {
 
     // When a post request is sent to the create url, add a new record to the database.
     const session = { ...form };
-  
+
     await fetch("/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ session }),
-    })
-    .catch((error) => {
+    }).catch((error) => {
       window.alert(error);
       return;
     });
@@ -75,6 +74,6 @@ export default function Logon(props) {
           />
         </div>
       </form>
-      </Container >
+    </Container>
   );
 }

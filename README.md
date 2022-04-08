@@ -1,4 +1,5 @@
 # Eat The Week
+
 An app designed to allow users to save their favourite recipes, shop for ingredients and find new inspiration for cooking.
 
 ---
@@ -21,7 +22,7 @@ An app designed to allow users to save their favourite recipes, shop for ingredi
 
 The functionality we expect for the MVP is:
 
-* Sign Up
+- Sign Up
 
 ```
 As a Customer
@@ -29,7 +30,7 @@ So that I can access Eat the Week
 I need to be able to create an account
 ```
 
-* Login
+- Login
 
 ```
 As a Customer
@@ -37,7 +38,7 @@ So that I can access my account
 I need to be able to login to my account
 ```
 
-* Logout
+- Logout
 
 ```
 As a Customer
@@ -45,7 +46,7 @@ So that I can keep my profile secure
 I want to be able to logout
 ```
 
-* Show Ingredients
+- Show Ingredients
 
 ```
 As a Customer
@@ -53,7 +54,7 @@ So that I can create tasty tasty recipes
 I need to be able to see available ingredients
 ```
 
-* Create Recipe
+- Create Recipe
 
 ```
 As a Customer
@@ -65,16 +66,15 @@ I want to be able to create a recipe
 
 Longer term we would like the following functionality:
 
-* Associate recipes with a customer profile
-* Create weekly planner of meals
-* Auto-add items from a recipe to the basket
-* Mock checkout
-* Pre-created recipes to help people be creative with their cooking!
-* Make recipe selections seasonal
-* Identify Vegan/Vegetarian/allergy safe recipes
-* Enhanced profile (add dietary requirements)
-* Handle substitutions/out of stock items
-
+- Associate recipes with a customer profile
+- Create weekly planner of meals
+- Auto-add items from a recipe to the basket
+- Mock checkout
+- Pre-created recipes to help people be creative with their cooking!
+- Make recipe selections seasonal
+- Identify Vegan/Vegetarian/allergy safe recipes
+- Enhanced profile (add dietary requirements)
+- Handle substitutions/out of stock items
 
 ## Design Diagrams
 
@@ -143,7 +143,7 @@ $> npm run test:integration
 
 ## User
 
-POST /users
+### POST /users
 
 Creates a new User.
 
@@ -152,6 +152,8 @@ Creates a new User.
 ```
 
 ## Auth
+
+### POST /auth
 
 Auths a user, giving you a user_id and a token required to perform actions on behalf of the user (e.g. creating recipes).
 
@@ -173,9 +175,11 @@ On success, the above command returns JSON structured like this:
 
 ## Recipe
 
-GET /recipes
+### GET /recipes
 
-Returns a list of all recipes.
+Returns a list of all recipes associated with a user.
+
+This endpoint requires a user_id given as a token in the authorization header.
 
 ```
 curl "http://localhost:4000/recipes" \
@@ -192,17 +196,85 @@ On success, the above command returns JSON structured like this:
 }
 ]
 
-POST /recipes
+### GET /recipes/:id
+
+Returns a single recipe by ID
+
+This endpoint requires a user_id given as a token in the authorization header.
+
+```
+curl "http://localhost:4000/recipes/1"  -H "Authorization: Bearer <token here>"
+```
+
+On success, the above command returns JSON structured like this
+
+{
+"category":"some cat",
+"\_id":"1",
+"name":"eggs",
+"serves":1,
+"prep_time":1,
+"description":"testing",
+"method":"bake it",
+"ingredient":"eggs",
+"user_id":"1",
+"createdAt":"2022-04-07T21:02:13.928Z",
+"updatedAt":"2022-04-07T21:25:06.091Z",
+"\_\_v":0,
+"image":""
+}
+
+### POST /recipes
 
 Creates a new Recipe.
 
 ```
-  curl "http://localhost:4000/recipes"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{"recipe": {"name":"eggs"}}'
+  curl "http://localhost:4000/recipes"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{"recipe": {"name":"eggs", "serves":"1","prep_time":"1","description":"testing","method":"bake it","ingredient":"","image":"","category":"","user_id":"1" }}'
 ```
+
+### PUT /recipes/:id
+
+Updates a Recipe.
+
+This endpoint requires a user_id given as a token in the authorization header.
+
+```
+curl "http://localhost:4000/recipes/1" -X PUT  -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{"recipe": {"name":"eggs", "serves":"1","prep_time":"1","description":"testing","method":"bake it","ingredient":"eggs","image":"","category":"some cat","user_id":"1" }}'
+
+```
+
+On success, the above command returns JSON structured like this
+
+{
+"category":"some cat",
+"\_id":"1",
+"name":"eggs",
+"serves":1,
+"prep_time":1,
+"description":"testing",
+"method":"bake it",
+"ingredient":"eggs",
+"user_id":"1",
+"createdAt":"2022-04-07T21:02:13.928Z",
+"updatedAt":"2022-04-07T21:25:06.091Z",
+"\_\_v":0,
+"image":""
+}
+
+### DELETE /recipe/:id
+
+Deletes a Recipe.
+
+This endpoint requires a user_id given as a token in the authorization header.
+
+curl "http://localhost:4000/recipes/1" \
+ -X DELETE \
+ -H "Authorization: Bearer <token_here>"
+The above command returns a 204: No Content response on success.
 
 ## Ingredient
 
-GET /ingredients
+### GET /ingredients
 
 Returns a list of all recipes.
 
@@ -221,12 +293,12 @@ On success, the above command returns JSON structured like this:
 }
 ]
 
-POST /ingredients
+### POST /ingredients
 
 Creates a new Ingredient.
 
 ```
-  curl "http://localhost:4000/ingredients"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ ingredient: { name: 'butter', unit: 'grams' } } 
+  curl "http://localhost:4000/ingredients"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ ingredient: { name: 'butter', unit: 'grams' } }
 ```
 
 ## Environment Configuration
@@ -244,4 +316,3 @@ For Local. setup config in `.env`:
 ```
 AUTH_KEY=supersecret
 ```
-
