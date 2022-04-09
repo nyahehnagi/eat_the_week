@@ -315,11 +315,33 @@ curl "http://localhost:4000/planners/:id" \
 On success, the above command returns JSON structured like this:
 
 [
-{
-"_id":"1",
-"user_id":"1",
-"plan":"{day: "Monday", recipe_id: "1"}"
-}
+  {
+    "_id":"6251a92514e6f627d42e4749",
+    "user_id":"624c12fc8aeda51e2c69d1af",
+    "plan":[
+      {
+        "_id":"6251a92514e6f627d42e474a",
+        "day":"Monday",
+        "recipe_id":
+        {
+          "category":"",
+          "_id":"624f5155dc8d9a28e0960a40",
+          "name":"eggs",
+          "serves":1,
+          "prep_time":1,
+          "description":"testing",
+          "method":"bake it",
+          "ingredient":"",
+          "user_id":"624c12fc8aeda51e2c69d1af",
+          "createdAt":"2022-04-07T21:02:13.928Z",
+          "updatedAt":"2022-04-07T21:32:39.847Z",
+          "__v":0,
+          "image":""
+        }
+      }
+      ],
+     "__v":0
+   }
 ]
 
 ### POST /planners
