@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import Select from "react-dropdown-select";
+import DisplayCategories  from "../categories/display";
 
 export default function Create(props) {
   const [form, setForm] = useState({
@@ -9,24 +10,20 @@ export default function Create(props) {
     category: "Vegan",
   });
 
-  const [cookies, setCookie] = useCookies();
-
+  const [cookies, setCookie] = useCookies(); 
   // This method will update the state properties.
   function updateForm(value) {
     return setForm((prev) => {
       return { ...prev, ...value };
     });
   }
-
+  
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
-
     // When a post request is sent to the create url, add a new record to the database.
     const recipe = { ...form };
-
     console.log("Create Recipe", JSON.stringify({ recipe }))
-
     await fetch("/recipes", {
       method: "POST",
       headers: {
@@ -38,11 +35,9 @@ export default function Create(props) {
       window.alert(error);
       return;
     });
-
     setForm({ name: "", ingredient: "Flour", category: "Vegan" });
     props.setReload(!props.state);
   }
-
   const Ingredient = [
     { label: "Flour", value: 1 },
     { label: "Milk", value: 2 },
@@ -50,11 +45,7 @@ export default function Create(props) {
     { label: "Salt", value: 4 },
     { label: "Eggs", value: 5 },
   ];
-  const Category = [
-    { label: "Vegan", value: 1 },
-    { label: "BBQ", value: 2 },
-    { label: "Wheat Free", value: 3 },
-  ];
+
   // This following section will display the form that takes the input from the recipe.
   return (
     <div>
@@ -117,9 +108,7 @@ export default function Create(props) {
             value={form.category}
             onChange={(e) => updateForm({ category: e.target.value })}
           >
-            {Category.map((category) => (
-              <option value={category.label}>{category.label}</option>
-            ))}
+           < DisplayCategories/>
           </select>
           <label htmlFor="ingredient"></label>
           Select Ingredients
@@ -135,7 +124,6 @@ export default function Create(props) {
             ))}
           </select>
         </div>
-
         <div className="form-group">
           <input
             type="submit"
