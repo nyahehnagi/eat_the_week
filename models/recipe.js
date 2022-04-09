@@ -9,7 +9,10 @@ const RecipeSchema = new mongoose.Schema(
     method: String,
     // ingredient: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient'}],
     ingredient: String,
-    image: String,
+    image: {
+      type: String,
+      default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'
+    },
     // category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
     category: {
       type: String,

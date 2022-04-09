@@ -25,6 +25,7 @@ const ingredientsRouter = require("./routes/ingredients");
 const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
 const categoriesRouter = require("./routes/categories");
+const unitsRouter = require("./routes/units");
 
 // Tell app to use the routes
 app.use("/recipes", recipesRouter);
@@ -32,6 +33,7 @@ app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/ingredients", ingredientsRouter);
 app.use("/categories", categoriesRouter);
+app.use("/units", unitsRouter);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, "client/build")));
