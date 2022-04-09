@@ -48,10 +48,7 @@ export default function Navigation() {
                 <Navbar.Text>
                   Signed in as:{" "}
                   <a href="/auth">
-                    {document.cookie.replace(
-                      /(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/,
-                      "$1"
-                    )}
+                   {decodeURI(cookie)}
                   </a>
                 </Navbar.Text>
                 <Nav.Link id="logout" onClick={handleClick}>
