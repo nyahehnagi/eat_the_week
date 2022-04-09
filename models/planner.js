@@ -11,3 +11,4 @@ const PlannerSchema = new mongoose.Schema({
 const Planner = mongoose.model("Planner", PlannerSchema);
 
 module.exports = Planner;
+

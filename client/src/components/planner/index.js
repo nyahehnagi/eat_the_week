@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { Row, Col, Container, Card } from "react-bootstrap";
+import Recipe from "../recipes/recipe";
 
 export default function Planner(props) {
-  const [planner, setPlanner] = useState([]);
+  const [planner, setPlanner] = useState("");
   const [cookies, setCookie] = useCookies();
 
   useEffect(() => {
     async function getPlanner() {
-      const response = await fetch("/planner", {
+      const response = await fetch("/planners", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${cookies.token}`
@@ -24,66 +25,46 @@ export default function Planner(props) {
       const planner = await response.json();
       setPlanner(planner)
     }
-  });
 
+    getPlanner();
+    return
+  }, [props.state]);
 
+  // This method will map out the planned recipes
+  function recipePlanList() {
 
-  // We have a user id
-  // on database we have a planner table
-  // That has a userid
-  // get all recipes from the plan for that user id
-  // we can use the Populate method on Plan.. and populate the recipes
-  // return a list of days along with their recipes
-  // display that data by passing the recipe into each Recipe Card
-
-
+    console.log("Plan", planner)
+    if (planner){
+      return planner.plan.map((plan) => {
+        return (
+          <Col>
+            <Card.Header>{plan.day}</Card.Header>
+            <Card.Body>
+              <Card.Title>{plan.recipe_id.name}</Card.Title>
+            </Card.Body>
+          </Col>
+        )
+      });
+    }else{
+      const times = 7;
+      const emptyCards = [];
+      const weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
+      for(let i=0; i<times;i++) {
+        emptyCards.push(
+            <Col>
+            <Card.Header>{weekDays[i]}</Card.Header>
+            <Card.Body>Plan Ahead!</Card.Body>
+            </Col>);
+      }
+      return emptyCards;  
+    }
+  }
 
   return (
   <Container>
-    <h1>Your Week Ahead</h1>
-    <Row>
-      <Col>
-        <Card.Body>
-          <h4>Monday</h4>
-          <Card.Title></Card.Title>
-        </Card.Body>
-      </Col>
-      <Col>
-        <Card.Body>
-          <h4>Tuesday</h4>
-          <Card.Title></Card.Title>
-        </Card.Body>
-      </Col>
-      <Col>
-        <Card.Body>
-          <h4>Wednesday</h4>
-          <Card.Title></Card.Title>
-        </Card.Body>
-      </Col>
-      <Col>
-        <Card.Body>
-          <h4>Thursday</h4>
-          <Card.Title></Card.Title>
-        </Card.Body>
-      </Col>
-      <Col>
-        <Card.Body>
-          <h4>Friday</h4>
-          <Card.Title></Card.Title>
-        </Card.Body>
-      </Col>
-      <Col>
-        <Card.Body>
-          <h4>Saturday</h4>
-          <Card.Title></Card.Title>
-        </Card.Body>
-      </Col>
-      <Col>
-        <Card.Body>
-          <h4>Sunday</h4>
-          <Card.Title></Card.Title>
-        </Card.Body>
-      </Col>
+    <h3>Your Week Ahead</h3>
+    <Row id="recipePlanlist">
+      {recipePlanList()} 
     </Row>
   </Container>
   );

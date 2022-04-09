@@ -4,7 +4,7 @@ const PlannerController = {
   Show: (req, res) => {
 
     Planner.
-      find({user_id: req.user._id}).
+      findOne({user_id: req.user._id}).
       populate('plan.recipe_id').
       exec(function (err, plan) {
         if (err) throw err;
