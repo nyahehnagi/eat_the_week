@@ -298,8 +298,10 @@ On success, the above command returns JSON structured like this:
 Creates a new Ingredient.
 
 ```
-  curl "http://localhost:4000/ingredients"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ ingredient: { name: 'butter', unit: 'grams' } }
+  curl "http://localhost:4000/ingredients"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ ingredient: { name: 'butter', unit: 'grams' } }'
 ```
+
+## Planner
 
 ### GET /planners
 
@@ -319,6 +321,29 @@ On success, the above command returns JSON structured like this:
 "plan":"{day: "Monday", recipe_id: "1"}"
 }
 ]
+
+### POST /planners
+
+Creates a new plan for the user_id given as a token in the authorization header
+
+  curl "http://localhost:4000/planners"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ "planner": {"plan": [{"day": "Monday","recipe_id":"1" },{"day": "Tuesday", "recipe_id":"2"}] } }'
+
+On success the above command returns JSON structured like this:
+
+{
+  "_id":"1",
+  "user_id":"1",
+  "plan":
+    [
+    {
+      "_id":"1",
+      "day":"Monday",
+      "recipe_id":"1"
+    }
+    ],
+  "__v":0
+}
+
 
 ## Environment Configuration
 

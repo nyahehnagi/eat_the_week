@@ -13,6 +13,17 @@ const PlannerController = {
   },
 
   Create: (req, res) => {
+
+    // Remove any existing plans for this user
+    // We currently only ever have one plan for a user
+    // Ideally we would update an existing plan for better 
+    // performance and pure CRUD.
+    Planner.deleteOne({
+      user_id: req.user._id
+    }).exec((err, _) => {
+      if (err) throw err;
+    });
+
     const planner = new Planner({
       user_id: req.user._id,
       plan: req.body.planner.plan
