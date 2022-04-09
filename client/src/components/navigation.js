@@ -29,6 +29,8 @@ export default function Navigation() {
               <NavDropdown title="Get Cooking" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/recipe">My Recipes</NavDropdown.Item>
                 <NavDropdown.Item href="/ingredient">My Ingredients</NavDropdown.Item>
+                <NavDropdown.Item href="/category">My Categories</NavDropdown.Item>
+                <NavDropdown.Item href="/unit">My Units</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Weekly Planner</NavDropdown.Item>
 
                 <NavDropdown.Divider />
