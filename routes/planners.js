@@ -9,6 +9,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   PlannerController.Show
 );
+
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
