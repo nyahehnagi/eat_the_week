@@ -47,10 +47,39 @@ export default function ShowRecipes(props) {
     props.setRecipeId(recipeId)
   }
 
+  function addToPlan(day,recipeId){
+    let newPlanDay = {}
+     // {"planner": {"plan": []}}
+    if (!props.planner){
+      // No Plan yet
+      newPlanDay = {"day": day, "recipe_id": recipeId}
+    }else {
+      // Does item exist in plan already?
+      const planIndex = props.planner.findIndex((planDay, index) => {
+        if(planDay.day == day)
+          return true;
+      });
+
+      if (planIndex){
+        props.planner.recipe_id = recipeId
+      }else{
+        newPlanDay = {"day": day, "recipe_id": recipeId}
+      }
+       
+    }
+
+
+
+    // Commit to Database
+
+
+
+  }
+
   // This method will map out the recipes
   function recipeList() {
     return recipes.map((recipe) => {
-      return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} />;
+      return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
     });
   }
 

@@ -4,7 +4,7 @@ import { Row, Col, Container, Card } from "react-bootstrap";
 import Recipe from "../recipes/recipe";
 
 export default function Planner(props) {
-  const [planner, setPlanner] = useState("");
+  //const [planner, setPlanner] = useState("");
   const [cookies, setCookie] = useCookies();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Planner(props) {
       }
 
       const planner = await response.json();
-      setPlanner(planner)
+      props.setPlanner(planner)
     }
 
     getPlanner();
@@ -33,9 +33,8 @@ export default function Planner(props) {
   // This method will map out the planned recipes
   function recipePlanList() {
 
-    console.log("Plan", planner)
-    if (planner){
-      return planner.plan.map((plan) => {
+    if (props.planner){
+      return props.planner.plan.map((plan) => {
         return (
           <Col>
             <Card.Header>{plan.day}</Card.Header>
@@ -46,6 +45,7 @@ export default function Planner(props) {
         )
       });
     }else{
+      // Hard coding for the time being
       const times = 7;
       const emptyCards = [];
       const weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
