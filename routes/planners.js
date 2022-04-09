@@ -5,7 +5,7 @@ const passport = require("passport");
 const PlannerController = require("../controllers/planners");
 
 router.get(
-  "/:id",
+  "/",
   passport.authenticate("jwt", { session: false }),
   PlannerController.Show
 );

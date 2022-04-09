@@ -305,10 +305,10 @@ Creates a new Ingredient.
 
 ### GET /planners
 
-Returns a list of recipes for the planner for param userid
+Returns a list of recipes for the planner for the user_id given as a token in the authorization header
 
 ```
-curl "http://localhost:4000/planners/:id" \
+curl "http://localhost:4000/planners/" \
   -H "Authorization: Bearer <token_here>"
 ```
 
