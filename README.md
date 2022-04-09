@@ -298,7 +298,7 @@ On success, the above command returns JSON structured like this:
 Creates a new Ingredient.
 
 ```
-  curl "http://localhost:4000/ingredients"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ ingredient: { name: 'butter', unit: 'grams' } }'
+  curl "http://localhost:4000/ingredients"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ ingredient: {"name": "butter", "unit": "grams"}}'
 ```
 
 ## Planner
@@ -316,23 +316,23 @@ On success, the above command returns JSON structured like this:
 
 [
   {
-    "_id":"6251a92514e6f627d42e4749",
-    "user_id":"624c12fc8aeda51e2c69d1af",
+    "_id":"1",
+    "user_id":"1",
     "plan":[
       {
-        "_id":"6251a92514e6f627d42e474a",
+        "_id":"1",
         "day":"Monday",
         "recipe_id":
         {
           "category":"",
-          "_id":"624f5155dc8d9a28e0960a40",
+          "_id":"1",
           "name":"eggs",
           "serves":1,
           "prep_time":1,
-          "description":"testing",
-          "method":"bake it",
+          "description":"delicious",
+          "method":"boil em",
           "ingredient":"",
-          "user_id":"624c12fc8aeda51e2c69d1af",
+          "user_id":"1",
           "createdAt":"2022-04-07T21:02:13.928Z",
           "updatedAt":"2022-04-07T21:32:39.847Z",
           "__v":0,
