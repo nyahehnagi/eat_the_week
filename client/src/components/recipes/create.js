@@ -103,7 +103,7 @@ export default function Create(props) {
           />
           <label htmlFor="image">Image</label>
           <input
-            type="file"
+            type="url"
             className="form-control"
             id="image"
             value={form.image || ""}
@@ -114,7 +114,6 @@ export default function Create(props) {
             type="input"
             className="form-control"
             id="category"
-            isMulti={true}
             value={form.category}
             onChange={(e) => updateForm({ category: e.target.value })}
           >
@@ -128,7 +127,6 @@ export default function Create(props) {
             type="input"
             className="form-control"
             id="ingredient"
-            isMulti={true}
             value={form.ingredient}
             onChange={(e) => updateForm({ ingredient: e.target.value })}
           >
