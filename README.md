@@ -303,10 +303,10 @@ Creates a new Ingredient.
 
 ### GET /planners
 
-Returns a list of recipes for the planner
+Returns a list of recipes for the planner for param userid
 
 ```
-curl "http://localhost:4000/planners" \
+curl "http://localhost:4000/planners/:id" \
   -H "Authorization: Bearer <token_here>"
 ```
 
