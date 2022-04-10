@@ -11,7 +11,7 @@ export default function MyRecipes() {
   const [recipeId, setRecipeId] = useState("");
 
   return (
-    <Container fluid="md">
+    <Container fluid="md" className="container-sm">
       <Row>
         <Col>
           <Planner state={state} setReload={setReload} />

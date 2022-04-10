@@ -48,7 +48,7 @@ export default function Create(props) {
 
   // This following section will display the form that takes the input from the recipe.
   return (
-    <div>
+    <div className="container-sm">
       <h3>Create Recipe</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">

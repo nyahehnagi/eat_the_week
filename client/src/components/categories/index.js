@@ -48,7 +48,7 @@ export default function ShowCategories(props) {
 
   // This following  will display the categories
   return (
-    <div>
+    <div className="container-sm">
       <h3>Categories</h3>
       <div id="categoryList">{categoryList()}</div>
     </div>

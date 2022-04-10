@@ -39,7 +39,7 @@ export default function Planner(props) {
 
 
   return (
-  <Container>
+  <Container >
     <h1>Your Week Ahead</h1>
     <Row>
       <Col>

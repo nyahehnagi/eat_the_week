@@ -8,7 +8,7 @@ export default function MyIngredients() {
   const [state, setReload] = useState(false);
 
   return (
-    <Container fluid="md">
+    <Container className="container-sm" fluid="md">
       <Row>
         <Col>
           <CreateIngredient state={state} setReload={setReload} />

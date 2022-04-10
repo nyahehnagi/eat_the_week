@@ -48,7 +48,7 @@ export default function ShowIngredients(props) {
 
   // This following  will display the ingredients
   return (
-    <div>
+    <div className="container-sm">
       <h3>Ingredients</h3>
       <div id="ingredientList">{ingredientList()}</div>
     </div>
