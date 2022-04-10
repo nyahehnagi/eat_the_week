@@ -17,7 +17,7 @@ export default function Recipe(props) {
   }
 
   return (
-    <Card className="container-sm" border="primary" style={{ width: '18rem' }}>
+    <Card className="container-sm mb-2 mt-2 " border="seoondary" style={{ width: '18rem' }}>
       <Card.Header>
       <Card.Title>{props.recipe.name}</Card.Title> 
       </Card.Header>

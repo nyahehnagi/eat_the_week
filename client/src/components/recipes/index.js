@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import Recipe from "./recipe";
+import { Row, Col} from "react-bootstrap";
 
 export default function ShowRecipes(props) {
   const [recipes, setRecipes] = useState([]);
@@ -47,7 +48,7 @@ export default function ShowRecipes(props) {
     props.setRecipeId(recipeId)
   }
 
-  async function addToPlan(day,recipeId){
+  async function addToPlan(day, recipeId){
     let planner = {}
     let newPlan = []
 
@@ -73,10 +74,8 @@ export default function ShowRecipes(props) {
       newPlan.push(planItem)
     }
 
-    planner = {"plan": newPlan}
-
     // Commit the plan to the data Database
-    const payload = `{"planner":${JSON.stringify(planner)}}`
+    const payload = `{"planner":${JSON.stringify({"plan": newPlan})}}`
 
     await fetch("/planners", {
       method: "POST",
@@ -96,9 +95,26 @@ export default function ShowRecipes(props) {
 
   // This method will map out the recipes
   function recipeList() {
+    const secondColumnStart = Math.floor(recipes.length / 2);
+    return(
+    <Row>
+        <Col md='6'>
+            {recipes.slice(0,secondColumnStart).map((recipe) => {
+              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
+            })}       
+        </Col>
+        <Col md='6'>
+            {recipes.slice(secondColumnStart).map((recipe) => {
+              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
+            })}             
+        </Col>
+    </Row>
+    )
     return recipes.map((recipe) => {
       return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
     });
+
+
   }
 
   // This following will display the recipes
