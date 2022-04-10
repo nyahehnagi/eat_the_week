@@ -9,14 +9,13 @@ import Register from "./components/auth/register";
 import Navigation from "./components/navigation";
 import MyUnits from "./components/units/myUnits";
 import MyCategories from "./components/categories/myCategories";
-
-// import CreateCategories from "./components/categories/create";
-// import ShowCategories from "./components/categories/index";
+import DisplayRecipe from "./components/recipes/display";
 
 import "bootstrap/dist/css/bootstrap.css";
 
 const App = () => {
   const [user, setUser] = useState({});
+  const [recipe, setRecipe] = useState({});
 
   return (
     <>
@@ -32,6 +31,7 @@ const App = () => {
           <Route path="/user/" element={<MyUsers />} />
           <Route path="/unit/" element={<MyUnits />} />
           <Route path="/category/" element={<MyCategories />} />
+          <Route path="/recipe/display" element={<DisplayRecipe />} />
         </Routes>
       </div>
     </>

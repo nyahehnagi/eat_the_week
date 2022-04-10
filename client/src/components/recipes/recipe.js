@@ -12,10 +12,22 @@ export default function Recipe(props) {
     props.editRecipe(props.recipe._id);
   };
 
+  const handleDisplayClick = () => {
+    props.displayRecipe(props.recipe._id);
+  };
+
+  console.log("In recipe.js and looking for props")
+  console.log(props)
+  console.log(props.recipe._id)
+
   return (
     <Card border="primary" style={{ width: '18rem' }}>
       <Card.Header>
-      <Card.Title>{props.recipe.name}</Card.Title> 
+      <Card.Title >
+        <a href="/recipe/display" onClick={handleDisplayClick}>
+        {props.recipe.name}
+        </a>
+        </Card.Title> 
       </Card.Header>
       <Card.Body>
       <Container fluid="md">
@@ -36,6 +48,7 @@ export default function Recipe(props) {
           Remove
         </Button>
         <Button onClick={handleEditClick} className="btn btn-dark btn-sm">Edit</Button>
+        <Button onClick={handleDisplayClick} href="/recipe/display" className="btn btn-info btn-sm">Display</Button>
       </Card.Body>
     </Card>
   );

@@ -6,6 +6,8 @@ export default function ShowRecipes(props) {
   const [recipes, setRecipes] = useState([]);
   const [cookies, setCookie] = useCookies();
 
+  console.log(props) 
+
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch("/recipes", {
@@ -47,10 +49,14 @@ export default function ShowRecipes(props) {
     props.setRecipeId(recipeId)
   }
 
+  function displayRecipe(recipeId){
+    props.setRecipeId(recipeId)
+  }
+
   // This method will map out the recipes
   function recipeList() {
     return recipes.map((recipe) => {
-      return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} />;
+      return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} displayRecipe={displayRecipe} />;
     });
   }
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Button } from "react-bootstrap";
+import DisplayCategories  from "../categories/display";
+import DisplayIngredients from "../ingredients/display";
 
 export default function EditRecipe(props) {
   const [form, setForm] = useState({});
@@ -68,19 +70,6 @@ export default function EditRecipe(props) {
     props.setReload(!props.state);
   }
 
-  const Ingredient = [
-    { label: "Flour", value: 1 },
-    { label: "Milk", value: 2 },
-    { label: "Sugar", value: 3 },
-    { label: "Salt", value: 4 },
-    { label: "Eggs", value: 5 },
-  ];
-  const Category = [
-    { label: "Vegan", value: 1 },
-    { label: "BBQ", value: 2 },
-    { label: "Wheat Free", value: 3 },
-  ];
-
   // This following section will display the form that takes the input from the recipe.
   return (
     <div>
@@ -143,9 +132,7 @@ export default function EditRecipe(props) {
             value={form.category}
             onChange={(e) => updateForm({ category: e.target.value })}
           >
-            {Category.map((category) => (
-              <option value={category.label}>{category.label}</option>
-            ))}
+            < DisplayCategories />
           </select>
           <label htmlFor="ingredient"></label>
           Select Ingredients
@@ -156,9 +143,7 @@ export default function EditRecipe(props) {
             value={form.ingredient}
             onChange={(e) => updateForm({ ingredient: e.target.value })}
           >
-            {Ingredient.map((ingredient) => (
-              <option value={ingredient.label}>{ingredient.label}</option>
-            ))}
+            < DisplayIngredients isMulti/>
           </select>
         </div>
 
