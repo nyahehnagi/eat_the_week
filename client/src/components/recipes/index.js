@@ -103,7 +103,7 @@ export default function ShowRecipes(props) {
 
   // This following will display the recipes
   return (
-    <div>
+    <div className="container-sm">
       <h3>My Recipes</h3>
       <div id="recipeList">{recipeList()}</div>
     </div>

@@ -12,7 +12,7 @@ export default function MyRecipes() {
   const [planner, setPlanner] = useState("");
 
   return (
-    <Container fluid="md">
+    <Container fluid="md" className="container-sm">
       <Row>
         <Col>
           <Planner state={state} setReload={setReload} planner={planner} setPlanner={setPlanner} />
