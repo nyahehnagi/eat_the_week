@@ -28,7 +28,7 @@ export default function MyRecipes() {
         }
         </Col>
         <Col>
-          <ShowRecipes state={state} setReload={setReload} setRecipeId={setRecipeId} planner={planner}/>
+          <ShowRecipes state={state} setReload={setReload} setRecipeId={setRecipeId} planner={planner} setPlanner={setPlanner}/>
         </Col>
 
       </Row>

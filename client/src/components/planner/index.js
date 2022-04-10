@@ -36,9 +36,9 @@ export default function Planner(props) {
     if (props.planner){
       return props.planner.plan.map((plan) => {
         return (
-          <Col>
+          <Col >
             <Card.Header>{plan.day}</Card.Header>
-            <Card.Body>
+            <Card.Body >
               <Card.Title>{plan.recipe_id.name}</Card.Title>
             </Card.Body>
           </Col>
@@ -51,7 +51,7 @@ export default function Planner(props) {
       const weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
       for(let i=0; i<times;i++) {
         emptyCards.push(
-            <Col>
+            <Col >
             <Card.Header>{weekDays[i]}</Card.Header>
             <Card.Body>Plan Ahead!</Card.Body>
             </Col>);
