@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import Recipe from "./recipe";
-import { Row, Col} from "react-bootstrap";
+import { Row, Col, Container} from "react-bootstrap";
 
 export default function ShowRecipes(props) {
   const [recipes, setRecipes] = useState([]);
@@ -97,6 +97,7 @@ export default function ShowRecipes(props) {
   function recipeList() {
     const secondColumnStart = Math.floor(recipes.length / 2);
     return(
+    <Container>
     <Row>
         <Col md='6'>
             {recipes.slice(0,secondColumnStart).map((recipe) => {
@@ -109,10 +110,11 @@ export default function ShowRecipes(props) {
             })}             
         </Col>
     </Row>
+    </Container>
     )
-    return recipes.map((recipe) => {
-      return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
-    });
+    // return recipes.map((recipe) => {
+    //   return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
+    // });
 
 
   }
@@ -120,7 +122,7 @@ export default function ShowRecipes(props) {
   // This following will display the recipes
   return (
     <div className="container-sm">
-      <h3>My Recipes</h3>
+      <Row><Col className="d-flex justify-content-center"><h3>My Recipes</h3></Col></Row>
       <div id="recipeList">{recipeList()}</div>
     </div>
   );

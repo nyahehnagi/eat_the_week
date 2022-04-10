@@ -17,7 +17,7 @@ export default function Recipe(props) {
   }
 
   return (
-    <Card className="container-sm mb-2 mt-2 " border="seoondary" style={{ width: '18rem' }}>
+    <Card className="mt-2" border="secondary" >
       <Card.Header>
       <Card.Title>{props.recipe.name}</Card.Title> 
       </Card.Header>
@@ -40,16 +40,16 @@ export default function Recipe(props) {
       
       <Row>
         <br/>
-        <Col md='3'>
-        <Button onClick={handleRemoveClick} className="btn btn-danger btn-sm me-1">
+        <Col md='4'>
+        <Button onClick={handleRemoveClick} className="btn btn-danger btn-sm ps-1 pe-1  ">
           Remove
         </Button>
         </Col>
-        <Col md='3'>
-        <Button onClick={handleEditClick} className="btn btn-dark btn-sm me-1">Edit</Button>
+        <Col md='2'>
+        <Button onClick={handleEditClick} className="btn btn-dark btn-sm ">Edit</Button>
         </Col>
         <Col md='4'>
-        <DropdownButton onSelect={handleSelect} variant="dark" size="sm" id="dropdown-item-button" title="Add to Plan">
+        <DropdownButton onSelect={handleSelect} variant="dark" className="ps-1" size="sm" id="dropdown-item-button" title="Add to Plan">
             <Dropdown.Item  eventKey="Mon" className="btn-sm" >Monday</Dropdown.Item>
             <Dropdown.Item  eventKey="Tue" className="btn-sm">Tuesday</Dropdown.Item>
             <Dropdown.Item  eventKey="Wed"  className="btn-sm">Wednesday</Dropdown.Item>
