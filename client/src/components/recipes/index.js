@@ -47,10 +47,57 @@ export default function ShowRecipes(props) {
     props.setRecipeId(recipeId)
   }
 
+  async function addToPlan(day,recipeId){
+    let planner = {}
+    let newPlan = []
+
+    const weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
+    const times = 7;
+
+    for(let i=0; i<times;i++) {
+      let planItem = {}
+      if (weekDays[i] === day){ 
+        planItem =  {"day": weekDays[i], "recipe_id" : {_id : recipeId}} 
+      }else{
+        if (props.planner) {
+          if (props.planner.plan[i].recipe_id){
+            planItem =  {"day": weekDays[i], "recipe_id" : {_id : props.planner.plan[i].recipe_id._id}}
+          }else{
+            planItem =  {"day": weekDays[i]}
+          }
+        }else{
+          planItem =  {"day": weekDays[i]}
+        }
+      }
+
+      newPlan.push(planItem)
+    }
+
+    planner = {"plan": newPlan}
+
+    // Commit the plan to the data Database
+    const payload = `{"planner":${JSON.stringify(planner)}}`
+
+    await fetch("/planners", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${cookies.token}`,
+        "Content-Type": "application/json",
+      },
+      body: payload,
+    }).catch((error) => {
+      window.alert(error);
+      return;
+    });
+
+    props.setReload(!props.state)
+
+  }
+
   // This method will map out the recipes
   function recipeList() {
     return recipes.map((recipe) => {
-      return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} />;
+      return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
     });
   }
 
