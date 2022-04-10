@@ -298,27 +298,73 @@ On success, the above command returns JSON structured like this:
 Creates a new Ingredient.
 
 ```
-  curl "http://localhost:4000/ingredients"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ ingredient: { name: 'butter', unit: 'grams' } }
+  curl "http://localhost:4000/ingredients"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ ingredient: {"name": "butter", "unit": "grams"}}'
 ```
+
+## Planner
 
 ### GET /planners
 
-Returns a list of recipes for the planner
+Returns a list of recipes for the planner for the user_id given as a token in the authorization header
 
 ```
-curl "http://localhost:4000/planners" \
+curl "http://localhost:4000/planners/" \
   -H "Authorization: Bearer <token_here>"
 ```
 
 On success, the above command returns JSON structured like this:
 
-[
 {
-"_id":"1",
-"user_id":"1",
-"plan":"{day: "Monday", recipe_id: "1"}"
+  "_id":"1",
+  "user_id":"1",
+  "plan":[
+    {
+      "_id":"1",
+      "day":"Monday",
+      "recipe":
+      {
+        "category":"",
+        "_id":"1",
+        "name":"eggs",
+        "serves":1,
+        "prep_time":1,
+        "description":"delicious",
+        "method":"boil em",
+        "ingredient":"",
+        "user_id":"1",
+        "createdAt":"2022-04-07T21:02:13.928Z",
+        "updatedAt":"2022-04-07T21:32:39.847Z",
+        "__v":0,
+        "image":""
+      }
+    }
+    ],
+    "__v":0
+  }
+
+
+### POST /planners
+
+Creates a new plan for the user_id given as a token in the authorization header
+
+  curl "http://localhost:4000/planners"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ "planner": {"plan": [{"day": "Monday","recipe_id":"1" },{"day": "Tuesday", "recipe_id":"2"}] } }'
+
+On success the above command returns JSON structured like this:
+
+{
+  "_id":"1",
+  "user_id":"1",
+  "plan":
+    [
+    {
+      "_id":"1",
+      "day":"Monday",
+      "recipe_id":"1"
+    }
+    ],
+  "__v":0
 }
-]
+
 
 ## Environment Configuration
 

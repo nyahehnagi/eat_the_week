@@ -9,12 +9,13 @@ import Planner from "../planner/index";
 export default function MyRecipes() {
   const [state, setReload] = useState(false);
   const [recipeId, setRecipeId] = useState("");
+  const [planner, setPlanner] = useState("");
 
   return (
     <Container fluid="md" className="container-sm">
       <Row>
         <Col>
-          <Planner state={state} setReload={setReload} />
+          <Planner state={state} setReload={setReload} planner={planner} setPlanner={setPlanner} />
         </Col>
       </Row>
       <Row>
@@ -27,7 +28,7 @@ export default function MyRecipes() {
         }
         </Col>
         <Col>
-          <ShowRecipes state={state} setReload={setReload} setRecipeId={setRecipeId}/>
+          <ShowRecipes state={state} setReload={setReload} setRecipeId={setRecipeId} planner={planner} setPlanner={setPlanner}/>
         </Col>
 
       </Row>

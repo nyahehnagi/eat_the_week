@@ -7,12 +7,13 @@ const PlannerController = require("../controllers/planners");
 router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
-  CategoriesController.Index
+  PlannerController.Show
 );
+
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
-  CategoriesController.Create
+  PlannerController.Create
 );
 
 module.exports = router;
