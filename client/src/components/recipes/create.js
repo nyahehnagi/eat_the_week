@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import DisplayCategories  from "../categories/display";
-import { Row, Col, Container} from "react-bootstrap";
+import { Row, Col} from "react-bootstrap";
 
 export default function Create(props) {
   const [form, setForm] = useState({
