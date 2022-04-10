@@ -122,7 +122,7 @@ export default function ShowRecipes(props) {
   // This following will display the recipes
   return (
     <div className="container-sm">
-      <h3>My Recipes</h3>
+      <Row><Col className="d-flex justify-content-center"><h3>My Recipes</h3></Col></Row>
       <div id="recipeList">{recipeList()}</div>
     </div>
   );

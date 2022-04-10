@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
-import Select from "react-dropdown-select";
 import DisplayCategories  from "../categories/display";
 
 export default function Create(props) {
