@@ -48,41 +48,52 @@ export default function ShowRecipes(props) {
   }
 
   async function addToPlan(day,recipeId){
-    let newPlanner = {}
+    let planner = {}
     let newPlan = []
-    if (!props.planner){
-      // No Plan yet
+
+    // if (!planner){
+      // No Plan yet, so create a skeleton one
       const weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
       const times = 7;
   
       for(let i=0; i<times;i++) {
-        newPlan.push(
-          {"day": weekDays[i], "recipe_id" : ""})
+        let planItem = {}
+        if (weekDays[i] === day){ 
+          planItem =  {"day": weekDays[i], "recipe_id" : {_id : recipeId}} 
+        }else{
+          if (props.planner) {
+            if (props.planner.plan[i].recipe_id){
+              planItem =  {"day": weekDays[i], "recipe_id" : {_id : props.planner.plan[i].recipe_id._id}}
+            }else{
+              planItem =  {"day": weekDays[i]}
+            }
+          }else{
+            planItem =  {"day": weekDays[i]}
+          }
+        }
+
+        newPlan.push(planItem)
       }
  
-      newPlanner = {"planner": {"plan": newPlan}}
-      props.setPlanner(newPlanner)
-    }
+      planner = {"plan": newPlan}
+      console.log("Planner", planner)
+      //props.setPlanner(planner)
 
-    console.log("Planner Pre", props.planner)
-    console.log("Planner Pre Item 0", props.planner.plan[0])
-    console.log("Planner Pre Item 1", props.planner.plan[1])
+    // }
+    // else{
+    //   // Get index for the day we are updating
+    //   const planIndex = planner.plan.findIndex((planDay, index) => {
+    //     if(planDay.day == day)
+    //       return true;
+    //   });
 
-    // Get index for the day we are updating
-    const planIndex = props.planner.plan.findIndex((planDay, index) => {
-      if(planDay.day == day)
-        return true;
-    });
-    console.log("Plan Index", planIndex)
-    // Set recipe id for this day
-    props.planner.plan[planIndex].recipe_id._id = recipeId
-    props.setPlanner(props.planner)
+    //   // Set recipe id for this day
+    //   planner.plan[planIndex].recipe_id._id = recipeId
+    //   props.setPlanner(planner)
+    // }
 
-    console.log("Planner Post", props.planner)
-    console.log("Planner Post Item 1", props.planner.plan[1])
-    // Commit the whole plan to the data Database
-    const payload = `{"planner":${JSON.stringify(props.planner)}}`
-    console.log("StringyFy",payload)
+    // Commit the plan to the data Database
+    const payload = `{"planner":${JSON.stringify(planner)}}`
 
     await fetch("/planners", {
       method: "POST",
@@ -95,6 +106,7 @@ export default function ShowRecipes(props) {
       window.alert(error);
       return;
     });
+
     props.setReload(!props.state)
 
   }

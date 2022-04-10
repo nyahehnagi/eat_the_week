@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { Row, Col, Container, Card } from "react-bootstrap";
-import Recipe from "../recipes/recipe";
 
 export default function Planner(props) {
   //const [planner, setPlanner] = useState("");
@@ -39,7 +38,11 @@ export default function Planner(props) {
           <Col >
             <Card.Header>{plan.day}</Card.Header>
             <Card.Body >
+              {plan.recipe_id ? (
               <Card.Title>{plan.recipe_id.name}</Card.Title>
+              ) : (
+              <Card.Body>Plan Ahead!</Card.Body>
+              )}
             </Card.Body>
           </Col>
         )
