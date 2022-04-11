@@ -47,8 +47,6 @@ export default function Create(props) {
       return;
     });
 
-    console.log("HELLO");
-
     setForm({ name: "", ingredient: "Flour", category: "Vegan" });
     props.setReload(!props.state);
   }
@@ -71,8 +69,6 @@ export default function Create(props) {
     const name = ingredientSelector.current.value
     const selectedIndex = ingredientSelector.current.options.selectedIndex
     const ingredient_id = ingredientSelector.current.options[selectedIndex].getAttribute('ing_id')
-    console.log("name", name)
-    console.log("ingredient_id", ingredient_id)
     
     setingredientNames(ingredientNames.concat(name))
     setIngredients(ingredients.concat(ingredient_id))
