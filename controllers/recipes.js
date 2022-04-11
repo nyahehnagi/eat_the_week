@@ -28,6 +28,7 @@ const RecipesController = {
       description: req.body.recipe.description,
       method: req.body.recipe.method,
       ingredient: req.body.recipe.ingredient,
+      recipe_ingredients: req.body.recipe.recipe_ingredients,
       image: req.body.recipe.image,
       category: req.body.recipe.category,
       user_id: req.user._id
