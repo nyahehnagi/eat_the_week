@@ -12,10 +12,12 @@ import "./style.css";
 import MyUnits from "./components/units/myUnits";
 import MyCategories from "./components/categories/myCategories";
 import SearchRec from "./components/findrecipes/searchRec";
+
 import "bootstrap/dist/css/bootstrap.css";
 
 const App = () => {
   const [user, setUser] = useState({});
+  const [recipe, setRecipe] = useState({});
 
   return (
     <>

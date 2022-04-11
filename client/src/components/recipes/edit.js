@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
+import DisplayCategories  from "../categories/display";
+import DisplayIngredients from "../ingredients/display";
 import { Row, Col, Button } from "react-bootstrap";
 
 export default function EditRecipe(props) {
@@ -68,19 +70,6 @@ export default function EditRecipe(props) {
     props.setReload(!props.state);
   }
 
-  const Ingredient = [
-    { label: "Flour", value: 1 },
-    { label: "Milk", value: 2 },
-    { label: "Sugar", value: 3 },
-    { label: "Salt", value: 4 },
-    { label: "Eggs", value: 5 },
-  ];
-  const Category = [
-    { label: "Vegan", value: 1 },
-    { label: "BBQ", value: 2 },
-    { label: "Wheat Free", value: 3 },
-  ];
-
   // This following section will display the form that takes the input from the recipe.
   return (
     <div className="container-sm">
@@ -93,7 +82,7 @@ export default function EditRecipe(props) {
         <Col>
           <form onSubmit={onSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Recipe Name</label>
+              <label htmlFor="name">Name</label>
               <input
                 type="input"
                 className="form-control"
@@ -140,39 +129,33 @@ export default function EditRecipe(props) {
                 id="image"
                 value={form.image || ""}
                 onChange={(e) => updateForm({ image: e.target.value })}
-              />
+                />
               <label htmlFor="category">Select Category</label>
               <select
                 type="input"
                 className="form-control"
                 id="category"
                 value={form.category}
-                onChange={(e) => updateForm({ category: e.target.value })}
-              >
-                {Category.map((category) => (
-                  <option value={category.label}>{category.label}</option>
-                ))}
-              </select>
-              <label htmlFor="ingredient"></label>
-              Select Ingredients
-              <select
-                type="input"
-                className="form-control"
-                id="ingredient"
-                value={form.ingredient}
-                onChange={(e) => updateForm({ ingredient: e.target.value })}
-              >
-                {Ingredient.map((ingredient) => (
-                  <option value={ingredient.label}>{ingredient.label}</option>
-                ))}
-              </select>
+                onChange={(e) => updateForm({ category: e.target.value })}>
+              < DisplayCategories />
+            </select>
+            <label htmlFor="ingredient"></label>
+            Select Ingredients
+            <select
+              type="input"
+              className="form-control"
+              id="ingredient"
+              value={form.ingredient}
+              onChange={(e) => updateForm({ ingredient: e.target.value })}>
+            < DisplayIngredients/>
+            </select>
             </div>
 
             <div className="form-group">
               <input
                 type="submit"
                 id="update-recipe"
-                value="Edit Recipe"
+                value="Update"
                 className="btn btn-dark mt-2 me-1"
               />
               <Button onClick={handleCancelClick} className="btn btn-dark mt-2">Cancel</Button>

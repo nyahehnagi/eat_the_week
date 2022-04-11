@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
+import { default as ReactSelect } from "react-select";
+import DisplayIngredients from "../ingredients/display";
 import DisplayCategories  from "../categories/display";
 import { Row, Col} from "react-bootstrap";
 
@@ -38,13 +40,6 @@ export default function Create(props) {
     setForm({ name: "", ingredient: "Flour", category: "Vegan" });
     props.setReload(!props.state);
   }
-  const Ingredient = [
-    { label: "Flour", value: 1 },
-    { label: "Milk", value: 2 },
-    { label: "Sugar", value: 3 },
-    { label: "Salt", value: 4 },
-    { label: "Eggs", value: 5 },
-  ];
 
   // This following section will display the form that takes the input from the recipe.
   return (
@@ -112,9 +107,8 @@ export default function Create(props) {
                 className="form-control"
                 id="category"
                 value={form.category}
-                onChange={(e) => updateForm({ category: e.target.value })}
-              >
-              < DisplayCategories/>
+                onChange={(e) => updateForm({ category: e.target.value })}>
+                < DisplayCategories />
               </select>
               <label htmlFor="ingredient"></label>
               Select Ingredients
@@ -123,11 +117,8 @@ export default function Create(props) {
                 className="form-control"
                 id="ingredient"
                 value={form.ingredient}
-                onChange={(e) => updateForm({ ingredient: e.target.value })}
-              >
-                {Ingredient.map((ingredient) => (
-                  <option value={ingredient.label}>{ingredient.label}</option>
-                ))}
+                onChange={(e) => updateForm({ ingredient: e.target.value })}>
+                < DisplayIngredients />
               </select>
             </div>
             <div className="form-group">

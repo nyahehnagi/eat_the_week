@@ -41,7 +41,7 @@ export default function Planner(props) {
               {plan.recipe_id ? (
               <Card.Title>{plan.recipe_id.name}</Card.Title>
               ) : (
-              <Card.Title>Make a Plan</Card.Title>
+              <Card.Title>Add Recipe</Card.Title>
               )}
             </Card.Body>
           </Col>
@@ -57,7 +57,7 @@ export default function Planner(props) {
             <Col >
             <Card.Header>{weekDays[i]}</Card.Header>
             <Card.Body>
-            <Card.Title>Make a Plan</Card.Title>
+            <Card.Title>Add Recipe</Card.Title>
             </Card.Body>
             </Col>);
       }
