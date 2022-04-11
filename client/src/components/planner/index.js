@@ -41,7 +41,7 @@ export default function Planner(props) {
               {plan.recipe_id ? (
               <Card.Title>{plan.recipe_id.name}</Card.Title>
               ) : (
-              <Card.Body>Plan Ahead!</Card.Body>
+              <Card.Title>Add Recipe</Card.Title>
               )}
             </Card.Body>
           </Col>
@@ -56,7 +56,9 @@ export default function Planner(props) {
         emptyCards.push(
             <Col >
             <Card.Header>{weekDays[i]}</Card.Header>
-            <Card.Body>Plan Ahead!</Card.Body>
+            <Card.Body>
+            <Card.Title>Add Recipe</Card.Title>
+            </Card.Body>
             </Col>);
       }
       return emptyCards;  
@@ -64,8 +66,13 @@ export default function Planner(props) {
   }
 
   return (
-  <Container>
-    <h3>Your Week Ahead</h3>
+  <Container className="border border-secondary rounded-top rounded-bottom mb-2 mt-2">
+    <Row>
+      <Col className="d-flex justify-content-center">
+        <h3>Your Week Ahead</h3>
+      </Col>
+    </Row>
+  
     <Row id="recipePlanlist">
       {recipePlanList()} 
     </Row>

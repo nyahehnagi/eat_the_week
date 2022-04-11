@@ -12,14 +12,14 @@ export default function MyRecipes() {
   const [planner, setPlanner] = useState("");
 
   return (
-    <Container fluid="md">
+    <Container fluid="md" className="">
       <Row>
-        <Col>
+        <Col md='12'>
           <Planner state={state} setReload={setReload} planner={planner} setPlanner={setPlanner} />
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col md='5'>
         {!recipeId ? (
           <CreateRecipe state={state} setReload={setReload} />
           ) : (
@@ -27,7 +27,7 @@ export default function MyRecipes() {
           )
         }
         </Col>
-        <Col>
+        <Col md='7'>
           <ShowRecipes state={state} setReload={setReload} setRecipeId={setRecipeId} planner={planner} setPlanner={setPlanner}/>
         </Col>
 

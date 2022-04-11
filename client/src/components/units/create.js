@@ -40,7 +40,7 @@ export default function Create(props) {
   }
   // This following section will display the form that takes the input from the unit.
   return (
-    <div>
+    <div className="container-sm">
       <h3>Create Unit</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">

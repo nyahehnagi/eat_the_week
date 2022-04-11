@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useCookies } from "react-cookie";
 
-const Ingredient = (props) => <div>{props.ingredient.name}</div>;
-
-export default function ShowIngredients(props) {
+export default function DisplayIngredients(props) {
   const [ingredients, setIngredients] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies();
   const navigate = useNavigate();
@@ -34,23 +32,23 @@ export default function ShowIngredients(props) {
     return;
   }, [ingredients.length, props.state]);
 
-  // This method will map out the ingredients
-  function ingredientList() {
+  // This method will map out the ingredients into an array of ingredient names
+  function ingredientList() { 
     return ingredients.map((ingredient) => {
-      return <Ingredient ingredient={ingredient} key={ingredient._id} />;
+      const ingredientValue = ingredient 
+      return ingredientValue.name;
     });
   }
-
-  const handleClick = () => {
-    removeCookie("token");
-    navigate("/");
-  };
-
-  // This following  will display the ingredients
+  const ingredientNameList = ingredientList();
+ 
+  // This following  will return the ingredient list of names
   return (
-    <div className="container-sm">
-      <h3>Ingredients</h3>
-      <div id="ingredientList">{ingredientList()}</div>
-    </div>
+    <>
+      {
+        ingredientNameList.map(optn => (
+        <option>{ optn } </option>
+        ))
+      }
+    </>
   );
 }

@@ -48,7 +48,7 @@ export default function ShowUnits(props) {
 
   // This following  will display the units
   return (
-    <div>
+    <div className="container-sm">
       <h3>Units</h3>
       <div id="unitList">{unitList()}</div>
     </div>

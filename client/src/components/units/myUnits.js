@@ -8,7 +8,7 @@ export default function MyUnits() {
   const [state, setReload] = useState(false);
 
   return (
-    <Container fluid="md">
+    <Container className="container-sm" fluid="md">
       <Row>
         <Col>
           <CreateUnit state={state} setReload={setReload} />

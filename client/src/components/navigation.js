@@ -19,7 +19,9 @@ export default function Navigation() {
   
   return(
   <>
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar variant="dark" expand="lg" style={{
+      backgroundColor: "hsl(0, 0%, 11%)"
+      }}>
       <Container>
       <Navbar.Brand href="/"><img src="/logo.png" height="80" width="130" alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -31,8 +33,7 @@ export default function Navigation() {
                 <NavDropdown.Item href="/ingredient">My Ingredients</NavDropdown.Item>
                 <NavDropdown.Item href="/category">My Categories</NavDropdown.Item>
                 <NavDropdown.Item href="/unit">My Units</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Weekly Planner</NavDropdown.Item>
-
+                <NavDropdown.Item href="/findrecipe">Search for Recipe Ideas</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/user">Edit Profile</NavDropdown.Item>
               </NavDropdown>

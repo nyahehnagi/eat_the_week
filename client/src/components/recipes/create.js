@@ -1,6 +1,10 @@
 import React, { useState, useRef } from "react";
 import { useCookies } from "react-cookie";
 import { Accordion, ListGroup, Row, Col, Dropdown, Button } from "react-bootstrap";
+import { default as ReactSelect } from "react-select";
+import DisplayIngredients from "../ingredients/display";
+import DisplayCategories  from "../categories/display";
+import { Row, Col} from "react-bootstrap";
 
 export default function Create(props) {
 
@@ -51,6 +55,7 @@ export default function Create(props) {
     props.setReload(!props.state);
   }
 
+
   const Ingredient = [
     { name: "Flour", id: "6254a24ceb3173338861dcbc" },
     { name: "Milk", id: "6254a29feb3173338861dcc8" },
@@ -63,6 +68,7 @@ export default function Create(props) {
     { label: "BBQ", value: 2 },
     { label: "Wheat Free", value: 3 },
   ];
+
 
   // This method will update the state properties.
   function addIngredient(){
@@ -77,72 +83,85 @@ export default function Create(props) {
 
   // This following section will display the form that takes the input from the recipe.
   return (
-    <div>
-      <h3>Create Recipe</h3>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Recipe Name</label>
-          <input
-            type="input"
-            className="form-control"
-            id="name"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
-          />
-          <label htmlFor="description">Recipe Description</label>
-          <input
-            type="input"
-            className="form-control"
-            id="description"
-            value={form.description || ""}
-            onChange={(e) => updateForm({ description: e.target.value })}
-          />
-          <label htmlFor="serves">Serves</label>
-          <input
-            type="input"
-            className="form-control"
-            id="serves"
-            value={form.serves || ""}
-            onChange={(e) => updateForm({ serves: e.target.value })}
-          />
-          <label htmlFor="prep_time">Preparation Time</label>
-          <input
-            type="input"
-            className="form-control"
-            id="prep_time"
-            value={form.prep_time || ""}
-            onChange={(e) => updateForm({ prep_time: e.target.value })}
-          />
-          <label htmlFor="method">Method</label>
-          <input
-            type="input"
-            className="form-control"
-            id="method"
-            value={form.method || ""}
-            onChange={(e) => updateForm({ method: e.target.value })}
-          />
-          <label htmlFor="image">Image</label>
-          <input
-            type="file"
-            className="form-control"
-            id="image"
-            value={form.image || ""}
-            onChange={(e) => updateForm({ image: e.target.value })}
-          />
-          <label htmlFor="category">Select Category</label>
-          <select
-            type="input"
-            className="form-control mb-2"
-            id="category"
-            ismulti={true}
-            value={form.category}
-            onChange={(e) => updateForm({ category: e.target.value })}
-          >
-            {Category.map((category) => (
-              <option value={category.label}>{category.label}</option>
-            ))}
-          </select>
-          
+    <div className="container-sm">
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <h3>Create Recipe</h3>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <form onSubmit={onSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Recipe Name</label>
+              <input
+                type="input"
+                className="form-control"
+                id="name"
+                value={form.name}
+                onChange={(e) => updateForm({ name: e.target.value })}
+              />
+              <label htmlFor="description">Recipe Description</label>
+              <input
+                type="input"
+                className="form-control"
+                id="description"
+                value={form.description || ""}
+                onChange={(e) => updateForm({ description: e.target.value })}
+              />
+              <label htmlFor="serves">Serves</label>
+              <input
+                type="input"
+                className="form-control"
+                id="serves"
+                value={form.serves || ""}
+                onChange={(e) => updateForm({ serves: e.target.value })}
+              />
+              <label htmlFor="prep_time">Preparation Time</label>
+              <input
+                type="input"
+                className="form-control"
+                id="prep_time"
+                value={form.prep_time || ""}
+                onChange={(e) => updateForm({ prep_time: e.target.value })}
+              />
+              <label htmlFor="method">Method</label>
+              <input
+                type="input"
+                className="form-control"
+                id="method"
+                value={form.method || ""}
+                onChange={(e) => updateForm({ method: e.target.value })}
+              />
+              <label htmlFor="image">Image</label>
+              <input
+                type="url"
+                className="form-control"
+                id="image"
+                value={form.image || ""}
+                onChange={(e) => updateForm({ image: e.target.value })}
+              />
+              <label htmlFor="category">Select Category</label>
+              <select
+                type="input"
+                className="form-control"
+                id="category"
+                value={form.category}
+                onChange={(e) => updateForm({ category: e.target.value })}>
+                < DisplayCategories />
+              </select>
+              <label htmlFor="ingredient"></label>
+              Select Ingredients
+              <select
+                type="input"
+                className="form-control"
+                id="ingredient"
+                value={form.ingredient}
+                onChange={(e) => updateForm({ ingredient: e.target.value })}>
+                < DisplayIngredients />
+              </select>
+            </div>
+
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
               <Accordion.Header>Add Ingredients</Accordion.Header>
@@ -184,19 +203,21 @@ export default function Create(props) {
 
               </Accordion.Body>
             </Accordion.Item>
-          </Accordion>     
- 
-          <div className="form-group">
-            <input
-              type="submit"
-              id="create-recipe"
-              value="Create Recipe"
-              className="btn btn-dark mt-2"
-            />
-          </div>
-        
-        </div>
-      </form>
+          </Accordion>    
+
+
+
+            <div className="form-group">
+              <input
+                type="submit"
+                id="create-recipe"
+                value="Create Recipe"
+                className="btn btn-dark mt-2"
+              />
+            </div>
+          </form>
+        </Col>
+      </Row>
     </div>
   );
 }
