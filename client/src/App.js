@@ -9,10 +9,7 @@ import Register from "./components/auth/register";
 import Navigation from "./components/navigation";
 import MyUnits from "./components/units/myUnits";
 import MyCategories from "./components/categories/myCategories";
-
-// import CreateCategories from "./components/categories/create";
-// import ShowCategories from "./components/categories/index";
-
+import SearchRec from "./components/findrecipes/searchRec";
 import "bootstrap/dist/css/bootstrap.css";
 
 const App = () => {
@@ -32,6 +29,7 @@ const App = () => {
           <Route path="/user/" element={<MyUsers />} />
           <Route path="/unit/" element={<MyUnits />} />
           <Route path="/category/" element={<MyCategories />} />
+          <Route path="/findrecipe/" element={<SearchRec />} />
         </Routes>
       </div>
     </>
