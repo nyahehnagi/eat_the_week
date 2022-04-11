@@ -1,11 +1,5 @@
 const mongoose = require("mongoose");
 
-const RecipeIngredientSchema = new mongoose.Schema(
-  {
-    rep_ingredient: String,
-    rep_qty: Number, 
-  }
-);
 
 const RecipeSchema = new mongoose.Schema(
   {
@@ -15,9 +9,7 @@ const RecipeSchema = new mongoose.Schema(
     description: String,
     method: String,
     ingredient: String,
-    recipe_ingredients: [RecipeIngredientSchema],
     ingredients: [{
-      qty: Number,
       ingredient_id: { 
           type: mongoose.Schema.Types.ObjectId,
           ref: "Ingredient"
@@ -28,7 +20,7 @@ const RecipeSchema = new mongoose.Schema(
       type: String,
       default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'
     },
-    // category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
+
     category: {
       type: String,
       default: "Vegan",
