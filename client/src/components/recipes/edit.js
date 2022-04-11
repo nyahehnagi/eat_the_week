@@ -82,7 +82,7 @@ export default function EditRecipe(props) {
         <Col>
           <form onSubmit={onSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Edit</label>
+              <label htmlFor="name">Name</label>
               <input
                 type="input"
                 className="form-control"
@@ -155,7 +155,7 @@ export default function EditRecipe(props) {
               <input
                 type="submit"
                 id="update-recipe"
-                value="Edit Recipe"
+                value="Update"
                 className="btn btn-dark mt-2 me-1"
               />
               <Button onClick={handleCancelClick} className="btn btn-dark mt-2">Cancel</Button>
