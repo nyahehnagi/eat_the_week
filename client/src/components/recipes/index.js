@@ -50,10 +50,6 @@ export default function ShowRecipes(props) {
     props.setRecipeId(recipeId)
   }
 
-  function displayRecipe(recipeId){
-    props.setRecipeId(recipeId)
-  }
-
   async function addToPlan(day, recipeId){
     let planner = {}
     let newPlan = []
@@ -108,12 +104,12 @@ export default function ShowRecipes(props) {
     <Row>
         <Col md='6'>
             {recipes.slice(0,secondColumnStart).map((recipe) => {
-              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} displayRecipe={displayRecipe}/>;
+              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
             })}       
         </Col>
         <Col md='6'>
             {recipes.slice(secondColumnStart).map((recipe) => {
-              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} displayRecipe={displayRecipe}/>;
+              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
             })}             
         </Col>
     </Row>

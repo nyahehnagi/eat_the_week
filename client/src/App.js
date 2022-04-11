@@ -11,7 +11,6 @@ import Footer from "./components/footer"
 import "./style.css";
 import MyUnits from "./components/units/myUnits";
 import MyCategories from "./components/categories/myCategories";
-import DisplayRecipe from "./components/recipes/display";
 
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -37,7 +36,6 @@ const App = () => {
               <Route path="/user/" element={<MyUsers />} />
               <Route path="/unit/" element={<MyUnits />} />
               <Route path="/category/" element={<MyCategories />} />
-              <Route path="/recipe/display" element={<DisplayRecipe />} />
             </Routes>
           </div>
         <Footer className="border p-2 mt-auto" style={{

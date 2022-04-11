@@ -76,8 +76,8 @@ export default function Recipe(props) {
       backdrop="static"
       keyboard={false}
       >
-      <Modal.Header closeButton>
-        <Modal.Title>Recipe Details for {props.recipe.name}</Modal.Title>
+      <Modal.Header>
+        <Modal.Title>Recipe Details</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Card>
@@ -85,40 +85,54 @@ export default function Recipe(props) {
           <Card.Title >
             {props.recipe.name}
           </Card.Title> 
+          {props.recipe.description}
         </Card.Header>
         <Card.Body>
-          Testing 123
+        <Row>
+        <Col md='6'>
+        <div className="mr-4 text-sm w-[100px] h-[100px] text-center border-highlight p-3 border-[1px] flex flex-col justify-center align-middle">
+        <Card.Img src={props.recipe.image}
+        style={{width: 80, height: 80}} alt="Card Image"/> 
+        </div>
+        </Col> 
+        <Col md='6'>
+        <div className="mr-4 text-sm w-[100px] h-[100px] text-center border-highlight p-3 border-[1px] flex flex-col justify-center align-middle">
+          <p className="block text-xl mb-0">{props.recipe.category}<span className="text-sm"></span></p>
+          <p className="block mb-0">Category</p>
+        </div>
+        </Col>
+        </Row>
+        <Row>
+        <br/>
+        <Col md='6'>
+        <div className="mr-4 text-sm w-[100px] h-[100px] text-center border-highlight p-3 border-[1px] flex flex-col justify-center align-middle">
+          <p className="block text-xl mb-0">{props.recipe.serves}<span className="text-sm"></span></p>
+          <p className="block mb-0">Serves</p>
+        </div>
+        </Col>
+        <Col md='6'>
+        <div className="mr-4 text-sm w-[100px] h-[100px] text-center border-highlight p-3 border-[1px] flex flex-col justify-center align-middle">
+          <p className="block text-xl mb-0">{props.recipe.prep_time}<span className="text-sm"> mins</span></p>
+          <p className="block mb-0">Prep Time</p>
+        </div>
+        </Col>
+      </Row>
           <Row>
-            {props.recipe.description}
+          <h4>Ingredients</h4>   
+            {props.recipe.ingredients}
           </Row>
-
-        </Card.Body> 
-        </Card>
-
-        <Row>
-          {props.recipe.ingredients}
-         </Row>
-
-
-        <Row>
-        {props.recipe.category}
-        </Row>
-        <Row>
-        {props.recipe.prep_time}
-        </Row>
-        <Row>
+          <Row>
+          <h4>Method</h4>   
         {props.recipe.method}
         </Row>
-        <Row>
-        {props.recipe.serves}
-        </Row>
-       
-
-        
-        
+        </Card.Body>
+        </Card>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+      <Button variant="info">
+          Print
+        </Button>
+        <Button variant="dark" onClick={handleClose}>
           Close
         </Button>
       </Modal.Footer>

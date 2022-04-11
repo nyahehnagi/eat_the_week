@@ -20,13 +20,6 @@ const RecipesController = {
     });
   },
 
-  Display: (req, res) => {
-    Recipe.findOne({ _id: req.params.id }).exec((err, recipe) => {
-      if (err) throw err;
-      res.json(recipe);
-    });
-  },
-
   Create: (req, res) => {
     const recipe = new Recipe({
       name: req.body.recipe.name,
