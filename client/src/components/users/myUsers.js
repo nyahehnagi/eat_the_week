@@ -8,7 +8,7 @@ export default function MyUsers () {
   const [state, setReload] = useState(false)
 
   return (
-    <Container fluid="md">
+    <Container className="container-sm" fluid="md">
       <Row>
         <Col>
           <GetUser state={state} setReload={setReload} />
