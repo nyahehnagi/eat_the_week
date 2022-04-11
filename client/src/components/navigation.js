@@ -33,8 +33,7 @@ export default function Navigation() {
                 <NavDropdown.Item href="/ingredient">My Ingredients</NavDropdown.Item>
                 <NavDropdown.Item href="/category">My Categories</NavDropdown.Item>
                 <NavDropdown.Item href="/unit">My Units</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Weekly Planner</NavDropdown.Item>
-
+                <NavDropdown.Item href="/findrecipe">Search for Recipe Ideas</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/user">Edit Profile</NavDropdown.Item>
               </NavDropdown>
