@@ -1,10 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useCookies } from "react-cookie";
 import { Accordion, ListGroup, Row, Col, Dropdown, Button } from "react-bootstrap";
-import { default as ReactSelect } from "react-select";
 import DisplayIngredients from "../ingredients/display";
 import DisplayCategories  from "../categories/display";
-import { Row, Col} from "react-bootstrap";
 
 export default function Create(props) {
 
