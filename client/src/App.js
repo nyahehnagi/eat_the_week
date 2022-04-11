@@ -8,7 +8,7 @@ import Logon from "./components/auth/logon";
 import Register from "./components/auth/register";
 import Navigation from "./components/navigation";
 import Footer from "./components/footer"
-import "./components/styles.css";
+import "./style.css";
 import MyUnits from "./components/units/myUnits";
 import MyCategories from "./components/categories/myCategories";
 
