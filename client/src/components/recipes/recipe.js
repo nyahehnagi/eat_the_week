@@ -20,6 +20,10 @@ export default function Recipe(props) {
     props.addToPlan(e, props.recipe._id)
   }
 
+  const handlePrint = () => {
+    window.print()
+  }
+
   return (
     <>
     <Card className="mt-2" border="secondary"    >
@@ -86,7 +90,7 @@ export default function Recipe(props) {
           {props.recipe.description}
         </Card.Header>
         <Card.Body>
-          <Row>
+          <Row className="mb-2">
             <Col className="text-sm text-center">
              <Card.Img src={props.recipe.image}
               style={{width: 80, height: 80}} alt="Card Image"/> 
@@ -96,19 +100,25 @@ export default function Recipe(props) {
                 <p className="block text-xl mb-0 text-sm">{props.recipe.category}</p>
             </Col>
           </Row>
-          <Row>
+          <Row className="mb-3">
           <Col className="text-sm text-center">
-              <p className="block text-xl mb-0">{props.recipe.serves}<span className="text-sm"></span></p>
               <p className="block mb-0">Serves</p>
+              <p className="block text-xl mb-0">{props.recipe.serves}<span className="text-sm"></span></p>
           </Col>
             <Col className="text-sm text-center">
-              <p className="block text-xl mb-0">{props.recipe.prep_time}<span className="text-sm"> mins</span></p>
               <p className="block mb-0">Prep Time</p>
+              <p className="block text-xl mb-0">{props.recipe.prep_time}<span className="text-sm"> mins</span></p>
             </Col>
           </Row>
           <Row>
+            <hr></hr>
+          </Row>
+          <Row className="mb-2">
           <h4>Ingredients</h4>   
             {props.recipe.ingredients}
+          </Row>
+          <Row>
+            <hr></hr>
           </Row>
           <Row>
             <h4>Method</h4>   
@@ -118,7 +128,7 @@ export default function Recipe(props) {
       </Card>
       </Modal.Body>
       <Modal.Footer>
-      <Button variant="info">
+      <Button variant="info" onClick={handlePrint}>
           Print
         </Button>
         <Button variant="dark" onClick={handleClose}>
