@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const RecipeIngredientSchema = new mongoose.Schema(
   {
     rep_ingredient: String,
-    rep_unit: String,
     rep_qty: Number, 
   }
 );
@@ -15,9 +14,16 @@ const RecipeSchema = new mongoose.Schema(
     prep_time: Number,
     description: String,
     method: String,
-    // ingredient: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient'}],
     ingredient: String,
     recipe_ingredients: [RecipeIngredientSchema],
+    ingredients: [{
+      qty: Number,
+      ingredient_id: { 
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Ingredient"
+        }
+    }],
+
     image: {
       type: String,
       default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'
