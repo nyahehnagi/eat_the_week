@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import Select from "react-dropdown-select";
 import Accordion from './Accordion';
-import { Button } from "react-bootstrap";
 
-
-const Ingredient = (props) => <div>
-                              <p>{props.recipeIngredient.rep_ingredient}&nbsp;&nbsp;{props.recipeIngredient.rep_unit}&nbsp;&nbsp;{props.recipeIngredient.rep_unit}</p>
-                              </div>;
+// const Ingredient = (props) => <div>
+//                               <p>{props.recipeIngredient.rep_ingredient}&nbsp;&nbsp;{props.recipeIngredient.rep_unit}&nbsp;&nbsp;{props.recipeIngredient.rep_unit}</p>
+//                               </div>;
 
 // const repIngredient = props.repIngredient;
 // const repUnit = props.recipeIngredient;
@@ -17,26 +15,28 @@ const Ingredient = (props) => <div>
 // const repUnit = props.recipeIngredient;
 // const repIngredient = props.recipeIngredient;
 
+
+
+const RepInd = {
+    rep_ingredient: String,
+    rep_unit: String,
+    rep_qty: Number, 
+  };
+
 export default function Create(props) {
 
-  // const [repipeIngredients, setRepiceIngredients] = useState({ 
-  // });
+  const [repIngredient, setRepIngredient] = useState({
+  });
 
-
-  // const repIngredient = props.recipeIngredient.rep_ingredient
-  // const repUnit = props.recipeIngredient.rep_unit;
-  // const repQty = props.recipeIngredient.rep_qty;
-
-
+  // const repUnit = props.recipeIngredient;
+  // const repQty = props.recipeIngredient;
   //const repIngredient = props.recipeIngredient;
 
-  //const [ingredients, setIngredients] = useState([]);
-
-  const [recipeIngredient, setRecipeIngredient] = useState(
-    ("", "", ""));
-    
-  const [repipeIngredients, setRepiceIngredients] = useState([]);
-
+  const [recipeIngredient, setRecipeIngredient] = useState({
+    rep_ingredient: "",
+    rep_unit: "",
+    rep_qty: "",
+  });
 
   const [form, setForm] = useState({
     name: "",
@@ -44,42 +44,58 @@ export default function Create(props) {
     category: "Vegan",
     unit: "grams",
     qty: "",
-    recipeIngredient: ["", "", ""],
+    recipeIngredient: recipeIngredient,
     repIngredient: "",
     repUnit: "",
     repQty: "",
-    recipeIngredients: [],
+    recipeIngredients: new Array(),
   });
 
   const [cookies, setCookie] = useCookies();
 
   // This method will update the state properties.
-  function AddIngredient(){
+  function addIngredient(){
   //function addIngredient(props) {
     console.log("HERE WE ARE!!")
+
+    // console.log("WHAT HAPPENING WITH THE LIST BEFORE WE ADD - LENGTH " + recipeIngredients.length);
+    // console.log("WHAT HAPPENING WITH THE LIST BEFORE WE ADD - ING " + recipeIngredients[0].rep_ingredient);
+    // console.log("WHAT HAPPENING WITH THE LIST BEFORE WE ADD - UNIT " + recipeIngredients[0].rep_unit);
+    // console.log("WHAT HAPPENING WITH THE LIST BEFORE WE ADD - QTY " + recipeIngredients[0].rep_qty);
+    console.log(form.unit)
+    console.log(form.qty)
+
+
+
     console.log(form.ingredient)
     console.log(form.unit)
     console.log(form.qty)
-    //updateForm(repIngredient, form.ingredient);
-    // updateForm(repIngredient, form.ingredient);
-    // updateForm(repUnit, form.unit);
-    // updateForm(repQty, form.qty);
 
-
+    setForm(form.ingredient, form.ingredient);
+    setForm(form.unit, form.unit);
+    setForm(form.qty, form.qty);
 
     // updateForm(repIngredient, form.ingredient);
     // updateForm(repUnit, form.unit);
     // updateForm(repQty, form.qty);
-    // console.log("form.repIngredient " + form.repIngredient)
-    // console.log("form.repUnit " + form.repUnit)
-    // console.log("form.repQty " + form.repQty)
-
-   
+    console.log("form.repIngredient " + form.ingredient)
+    console.log("form.repUnit " + form.unit)
+    console.log("form.repQty " + form.qty)
 
 
+    console.log({props});
 
 
+    //const singleIng = new RegIng();
+    recipeIngredient.rep_ingredient = form.ingredient;
+    recipeIngredient.rep_unit = form.unit;
+    recipeIngredient.rep_qty = form.qty;
+    //singleIng[form.ingredient, form.unit, form.qty];
     //updateRecipeIngredient(rep_unit, recipeIngredient.rep_unit);
+
+    console.log("recipeIngredient.rep_ingredient" +  recipeIngredient.rep_ingredient);
+    console.log("recipeIngredient.rep_unit" +  recipeIngredient.rep_unit);
+    console.log("recipeIngredient.rep_qty" +  recipeIngredient.rep_qty);
 
     //const planner = await response.json();
     //props.setPlanner(planner)
@@ -96,124 +112,69 @@ export default function Create(props) {
     // console.log("repQty " + props.repQty);
 
 
- 
-    console.log("form.recipeIngredients.length " + form.recipeIngredients.length );
-    console.log("recipeIngredient.rep_ingredient " + recipeIngredient.rep_ingredient)
-    console.log("recipeIngredient.rep_unit " + recipeIngredient.rep_unit)
-    console.log("recipeIngredient.rep_qty " + recipeIngredient.rep_qty)
-   
-    // if (form.recipeIngredients == undefined) {
-    //   form.recipeIngredients = [];
-    // }
+    // setForm({rep_ingredient: form.ingredient})
+    // setForm({rep_unit: form.unit})
+    // setForm({rep_qty: form.qty})
 
-    //const janeIngredients
-    //setForm({recipeIngredients: form.recipeIngredients.push(form.recipeIngredient)})
-    console.log("form.recipeIngredients.length " + form.recipeIngredients.length );
+    // console.log("form.rep_ingredient " + form.rep_ingredient)
+    // console.log("form.rep_unit " + form.rep_unit)
+    // console.log("form.rep_qty " + form.rep_unit)
 
+    //setForm(recipeIngredient,  recipeIngredient);
 
-    
-    console.log("recipeIngredient.rep_ingredient " + recipeIngredient.rep_ingredient)
-    console.log("recipeIngredient.rep_unit " + recipeIngredient.rep_unit)
-    console.log("recipeIngredient.rep_qty " + recipeIngredient.rep_qty)
+    //setRecipeIngredient({ rep_ingredient: form.ingredient, rep_unit: form.unit, rep_qty: form.qty})
+    //setForm({ name: "", ingredient: "Flour", category: "Vegan", unit: "grams", qty: "", });
 
-    //updateForm({ rep_Ingredient.rep_ingedient: [form.ingredient, form.unit, form.qty]})
+    //console.log("form.recipeIngredients.length " + form.recipeIngredients.length );
+    // console.log("recipeIngredient.rep_ingredient " + form.recipeIngredient.rep_ingredient)
+    // console.log("recipeIngredient.rep_unit " + form.recipeIngredient.rep_unit)
+    // console.log("recipeIngredient.rep_qty " + form.recipeIngredient.rep_qty)
+    //form.recipeIngredients.push(recipeIngredient);
 
-    //updateForm({ repcipeIngredient: [form.ingredient, form.unit, form.qty]})
+    let pluralIng = new Array();
 
-    console.log("WHIZZO");
-
-    console.log("recipeIngredients ",  form.recipeIngredients);
-
-
-    // function updateIngredients(ingredient, unit, qty) {
-    //   console.log("ZZZZZZZZZ");
-    //   form.recipeIngredients.push([ingredient, unit, qty])
-    // }
-
-    const updateIngredients = (ingredient, unit, qty) => {
-      form.recipeIngredients.push([ingredient, unit, qty]) 
-    };
-
-
-    // props.setRecipeId("")
-    // props.setReload(!props.state);
-    //form.recipeIngredients.function push([form.ingredient, form.unit, form.qty])
-
-    //                         updateForm({recipeIngredients: form.recipeIngredients.push([form.ingredient, form.unit, form.qty])})
-
-    console.log("BIZZO");
-
-    // for (var i = 0; i < form.recipeIngredients.length; i++) {
-    //   let j = i++;
-    //   console.log(i + "JANELUCASrecipeIngredient.rep_ingredient " + form.recipeIngredients[i].recipeIngredient.rep_ingredient)
-    //   console.log(i + "JANELUCASrecipeIngredient.rep_unit " + form.recipeIngredients[i].recipeIngredient.rep_unit)
-    //   console.log(i + "JANELUCASrecipeIngredient.rep_qty " + form.recipeIngredients[i].recipeIngredient.rep_qty)
-    // } 
-
-
-
-    // let count = form.recipeIngredients.length;
-    // let z = 3;
-    // form.recipeIngredients[count][0] = form.ingredient;
-    // form.recipeIngredients[count][1] = form.unit;
-    // form.recipeIngredients[count][2] = form.qty;
-    
-    
-    for(var i=0; i < form.recipeIngredients.length; i++) {
-      let count = form.recipeIngredients.length;
-      console.log("LENGTH " + count)
-      let innerCount = form.recipeIngredients[i].length;
-      console.log("INNER LENGTH " + innerCount);
-      for(var j=0; j < form.recipeIngredients[i].length; j++) {
-        if ( j == 0) {
-        //console.log("INGREDIENT: " + form.recipeIngredients[i][j])
-        form.recipeIngredients[i][j] = form.ingredient;
-        }
-        if ( j == 1) {
-        //console.log("UNIT: " + form.recipeIngredients[i][j])
-        form.recipeIngredients[i][j] = form.unit;
-        }
-        if ( j == 2) {
-        //console.log("QTY: " + form.recipeIngredients[i][j])
-        form.recipeIngredients[i][j] = form.qty
-        }
-        //form.recipeIngredients[i][j] = 0;
-       
-      }
-
+    if (form.recipeIngredients || !form.recipeIngredients == undefined) {
+      console.log("the firms ok");
+      pluralIng = form.recipeIngredients;
     }
+
+    //floors.push({ value: floorName });
+    console.log("*********recipeIngredient****** " +recipeIngredient);
+    console.log("*********recipeIngredient****** ing " +recipeIngredient.rep_ingredient);
+
+    pluralIng.push({ value: recipeIngredient});
+    //setForm(recipeIngredients, pluralIng);
+    console.log("form.recipeIngredients.length " + form.recipeIngredients.length );
+
+    console.log("form.recipeIngredients[i].ing  " + form.recipeIngredients[0].rep_ingredient );
+
+
+    // console.log("form.recipeIngredients[0].rep_ingredient " + form.recipeIngredients[0].rep_ingredient );
     
+    // console.log("recipeIngredient.rep_ingredient " + recipeIngredient.rep_ingredient)
+    // console.log("recipeIngredient.rep_unit " + recipeIngredient.rep_unit)
+    // console.log("recipeIngredient.rep_qty " + recipeIngredient.rep_qty)
+
+
+
+    for (var i = 0; i < form.recipeIngredients.length; i++) {
+      let j = i++;
+      console.log("i is " + i);
+      let SINGLEME = form.recipeIngredients[i];
       
-    for(var x=0; x < form.recipeIngredients.length; x++) {
-      let count = form.recipeIngredients.length;
-      console.log("LENGTH " + count)
-      let innerCount = form.recipeIngredients[x].length;
-      console.log("INNER LENGTH " + innerCount);
-      for(var y=0; y < form.recipeIngredients[x].length; y++) {
-        if ( y == 0) {
-        console.log("INGREDIENT: " + form.recipeIngredients[x][y])
-        //form.recipeIngredients[i][j] = form.ingredient;
-        }
-        if ( y == 1) {
-        console.log("UNIT: " + form.recipeIngredients[x][y])
-        //form.recipeIngredients[i][j] = form.unit;
-        }
-        if ( y == 2) {
-        //console.log("QTY: " + form.recipeIngredients[i][j])
-        form.recipeIngredients[x][y] = form.qty
-        }
-        //form.recipeIngredients[i][j] = 0;
-       
-      }
+      console.log("SINGLEME is " + SINGLEME);
+      // console.log(j + "JANELUCASrecipeIngredient.rep_ingredient " + SINGLEME.rep_ingredient)
+      // console.log(j + "JANELUCASrecipeIngredient.rep_unit " + form.recipeIngredients[i].rep_unit)
+      // console.log(j + "JANELUCASrecipeIngredient.rep_qty " + form.recipeIngredients[i].rep_qty)
+    } 
 
-    }
-
+    
     //updateForm(recipeIngredients, );
 
     //form.recipeIngredients.each 
 
 
-    // for (let i = 0; i < form.recipeIngredients.lenth; i++) {
+    // for (let i = 0; i < form.recipeIngredients.length; i++) {
 
     //   console.log(i + "JANELUCASTWOrecipeIngredient.rep_ingredient " + form.recipeIngredients[i].rep_ingredient)
     //   console.log(i + "JANELUCASTWOrecipeIngredient.rep_unit " + form.recipeIngredients[i].rep_unit)
@@ -236,11 +197,11 @@ export default function Create(props) {
   // This method will update the state properties.
   
 
-  function updateRecipeIngredient(value) {
-    return setRecipeIngredient((prev) => {
-      return { ...prev, ...value };
-    });  
-  }
+  // function updateRecipeIngredient(value) {
+  //   return setRecipeIngredient((prev) => {
+  //     return { ...prev, ...value };
+  //   });  
+  // }
 
   // function updateRecipeIngredients(value) {
   //   return setRecipeIngredient((prev) => {
@@ -404,8 +365,7 @@ export default function Create(props) {
                 id="ingredient"
                 isMulti={true}
                 value={form.ingredient}
-                onChange={(e) => {updateForm({ ingredient: e.target.value, repIngredient: e.target.value});
-                                  updateRecipeIngredient({ rep_ingredient: e.target.value})}}
+                onChange={(e) => updateForm({ ingredient: e.target.value, repIngredient: e.target.value})}
               >
                 {Ingredient.map((ingredient) => (
                   <option value={ingredient.label}>{ingredient.label}</option>
@@ -416,7 +376,7 @@ export default function Create(props) {
                     id="repIngredient"
                     value={form.ingredient}></div>
               <div style={{display: 'none'}} 
-                    className="form-control"
+                    className="recipeIngredient-control"
                     id="rep_ingredient"
                     value={form.ingredient}></div>
               </span>
@@ -430,8 +390,7 @@ export default function Create(props) {
                 id="unit"
                 isMulti={true}
                 value={form.unit}
-                onChange={(e) => {updateForm({ unit: e.target.value, repUnit: e.target.value });
-                                  updateRecipeIngredient({ rep_unit: e.target.value})}}
+                onChange={(e) => updateForm({ unit: e.target.value, repUnit: e.target.value })}
               >
               <div style={{display: 'none'}} 
                     className="form-control"
@@ -456,8 +415,7 @@ export default function Create(props) {
                   style={{textAlign: 'right'}}
                   id="qty"
                   value={form.qty || ""}
-                  onChange={(e) => {updateForm({ qty: e.target.value, repQty: e.target.value });
-                                    updateRecipeIngredient({ rep_qty: e.target.value})}}
+                  onChange={(e) => updateForm({ qty: e.target.value, repQty: e.target.value })}
                 />
               <div style={{display: 'none'}} 
                     className="form-control"
@@ -471,58 +429,28 @@ export default function Create(props) {
 
               <span className="float-right" style={{position: 'absolute', width: '80px', right: 750, vericalAlign: 'top'}}>
               <p></p>
-
-
-
-              {/* <div>
-              <button className="form-group" id="recipeIngredients" onClick={() => {updateForm({ recipeIngredients: form.recipeIngredients.push() });
-                                    AddIngredient()}}>Add Ingredient</button>;
-              </div> */}
-              <div className="form-group">
-                <input
-                type="text"
-                id="recipeIngredients"
-
-                value="AddIngredient"
-                className="btn btn-primary form-group"
-                />
-                  <button type="default" onClick={updateIngredients(form.ingredient, form.unit, form.qty)}>
-                                          
-                  Add Ingredient
-                </button>
-              </div>
-
-
-              onChange={(e) => {updateForm({ qty: e.target.value, repQty: e.target.value });
-                                    updateRecipeIngredient({ rep_qty: e.target.value})}}
-                
-
-
-            {/* <div className="form-group">
               <input
-                type="submit"
-                id="recipeIngredients"
+                type="text"
+                id="add-ingredient"
                 value="Add Ingredient"
-                className="form-group"
+                className="btn btn-dark mt-2"
                 readOnly={true}
-                //onClick={() => AddIngredient()}
-
-                onClick={() => {updateForm({ recipeIngredients: form.recipeIngredients.push(form.recipeIngredient) });
-                                    AddIngredient()}}
+                onClick={() => addIngredient()}
               />
-              <div style={{display: 'none'}} 
-                    className="form-control"
-                    id="rep_qty"
-                    value={form.qty}></div>
-              </div>       */}
               </span> 
 
-              {/* <div id="recipeIngredients"
+              <div id="recipeIngredient"
+                  className="form-control"
+                  value={form.recipeIngredient}
+                 >
+
+              </div> 
+              <div id="recipeIngredients"
                   className="form-control"
                   value={form.recipeIngredients}
-                 > */}
+                 >
 
-              {/* </div> */}
+              </div>
 
 
               {/* <div>
