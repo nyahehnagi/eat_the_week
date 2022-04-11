@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container,Dropdown, DropdownButton } from "react-bootstrap";
 
 
 export default function Recipe(props) {
@@ -8,7 +8,7 @@ export default function Recipe(props) {
     props.removeRecipe(props.recipe._id);
   };
 
-  const handleEditClick = () => {
+  const handleEditClick = (e) => {
     props.editRecipe(props.recipe._id);
   };
 
@@ -20,8 +20,13 @@ export default function Recipe(props) {
   console.log(props)
   console.log(props.recipe._id)
 
+
+  const handleSelect = (e) => {
+    props.addToPlan(e, props.recipe._id)
+  }
+
   return (
-    <Card border="primary" style={{ width: '18rem' }}>
+    <Card className="mt-2" border="secondary" >
       <Card.Header>
       <Card.Title >
         <a href="/recipe/display" onClick={handleDisplayClick}>
@@ -37,18 +42,37 @@ export default function Recipe(props) {
         <Card.Img src={props.recipe.image}
         style={{width: 60, height: 60}} alt="Card Image"/> <br/><br/> 
         </Col>
+
         <Col md='8'>
-        <Card.Text>{props.recipe.description}</Card.Text> 
-        <Card.Text>Serves: {props.recipe.serves}</Card.Text> 
+          <Card.Text>{props.recipe.description}</Card.Text> 
+          <Card.Text>Serves: {props.recipe.serves}</Card.Text> 
         </Col>
-        </Row>
-        </Container>
+      </Row>
+
+      </Container>
+      
+      <Row>
         <br/>
-        <Button onClick={handleRemoveClick} className="btn btn-danger btn-sm me-1">
+        <Col md='4'>
+        <Button onClick={handleRemoveClick} className="btn btn-danger btn-sm ps-1 pe-1  ">
           Remove
         </Button>
-        <Button onClick={handleEditClick} className="btn btn-dark btn-sm">Edit</Button>
-        <Button onClick={handleDisplayClick} href="/recipe/display" className="btn btn-info btn-sm">Display</Button>
+        </Col>
+        <Col md='2'>
+        <Button onClick={handleEditClick} className="btn btn-dark btn-sm ">Edit</Button>
+        </Col>
+        <Col md='4'>
+        <DropdownButton onSelect={handleSelect} variant="dark" className="ps-1" size="sm" id="dropdown-item-button" title="Add to Plan">
+            <Dropdown.Item  eventKey="Mon" className="btn-sm" >Monday</Dropdown.Item>
+            <Dropdown.Item  eventKey="Tue" className="btn-sm">Tuesday</Dropdown.Item>
+            <Dropdown.Item  eventKey="Wed"  className="btn-sm">Wednesday</Dropdown.Item>
+            <Dropdown.Item  eventKey="Thur"  className="btn-sm">Thursday</Dropdown.Item>
+            <Dropdown.Item eventKey="Fri"  className="btn-sm">Friday</Dropdown.Item>
+            <Dropdown.Item  eventKey="Sat"  className="btn-sm">Saturday</Dropdown.Item>
+            <Dropdown.Item  eventKey="Sun"  className="btn-sm">Sunday</Dropdown.Item>
+        </DropdownButton>
+        </Col>
+       </Row>
       </Card.Body>
     </Card>
   );

@@ -8,7 +8,7 @@ export default function MyCategories() {
   const [state, setReload] = useState(false);
 
   return (
-    <Container fluid="md">
+    <Container className="container-sm" fluid="md">
       <Row>
         <Col>
           <CreateCategory state={state} setReload={setReload} />

@@ -19,7 +19,9 @@ export default function Navigation() {
   
   return(
   <>
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar variant="dark" expand="lg" style={{
+      backgroundColor: "hsl(0, 0%, 11%)"
+      }}>
       <Container>
       <Navbar.Brand href="/"><img src="/logo.png" height="80" width="130" alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

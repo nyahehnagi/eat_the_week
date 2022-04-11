@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { Button } from "react-bootstrap";
 import DisplayCategories  from "../categories/display";
 import DisplayIngredients from "../ingredients/display";
+import { Row, Col, Button } from "react-bootstrap";
 
 export default function EditRecipe(props) {
   const [form, setForm] = useState({});
@@ -72,92 +72,98 @@ export default function EditRecipe(props) {
 
   // This following section will display the form that takes the input from the recipe.
   return (
-    <div>
-      <h3>Edit Recipe</h3>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Recipe Name</label>
-          <input
-            type="input"
-            className="form-control"
-            id="name"
-            value={form.name || ""}
-            onChange={(e) => updateForm({ name: e.target.value })}
-          />
-          <label htmlFor="description">Recipe Description</label>
-          <input
-            type="input"
-            className="form-control"
-            id="description"
-            value={form.description || ""}
-            onChange={(e) => updateForm({ description: e.target.value })}
-          />
-          <label htmlFor="serves">Serves</label>
-          <input
-            type="input"
-            className="form-control"
-            id="serves"
-            value={form.serves || ""}
-            onChange={(e) => updateForm({ serves: e.target.value })}
-          />
-          <label htmlFor="prep_time">Preparation Time</label>
-          <input
-            type="input"
-            className="form-control"
-            id="prep_time"
-            value={form.prep_time || ""}
-            onChange={(e) => updateForm({ prep_time: e.target.value })}
-          />
-          <label htmlFor="method">Method</label>
-          <input
-            type="input"
-            className="form-control"
-            id="method"
-            value={form.method || ""}
-            onChange={(e) => updateForm({ method: e.target.value })}
-          />
-          <label htmlFor="image">Image</label>
-          <input
-            type="url"
-            className="form-control"
-            id="image"
-            value={form.image || ""}
-            onChange={(e) => updateForm({ image: e.target.value })}
-          />
-          <label htmlFor="category">Select Category</label>
-          <select
-            type="input"
-            className="form-control"
-            id="category"
-            value={form.category}
-            onChange={(e) => updateForm({ category: e.target.value })}
-          >
-            < DisplayCategories />
-          </select>
-          <label htmlFor="ingredient"></label>
-          Select Ingredients
-          <select
-            type="input"
-            className="form-control"
-            id="ingredient"
-            value={form.ingredient}
-            onChange={(e) => updateForm({ ingredient: e.target.value })}
-          >
-            < DisplayIngredients isMulti/>
-          </select>
-        </div>
+    <div className="container-sm">
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <h3>Edit Recipe</h3>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <form onSubmit={onSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Recipe Name</label>
+              <input
+                type="input"
+                className="form-control"
+                id="name"
+                value={form.name || ""}
+                onChange={(e) => updateForm({ name: e.target.value })}
+              />
+              <label htmlFor="description">Recipe Description</label>
+              <input
+                type="input"
+                className="form-control"
+                id="description"
+                value={form.description || ""}
+                onChange={(e) => updateForm({ description: e.target.value })}
+              />
+              <label htmlFor="serves">Serves</label>
+              <input
+                type="input"
+                className="form-control"
+                id="serves"
+                value={form.serves || ""}
+                onChange={(e) => updateForm({ serves: e.target.value })}
+              />
+              <label htmlFor="prep_time">Preparation Time</label>
+              <input
+                type="input"
+                className="form-control"
+                id="prep_time"
+                value={form.prep_time || ""}
+                onChange={(e) => updateForm({ prep_time: e.target.value })}
+              />
+              <label htmlFor="method">Method</label>
+              <input
+                type="input"
+                className="form-control"
+                id="method"
+                value={form.method || ""}
+                onChange={(e) => updateForm({ method: e.target.value })}
+              />
+              <label htmlFor="image">Image</label>
+              <input
+                type="url"
+                className="form-control"
+                id="image"
+                value={form.image || ""}
+                onChange={(e) => updateForm({ image: e.target.value })}
+                />
+              <label htmlFor="category">Select Category</label>
+              <select
+                type="input"
+                className="form-control"
+                id="category"
+                value={form.category}
+                onChange={(e) => updateForm({ category: e.target.value })}>
+              < DisplayCategories />
+            </select>
+            <label htmlFor="ingredient"></label>
+            Select Ingredients
+            <select
+              type="input"
+              className="form-control"
+              id="ingredient"
+              value={form.ingredient}
+              onChange={(e) => updateForm({ ingredient: e.target.value })}>
+            < DisplayIngredients/>
+            </select>
+            </div>
 
-        <div className="form-group">
-          <input
-            type="submit"
-            id="update-recipe"
-            value="Edit Recipe"
-            className="btn btn-dark mt-2 me-1"
-          />
-          <Button onClick={handleCancelClick} className="btn btn-dark mt-2">Cancel</Button>
-        </div>
-        
-      </form>
+            <div className="form-group">
+              <input
+                type="submit"
+                id="update-recipe"
+                value="Edit Recipe"
+                className="btn btn-dark mt-2 me-1"
+              />
+              <Button onClick={handleCancelClick} className="btn btn-dark mt-2">Cancel</Button>
+            </div>
+            
+          </form>
+        </Col>
+      </Row>
     </div>
   );
 }
