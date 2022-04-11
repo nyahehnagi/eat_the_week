@@ -108,12 +108,12 @@ export default function ShowRecipes(props) {
     <Row>
         <Col md='6'>
             {recipes.slice(0,secondColumnStart).map((recipe) => {
-              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
+              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} displayRecipe={displayRecipe}/>;
             })}       
         </Col>
         <Col md='6'>
             {recipes.slice(secondColumnStart).map((recipe) => {
-              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
+              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} displayRecipe={displayRecipe}/>;
             })}             
         </Col>
     </Row>

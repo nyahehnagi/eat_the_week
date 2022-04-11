@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
-import { Row, Col, Container,Dropdown, DropdownButton } from "react-bootstrap";
+import { Row, Col, Container,Dropdown, DropdownButton, Modal } from "react-bootstrap";
 
 
 export default function Recipe(props) {
@@ -12,33 +12,26 @@ export default function Recipe(props) {
     props.editRecipe(props.recipe._id);
   };
 
-  const handleDisplayClick = () => {
-    props.displayRecipe(props.recipe._id);
-  };
-
-  console.log("In recipe.js and looking for props")
-  console.log(props)
-  console.log(props.recipe._id)
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleSelect = (e) => {
     props.addToPlan(e, props.recipe._id)
   }
 
   return (
-    <Card className="mt-2" border="secondary" >
-      <Card.Header>
+    <>
+    <Card className="mt-2" border="secondary"    >
+      <Card.Header onClick={handleShow} style={{ cursor: "pointer" }}>
       <Card.Title >
-        <a href="/recipe/display" onClick={handleDisplayClick}>
         {props.recipe.name}
-        </a>
         </Card.Title> 
       </Card.Header>
       <Card.Body>
       <Container fluid="md">
       <Row>
         <Col md='4'>
-        <br/>
         <Card.Img src={props.recipe.image}
         style={{width: 60, height: 60}} alt="Card Image"/> <br/><br/> 
         </Col>
@@ -75,5 +68,61 @@ export default function Recipe(props) {
        </Row>
       </Card.Body>
     </Card>
+
+
+    <Modal
+      show={show}
+      onHide={handleClose}
+      backdrop="static"
+      keyboard={false}
+      >
+      <Modal.Header closeButton>
+        <Modal.Title>Recipe Details for {props.recipe.name}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Card>
+          <Card.Header>
+          <Card.Title >
+            {props.recipe.name}
+          </Card.Title> 
+        </Card.Header>
+        <Card.Body>
+          Testing 123
+          <Row>
+            {props.recipe.description}
+          </Row>
+
+        </Card.Body> 
+        </Card>
+
+        <Row>
+          {props.recipe.ingredients}
+         </Row>
+
+
+        <Row>
+        {props.recipe.category}
+        </Row>
+        <Row>
+        {props.recipe.prep_time}
+        </Row>
+        <Row>
+        {props.recipe.method}
+        </Row>
+        <Row>
+        {props.recipe.serves}
+        </Row>
+       
+
+        
+        
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+      </Modal>
+    </>
   );
 }

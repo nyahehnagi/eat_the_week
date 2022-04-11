@@ -82,7 +82,7 @@ export default function EditRecipe(props) {
         <Col>
           <form onSubmit={onSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Recipe Name</label>
+              <label htmlFor="name">Edit</label>
               <input
                 type="input"
                 className="form-control"
