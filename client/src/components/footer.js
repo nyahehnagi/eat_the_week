@@ -41,6 +41,9 @@ const Footer = () => (
           <li className="list-inline-item">
             <a href="/findrecipe">Recipe Ideas</a>
           </li>
+          <li className="list-inline-item">
+            <a href="/findrecipe">Meet the Team</a>
+          </li>
         </ul>
         <p className="copyright">Eat The Week © 2022</p>
       </footer>
