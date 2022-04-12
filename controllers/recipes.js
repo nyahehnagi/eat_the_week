@@ -5,7 +5,7 @@ const RecipesController = {
     userId = req.user._id;
 
     Recipe.find({user_id: userId,})
-    .populate("ingredients")
+    .populate("ingredients.ingredient_id")
     .exec((err, recipes) => {
       if (err) throw err;
 
@@ -15,7 +15,7 @@ const RecipesController = {
 
   Show: (req, res) => {
     Recipe.findOne({ _id: req.params.id })
-    .populate("ingredients")
+    .populate("ingredients.ingredient_id")
     .exec((err, recipe) => {
       if (err) throw err;
       res.json(recipe);
@@ -29,8 +29,7 @@ const RecipesController = {
       prep_time: req.body.recipe.prep_time,
       description: req.body.recipe.description,
       method: req.body.recipe.method,
-      ingredient: req.body.recipe.ingredient,
-      recipe_ingredients: req.body.recipe.recipe_ingredients,
+      ingredients: req.body.recipe.ingredients,
       image: req.body.recipe.image,
       category: req.body.recipe.category,
       user_id: req.user._id,

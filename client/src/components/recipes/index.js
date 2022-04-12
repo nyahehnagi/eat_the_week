@@ -105,7 +105,7 @@ export default function ShowRecipes(props) {
       <Container>
         <Row>
           <Col md="6">
-            {recipes.slice(0, secondColumnStart).map((recipe) => {
+            {recipes.slice(secondColumnStart).map((recipe) => {
               return (
                 <Recipe
                   recipe={recipe}
@@ -117,7 +117,7 @@ export default function ShowRecipes(props) {
             })}
           </Col>
           <Col md="6">
-            {recipes.slice(secondColumnStart).map((recipe) => {
+            {recipes.slice(0, secondColumnStart).map((recipe) => {
               return (
                 <Recipe
                   recipe={recipe}

@@ -11,11 +11,10 @@ export default function Create(props) {
 
   const [form, setForm] = useState({
     name: "",
-    // ingredient: "Flour",
     category: "Vegan",
     unit: "grams",
     qty: "",
-    ingredients: [],
+    ingredients: [{}],
   });
 
   const [cookies, setCookie] = useCookies();
@@ -59,11 +58,11 @@ export default function Create(props) {
   function addIngredient() {
     const name = ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
-    const ingredient_id =
+    const ingredientId =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
 
     setingredientNames(ingredientNames.concat(name));
-    setIngredients(ingredients.concat(ingredient_id));
+    setIngredients(ingredients.concat( {ingredient_id : ingredientId} ));
     
   }
 

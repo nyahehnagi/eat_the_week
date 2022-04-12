@@ -6,9 +6,13 @@ import {
   Dropdown,
   DropdownButton,
   Modal,
+  ListGroup
 } from "react-bootstrap";
 
 export default function Recipe(props) {
+
+  console.log("Recipe Details",props.recipe );
+
   const handleRemoveClick = () => {
     props.removeRecipe(props.recipe._id);
   };
@@ -28,12 +32,6 @@ export default function Recipe(props) {
   const handlePrint = () => {
     window.print();
   };
-
-  function ingredientList() {
-    return props.recipe.ingredients.map((ingredient) => {
-      return ingredient.name;
-    });
-  }
 
   return (
     <>
@@ -163,8 +161,12 @@ export default function Recipe(props) {
               </Row>
               <Row className="mb-2">
                 <h4>Ingredients</h4>
-                {props.recipe.ingredients
-                }
+                <ListGroup variant="flush">
+                      {props.recipe.ingredients.map((ingredient) => (
+                        <ListGroup.Item>{ingredient.ingredient_id.name}</ListGroup.Item>
+                      ))}
+                </ListGroup>
+
               </Row>
               <Row>
                 <hr></hr>
