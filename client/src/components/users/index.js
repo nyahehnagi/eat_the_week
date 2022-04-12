@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useCookies } from "react-cookie";
 import { Container } from "react-bootstrap";
 import { Card } from "react-bootstrap";
+import { usePasswordValidation } from "../../hooks/usePasswordValidation";
 
 //  const User = (props) => <div>{props.user.name}</div>;
 
@@ -22,6 +23,16 @@ export default function GetUser(props) {
     });
   }
 
+  // Setup Password validation
+  const [validLength, hasNumber, upperCase, lowerCase, match, specialChar] =
+    usePasswordValidation({
+      password: form.password,
+    });
+
+    const setPass = (event) => {
+      updateForm({ ...form.password, password: event.target.value });
+    };
+
   // This method fetches the user details from the database.
   useEffect(() => {
     async function getUser() {
@@ -38,7 +49,6 @@ export default function GetUser(props) {
         return;
       }
       const user = await response.json();
-      console.log(user);
       setUser(user);
     }
 
@@ -79,8 +89,8 @@ export default function GetUser(props) {
       <h3>Password Reset</h3>
       <Card>
         <Card.Body>
-          <Card.Title>User Name: {user.name}</Card.Title>
-          <Card.Text>User Email: {user.email}</Card.Text>
+          <Card.Title>Name: {user.name}</Card.Title>
+          <Card.Text>Email: {user.email}</Card.Text>
         </Card.Body>
       </Card>
       <form onSubmit={onSubmit}>
@@ -92,18 +102,52 @@ export default function GetUser(props) {
             className="form-control"
             id="password"
             value={form.password}
-            onChange={(e) => updateForm({ password: e.target.value })}
+            onChange={setPass}
           />
+          <ul>
+            <li>
+              {validLength ? (
+                <span style={{ color: "green" }}>Valid Length</span>
+              ) : (
+                <span style={{ color: "red" }}>Valid Length</span>
+              )}
+            </li>
+            <li>
+              {hasNumber ? (
+                <span style={{ color: "green" }}>Has a Number</span>
+              ) : (
+                <span style={{ color: "red" }}>Has a Number</span>
+              )}
+            </li>
+            <li>
+              {upperCase ? (
+                <span style={{ color: "green" }}>UpperCase</span>
+              ) : (
+                <span style={{ color: "red" }}>UpperCase</span>
+              )}
+            </li>
+            <li>
+              {lowerCase ? (
+                <span style={{ color: "green" }}>LowerCase</span>
+              ) : (
+                <span style={{ color: "red" }}>LowerCase</span>
+              )}
+            </li>
+          </ul>
         </div>
         <br></br>
-        <div className="form-group">
-          <input
-            type="submit"
-            id="update"
-            value="Update"
-            className="btn btn-primary"
-          />
-        </div>
+        {validLength && hasNumber && upperCase && lowerCase ? (
+          <div className="form-group">
+            <input
+              type="submit"
+              id="update"
+              value="Update"
+              className="btn btn-primary"
+            />
+          </div>
+        ) : (
+          ""
+        )}
       </form>
     </Container>
   );

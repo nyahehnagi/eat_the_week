@@ -18,7 +18,7 @@ export default function DisplayCategories(props) {
       });
 
       if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
+        const message =`An error occurred: ${response.statusText}`;
         window.alert(message);
         return;
       }
@@ -46,7 +46,7 @@ export default function DisplayCategories(props) {
     <>
       {
         categoryNameList.map(optn => (
-        <option value={counter +=1 }>{optn}</option>
+        <option key={counter+=1}>{optn}</option>
         ))
       }
      </>

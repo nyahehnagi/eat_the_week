@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { Accordion, ListGroup, Row, Col } from "react-bootstrap";
+import { Accordion, ListGroup, Row, Col, Badge } from "react-bootstrap";
 import DisplayIngredients from "../ingredients/display";
 import DisplayCategories from "../categories/display";
 
@@ -11,11 +11,10 @@ export default function Create(props) {
 
   const [form, setForm] = useState({
     name: "",
-    // ingredient: "Flour",
     category: "Vegan",
     unit: "grams",
     qty: "",
-    ingredients: [],
+    ingredients: [{}],
   });
 
   const [cookies, setCookie] = useCookies();
@@ -33,8 +32,6 @@ export default function Create(props) {
     // When a post request is sent to the create url, add a new record to the database.
     const recipe = { ...form };
 
-    console.log("Create Recipe", JSON.stringify({ recipe }));
-
     await fetch("/recipes", {
       method: "POST",
       headers: {
@@ -51,23 +48,31 @@ export default function Create(props) {
     props.setReload(!props.state);
   }
 
+  useEffect(() => {
+    updateForm({ ingredients: ingredients });
+  }, [ingredientNames.length]);
+
   // This method will update the state properties.
-  function addIngredient() {
+  const addIngredient = () => {
     const name = ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
-    const ingredient_id =
+    const ingredientId =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
 
-    console.log("ID", ingredient_id);
-    console.log("Name", name);
-    console.log("Selected Index", selectedIndex);
-
     setingredientNames(ingredientNames.concat(name));
-    setIngredients(ingredients.concat(ingredient_id));
-    console.log("Ingredients", ingredients);
-    console.log("Ingredient Names", ingredientNames);
-    updateForm({ ingredients: ingredients });
+    setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
   }
+
+  const removeIngredient = (index) => {
+    setingredientNames(ingredientNames.filter((_, idx) => idx != index ));
+    setIngredients(ingredients.filter((_, idx) => idx != index ));
+  }
+
+  const handleBadgeClick = (e) => {
+    var eventkey = e.target.getAttribute('eventkey');
+    removeIngredient(eventkey)
+  };
+
 
   // This following section will display the form that takes the input from the recipe.
   return (
@@ -98,27 +103,27 @@ export default function Create(props) {
                 onChange={(e) => updateForm({ description: e.target.value })}
               />
               <Row>
-              <Col md='5' style={{width:"50%",float:"left"}}>
-              <label htmlFor="serves">Serves</label>
-              <input
-                type="input" 
-                className="form-control"
-                id="serves"
-                value={form.serves || ""}
-                onChange={(e) => updateForm({ serves: e.target.value })}
-              />
-              </Col> 
-              <Col md='5' style={{width:"50%",float:"right"}}>
-              <label htmlFor="prep_time">Preparation Time</label>
-              <input
-                type="input"
-                className="form-control"
-                id="prep_time"
-                value={form.prep_time || ""}
-                onChange={(e) => updateForm({ prep_time: e.target.value })}
-              />
-            </Col>
-            </Row>
+                <Col md="5" style={{ width: "50%", float: "left" }}>
+                  <label htmlFor="serves">Serves</label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="serves"
+                    value={form.serves || ""}
+                    onChange={(e) => updateForm({ serves: e.target.value })}
+                  />
+                </Col>
+                <Col md="5" style={{ width: "50%", float: "right" }}>
+                  <label htmlFor="prep_time">Preparation Time</label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="prep_time"
+                    value={form.prep_time || ""}
+                    onChange={(e) => updateForm({ prep_time: e.target.value })}
+                  />
+                </Col>
+              </Row>
               <label htmlFor="method">Method</label>
               <input
                 type="input"
@@ -149,12 +154,18 @@ export default function Create(props) {
 
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0">
-                <Accordion.Header>Add Ingredients</Accordion.Header>
+                <Accordion.Header>Ingredients</Accordion.Header>
                 <Accordion.Body>
                   <Row>
                     <ListGroup variant="flush">
-                      {ingredientNames.map((IngName) => (
-                        <ListGroup.Item>{IngName}</ListGroup.Item>
+                      {
+                        ingredientNames.map((IngName, index) => (
+                        <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                          {IngName}
+                          <Badge eventkey={index} bg="dark" pill onClick={handleBadgeClick}>
+                          X
+                          </Badge>
+                          </ListGroup.Item>
                       ))}
                     </ListGroup>
                   </Row>
