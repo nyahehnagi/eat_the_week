@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useCookies } from "react-cookie";
 import DisplayCategories from "../categories/display";
 import DisplayIngredients from "../ingredients/display";
-import { Accordion, ListGroup, Row, Col, Button } from "react-bootstrap";
+import { Accordion, ListGroup, Row, Col, Button, Badge } from "react-bootstrap";
 
 export default function EditRecipe(props) {
   const initialIngredients = props.recipe.ingredients.map(
@@ -55,12 +55,12 @@ export default function EditRecipe(props) {
     props.setReload(!props.state);
   }
 
-  function handleCancelClick() {
+  const handleCancelClick = () => {
     props.setRecipeId("");
     props.setReload(!props.state);
   }
 
-  function addIngredient() {
+  const addIngredient= () => {
     const name = ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
     const ingredientId =
@@ -70,6 +70,16 @@ export default function EditRecipe(props) {
     setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
     updateForm({ ingredients: ingredients });
   }
+
+  const removeIngredient = (index) => {
+    setingredientNames(ingredientNames.filter((_, idx) => idx != index ));
+    setIngredients(ingredients.filter((_, idx) => idx != index ));
+  }
+
+  const handleBadgeClick = (e) => {
+    var eventkey = e.target.getAttribute('eventkey');
+    removeIngredient(eventkey)
+  };
 
   // This following section will display the form that takes the input from the recipe.
   return (
@@ -153,9 +163,14 @@ export default function EditRecipe(props) {
                 <Accordion.Header>Add Ingredients</Accordion.Header>
                 <Accordion.Body>
                   <Row>
-                    <ListGroup variant="flush">
-                      {ingredientNames.map((IngName) => (
-                        <ListGroup.Item>{IngName}</ListGroup.Item>
+                    <ListGroup variant="flush" >
+                      {ingredientNames.map((IngName, index) => (
+                        <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                          {IngName}
+                          <Badge eventkey={index} bg="dark" pill onClick={handleBadgeClick}>
+                          X
+                          </Badge>
+                          </ListGroup.Item>
                       ))}
                     </ListGroup>
                   </Row>
