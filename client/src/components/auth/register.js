@@ -52,7 +52,7 @@ export default function Register() {
   }
 
   return (
-    <Container className="container-sm">
+    <Container className="container-fluid">
       <h3>Register User</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">

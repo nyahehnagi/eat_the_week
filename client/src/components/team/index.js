@@ -15,6 +15,7 @@ export default function Team() {
           <h4> Shirley </h4>
           <img src="https://ca.slack-edge.com/T03ALA7H4-U02Q8GW763F-6dd1c9ecbf4e-512" className="img-fluid" alt="shirley" style={{width:"100px", height:"100px"}} />
           <p> "I'm off cycling" </p>
+          <p> "git oush" </p>
         </Col>
         <Col md="2">    
           <h4> Jane </h4>
