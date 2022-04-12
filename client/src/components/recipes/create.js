@@ -60,8 +60,7 @@ export default function Create(props) {
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
 
     setingredientNames(ingredientNames.concat(name));
-    setIngredients(ingredients.concat( {ingredient_id : ingredientId} ));
-    
+    setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
   }
 
   // This following section will display the form that takes the input from the recipe.
@@ -93,27 +92,27 @@ export default function Create(props) {
                 onChange={(e) => updateForm({ description: e.target.value })}
               />
               <Row>
-              <Col md='5' style={{width:"50%",float:"left"}}>
-              <label htmlFor="serves">Serves</label>
-              <input
-                type="input" 
-                className="form-control"
-                id="serves"
-                value={form.serves || ""}
-                onChange={(e) => updateForm({ serves: e.target.value })}
-              />
-              </Col> 
-              <Col md='5' style={{width:"50%",float:"right"}}>
-              <label htmlFor="prep_time">Preparation Time</label>
-              <input
-                type="input"
-                className="form-control"
-                id="prep_time"
-                value={form.prep_time || ""}
-                onChange={(e) => updateForm({ prep_time: e.target.value })}
-              />
-            </Col>
-            </Row>
+                <Col md="5" style={{ width: "50%", float: "left" }}>
+                  <label htmlFor="serves">Serves</label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="serves"
+                    value={form.serves || ""}
+                    onChange={(e) => updateForm({ serves: e.target.value })}
+                  />
+                </Col>
+                <Col md="5" style={{ width: "50%", float: "right" }}>
+                  <label htmlFor="prep_time">Preparation Time</label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="prep_time"
+                    value={form.prep_time || ""}
+                    onChange={(e) => updateForm({ prep_time: e.target.value })}
+                  />
+                </Col>
+              </Row>
               <label htmlFor="method">Method</label>
               <input
                 type="input"

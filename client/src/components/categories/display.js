@@ -44,11 +44,9 @@ export default function DisplayCategories(props) {
   // This following  will return the category list of names
   return (
     <>
-      {
-        categoryNameList.map(optn => (
-        <option value={counter +=1 }>{optn}</option>
-        ))
-      }
-     </>
+      {categoryNameList.map((optn) => (
+        <option value={(counter += 1)}>{optn}</option>
+      ))}
+    </>
   );
 }

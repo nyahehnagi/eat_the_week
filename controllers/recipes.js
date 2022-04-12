@@ -4,22 +4,22 @@ const RecipesController = {
   Index: (req, res) => {
     userId = req.user._id;
 
-    Recipe.find({user_id: userId,})
-    .populate("ingredients.ingredient_id")
-    .exec((err, recipes) => {
-      if (err) throw err;
+    Recipe.find({ user_id: userId })
+      .populate("ingredients.ingredient_id")
+      .exec((err, recipes) => {
+        if (err) throw err;
 
-      res.json(recipes);
-    });
+        res.json(recipes);
+      });
   },
 
   Show: (req, res) => {
     Recipe.findOne({ _id: req.params.id })
-    .populate("ingredients.ingredient_id")
-    .exec((err, recipe) => {
-      if (err) throw err;
-      res.json(recipe);
-    });
+      .populate("ingredients.ingredient_id")
+      .exec((err, recipe) => {
+        if (err) throw err;
+        res.json(recipe);
+      });
   },
 
   Create: (req, res) => {
@@ -54,8 +54,8 @@ const RecipesController = {
   },
 
   Update: (req, res) => {
-    console.log("Recipe Body", req.body.recipe)
-    
+    console.log("Recipe Body", req.body.recipe);
+
     Recipe.findOneAndUpdate({ _id: req.params.id }, req.body.recipe).exec(
       (err, recipe) => {
         if (err) throw err;

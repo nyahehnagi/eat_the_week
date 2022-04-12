@@ -68,13 +68,14 @@ export default function Planner(props) {
   }
 
   const handleOrderClick = () => {
-    navigate("/order")
-  }
+    navigate("/order");
+  };
 
   return (
     <Container className="border border-secondary rounded-top rounded-bottom mb-2 mt-2">
-
-      <Button onClick={handleOrderClick} className="btn btn-dark mt-2">Place Order</Button>
+      <Button onClick={handleOrderClick} className="btn btn-dark mt-2">
+        Place Order
+      </Button>
 
       <Row>
         <Col className="d-flex justify-content-center">
@@ -83,7 +84,6 @@ export default function Planner(props) {
       </Row>
 
       <Row id="recipePlanlist">{recipePlanList()}</Row>
-
     </Container>
   );
 }

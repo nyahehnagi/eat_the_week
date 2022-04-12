@@ -4,13 +4,13 @@ import DisplayCategories from "../categories/display";
 import DisplayIngredients from "../ingredients/display";
 import { Accordion, ListGroup, Row, Col, Button } from "react-bootstrap";
 
-
 export default function EditRecipe(props) {
-  
-  const initialIngredients = props.recipe.ingredients.map( name => name.ingredient_id.name)
-  const initialIngredientIds = props.recipe.ingredients.map( name => ({ingredient_id:name.ingredient_id._id}))
-  console.log("Initial", initialIngredients)     
-
+  const initialIngredients = props.recipe.ingredients.map(
+    (name) => name.ingredient_id.name
+  );
+  const initialIngredientIds = props.recipe.ingredients.map((name) => ({
+    ingredient_id: name.ingredient_id._id,
+  }));
 
   const [form, setForm] = useState(props.recipe);
   const [cookies, setCookie] = useCookies();
@@ -21,7 +21,6 @@ export default function EditRecipe(props) {
 
   // This method will update the state properties.
   function updateForm(value) {
-
     return setForm((prev) => {
       return { ...prev, ...value };
     });
@@ -35,8 +34,6 @@ export default function EditRecipe(props) {
     e.preventDefault();
 
     const recipe = { ...form };
-
-    console.log("edited recipe", recipe);
 
     // This will send a put request to update the data in the database.
     const response = await fetch(`/recipes/${props.recipeId}`, {
@@ -54,7 +51,6 @@ export default function EditRecipe(props) {
       return;
     }
 
-    //props.setingredientNames([])
     props.setRecipeId("");
     props.setReload(!props.state);
   }
@@ -71,8 +67,8 @@ export default function EditRecipe(props) {
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
 
     setingredientNames(ingredientNames.concat(name));
-    setIngredients(ingredients.concat( {ingredient_id : ingredientId} ));
-    updateForm({ ingredients: ingredients })
+    setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
+    updateForm({ ingredients: ingredients });
   }
 
   // This following section will display the form that takes the input from the recipe.
@@ -104,27 +100,27 @@ export default function EditRecipe(props) {
                 onChange={(e) => updateForm({ description: e.target.value })}
               />
               <Row>
-              <Col md='5' style={{width:"50%",float:"left"}}>
-              <label htmlFor="serves">Serves</label>
-              <input
-                type="input" 
-                className="form-control"
-                id="serves"
-                value={form.serves || ""}
-                onChange={(e) => updateForm({ serves: e.target.value })}
-              />
-              </Col> 
-              <Col md='5' style={{width:"50%",float:"right"}}>
-              <label htmlFor="prep_time">Preparation Time</label>
-              <input
-                type="input"
-                className="form-control"
-                id="prep_time"
-                value={form.prep_time || ""}
-                onChange={(e) => updateForm({ prep_time: e.target.value })}
-              />
-            </Col>
-            </Row>
+                <Col md="5" style={{ width: "50%", float: "left" }}>
+                  <label htmlFor="serves">Serves</label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="serves"
+                    value={form.serves || ""}
+                    onChange={(e) => updateForm({ serves: e.target.value })}
+                  />
+                </Col>
+                <Col md="5" style={{ width: "50%", float: "right" }}>
+                  <label htmlFor="prep_time">Preparation Time</label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="prep_time"
+                    value={form.prep_time || ""}
+                    onChange={(e) => updateForm({ prep_time: e.target.value })}
+                  />
+                </Col>
+              </Row>
               <label htmlFor="method">Method</label>
               <input
                 type="input"
