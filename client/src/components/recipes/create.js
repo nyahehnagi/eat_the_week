@@ -67,7 +67,7 @@ export default function Create(props) {
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
     const ingredient_id =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
-      
+
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat(ingredient_id));
     
@@ -147,7 +147,7 @@ export default function Create(props) {
 
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0">
-                <Accordion.Header>Add Ingredients</Accordion.Header>
+                <Accordion.Header>Ingredients</Accordion.Header>
                 <Accordion.Body>
                   <Row>
                     <ListGroup variant="flush">

@@ -3,7 +3,6 @@ import { Card, Button } from "react-bootstrap";
 import {
   Row,
   Col,
-  Container,
   Dropdown,
   DropdownButton,
   Modal,
@@ -29,6 +28,12 @@ export default function Recipe(props) {
   const handlePrint = () => {
     window.print();
   };
+
+  function ingredientList() {
+    return props.recipe.ingredients.map((ingredient) => {
+      return ingredient.name;
+    });
+  }
 
   return (
     <>
@@ -158,7 +163,8 @@ export default function Recipe(props) {
               </Row>
               <Row className="mb-2">
                 <h4>Ingredients</h4>
-                {props.recipe.ingredients}
+                {props.recipe.ingredients
+                }
               </Row>
               <Row>
                 <hr></hr>

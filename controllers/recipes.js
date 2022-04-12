@@ -4,9 +4,9 @@ const RecipesController = {
   Index: (req, res) => {
     userId = req.user._id;
 
-    Recipe.find({
-      user_id: userId,
-    }).exec((err, recipes) => {
+    Recipe.find({user_id: userId,})
+    .populate("ingredients")
+    .exec((err, recipes) => {
       if (err) throw err;
 
       res.json(recipes);
@@ -14,7 +14,9 @@ const RecipesController = {
   },
 
   Show: (req, res) => {
-    Recipe.findOne({ _id: req.params.id }).exec((err, recipe) => {
+    Recipe.findOne({ _id: req.params.id })
+    .populate("ingredients")
+    .exec((err, recipe) => {
       if (err) throw err;
       res.json(recipe);
     });
