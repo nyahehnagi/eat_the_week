@@ -12,7 +12,8 @@ import "./style.css";
 import MyUnits from "./components/units/myUnits";
 import MyCategories from "./components/categories/myCategories";
 import SearchRec from "./components/findrecipes/searchRec";
-import Orders from "./components/orders";
+import Orders from "./components/orders/index";
+import Team from "./components/team/index";
 
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/category/" element={<MyCategories />} />
           <Route path="/findrecipe/" element={<SearchRec />} />
           <Route path="/order/" element={<Orders />} />
+          <Route path="/team/" element={<Team />} />
         </Routes>
 
         <Footer
