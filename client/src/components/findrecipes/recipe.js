@@ -12,6 +12,7 @@ export default function Recipe({ title, image, ingredients, url }) {
         ))}
       </ol>
       <p>Click on the image below to view the recipe in a new tab</p>
+      <br></br>
       <img
         className={style.image}
         src={image}
