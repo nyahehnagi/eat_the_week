@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { Row, Col, Container, Card } from "react-bootstrap";
+import { Row, Col, Container, Card, Badge} from "react-bootstrap";
+
 
 export default function Planner(props) {
   //const [planner, setPlanner] = useState("");
@@ -29,6 +30,11 @@ export default function Planner(props) {
     return
   }, [props.state]);
 
+  const handleRemove = (e) => {
+    var eventkey = e.target.getAttribute('eventkey');
+    // props.ShowRecipes.addToPlan(eventkey);
+  }
+
   // This method will map out the planned recipes
   function recipePlanList() {
 
@@ -39,7 +45,13 @@ export default function Planner(props) {
             <Card.Header>{plan.day}</Card.Header>
             <Card.Body >
               {plan.recipe_id ? (
-              <Card.Title>{plan.recipe_id.name}</Card.Title>
+              <Card.Title>
+              {plan.recipe_id.name}  
+              <p></p>
+              <Badge eventkey={plan.day} bg="dark" pill onClick={handleRemove}>
+                X
+              </Badge>         
+              </Card.Title>
               ) : (
               <Card.Title>Add Recipe</Card.Title>
               )}
