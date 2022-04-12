@@ -14,9 +14,13 @@ export default function MyRecipes() {
   const manageRecipeButton = useRef(null);
 
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+
+  const handleClose = () => {
+    setShow(false);
+    setRecipeId("")
+  }
   const handleShow = () => setShow(true);
-  
+
   const clickOffCanvas = () => {
     manageRecipeButton.current.click()
   }
