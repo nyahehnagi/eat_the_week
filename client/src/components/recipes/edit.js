@@ -22,13 +22,7 @@ export default function EditRecipe(props) {
   }
 
   useEffect(() => {
-
-    props.recipe.ingredients.map((ingredient) => {
-      setIngredients(ingredients.concat(ingredient.ingredient_id._id))
-    })
-    
-    // setForm(props.recipe)
-
+    updateForm({ ingredients: ingredients });
     return;
   }, [props.recipeId, ingredientNames.length]);
 
@@ -57,8 +51,7 @@ export default function EditRecipe(props) {
 
     const updatedRecipe = await response.json();
 
-    props.setRecipe(updatedRecipe)
-    
+    //props.setRecipe(updatedRecipe)
     props.setRecipeId("");
     props.setReload(!props.state);
   }
