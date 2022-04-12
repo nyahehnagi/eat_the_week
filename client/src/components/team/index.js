@@ -2,7 +2,7 @@ import { Row, Col, Container, Card, Button } from "react-bootstrap";
 
 export default function Team() {
   return (
-    <div className="container-sm" style={{textAlign:"center"}}>
+    <div className="out-container" style={{textAlign:"center"}}>
       <h1> Meet the Team! </h1>
       <Row>
         <Col md="2">

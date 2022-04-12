@@ -52,85 +52,87 @@ export default function Register() {
   }
 
   return (
-    <Container className="container-sm">
-      <h3>Register User</h3>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="name"
-            className="form-control"
-            id="name"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            value={form.email}
-            onChange={(e) => updateForm({ email: e.target.value })}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            value={form.password}
-            onChange={setPass}
-          />
-          <ul>
-            <li>
-              {validLength ? (
-                <span style={{ color: "green" }}>Valid Length</span>
-              ) : (
-                <span style={{ color: "red" }}>Valid Length</span>
-              )}
-            </li>
-            <li>
-              {hasNumber ? (
-                <span style={{ color: "green" }}>Has a Number</span>
-              ) : (
-                <span style={{ color: "red" }}>Has a Number</span>
-              )}
-            </li>
-            <li>
-              {upperCase ? (
-                <span style={{ color: "green" }}>UpperCase</span>
-              ) : (
-                <span style={{ color: "red" }}>UpperCase</span>
-              )}
-            </li>
-            <li>
-              {lowerCase ? (
-                <span style={{ color: "green" }}>LowerCase</span>
-              ) : (
-                <span style={{ color: "red" }}>LowerCase</span>
-              )}
-            </li>
-          </ul>
-        </div>
-
-        {validLength && hasNumber && upperCase && lowerCase ? (
+    <div className="out-container">
+      <Container className="container-sm">
+        <h3>Register User</h3>
+        <form onSubmit={onSubmit}>
           <div className="form-group">
+            <label htmlFor="name">Name</label>
             <input
-              type="submit"
-              id="create-user"
-              value="Create User"
-              className="btn btn-primary"
+              type="name"
+              className="form-control"
+              id="name"
+              value={form.name}
+              onChange={(e) => updateForm({ name: e.target.value })}
             />
           </div>
-        ) : (
-          ""
-        )}
-      </form>
-    </Container>
+
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              value={form.email}
+              onChange={(e) => updateForm({ email: e.target.value })}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              value={form.password}
+              onChange={setPass}
+            />
+            <ul>
+              <li>
+                {validLength ? (
+                  <span style={{ color: "green" }}>Valid Length</span>
+                ) : (
+                  <span style={{ color: "red" }}>Valid Length</span>
+                )}
+              </li>
+              <li>
+                {hasNumber ? (
+                  <span style={{ color: "green" }}>Has a Number</span>
+                ) : (
+                  <span style={{ color: "red" }}>Has a Number</span>
+                )}
+              </li>
+              <li>
+                {upperCase ? (
+                  <span style={{ color: "green" }}>UpperCase</span>
+                ) : (
+                  <span style={{ color: "red" }}>UpperCase</span>
+                )}
+              </li>
+              <li>
+                {lowerCase ? (
+                  <span style={{ color: "green" }}>LowerCase</span>
+                ) : (
+                  <span style={{ color: "red" }}>LowerCase</span>
+                )}
+              </li>
+            </ul>
+          </div>
+
+          {validLength && hasNumber && upperCase && lowerCase ? (
+            <div className="form-group">
+              <input
+                type="submit"
+                id="create-user"
+                value="Create User"
+                className="btn btn-primary"
+              />
+            </div>
+          ) : (
+            ""
+          )}
+        </form>
+      </Container>
+    </div>
   );
 }
