@@ -16,8 +16,13 @@ export default function MyRecipes() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
   const clickOffCanvas = () => {
     manageRecipeButton.current.click()
+  }
+  const clickCloseCanvas = () => {
+    const el = document.querySelector(".btn-close")
+    el.click()
   }
 
   return (
@@ -33,6 +38,7 @@ export default function MyRecipes() {
           <CreateRecipe state={state} setReload={setReload} />
           ) : (
             <EditRecipe
+              closeCanvas={clickCloseCanvas}
               state={state}
               setReload={setReload}
               recipeId={recipeId}

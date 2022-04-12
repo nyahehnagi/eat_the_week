@@ -56,8 +56,10 @@ export default function EditRecipe(props) {
   }
 
   const handleCancelClick = () => {
+  
     props.setRecipeId("");
     props.setReload(!props.state);
+    props.closeCanvas()
   }
 
   const addIngredient= () => {
