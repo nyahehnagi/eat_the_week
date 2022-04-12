@@ -50,7 +50,7 @@ export default function DisplayIngredients(props) {
         >
         <option selected>Select Ingredient</option>
         {ingredientNameList.map((ingredient) => (
-          <option value={ingredient.name} key={ingredient.id} ing_id={ingredient.id}>{ingredient.name}</option>
+          <option value={ingredient.name} key={ingredient._id} ing_id={ingredient._id}>{ingredient.name}</option>
         ))}
   
       </select>

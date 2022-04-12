@@ -53,14 +53,6 @@ export default function Create(props) {
     props.setReload(!props.state);
   }
 
-
-  const Ingredient = [
-    { name: "Flour", id: "6254a24ceb3173338861dcbc" },
-    { name: "Milk", id: "6254a29feb3173338861dcc8" },
-    { name: "Sugar", id: "6254a25eeb3173338861dcc4" },
-    { name: "Bacon", id: "624d9ef90a9f056d390fccc2" },
-    { name: "Eggs", id: "6254a257eb3173338861dcc0" },
-  ];
   const Category = [
     { label: "Vegan", value: 1 },
     { label: "BBQ", value: 2 },
@@ -74,6 +66,8 @@ export default function Create(props) {
     const selectedIndex = ingredientSelector.current.options.selectedIndex
     const ingredient_id = ingredientSelector.current.options[selectedIndex].getAttribute('ing_id')
     
+    console.log("ID",ingredient_id )
+    console.log("Name",name )
     setingredientNames(ingredientNames.concat(name))
     setIngredients(ingredients.concat(ingredient_id))
     updateForm({ ingredients : ingredients })
