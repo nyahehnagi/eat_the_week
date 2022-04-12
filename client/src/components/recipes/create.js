@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { Accordion, ListGroup, Row, Col } from "react-bootstrap";
+import { Accordion, ListGroup, Row, Col, Badge } from "react-bootstrap";
 import DisplayIngredients from "../ingredients/display";
 import DisplayCategories from "../categories/display";
 
@@ -53,7 +53,7 @@ export default function Create(props) {
   }, [ingredientNames.length]);
 
   // This method will update the state properties.
-  function addIngredient() {
+  const addIngredient = () => {
     const name = ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
     const ingredientId =
@@ -62,6 +62,17 @@ export default function Create(props) {
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
   }
+
+  const removeIngredient = (index) => {
+    setingredientNames(ingredientNames.filter((_, idx) => idx != index ));
+    setIngredients(ingredients.filter((_, idx) => idx != index ));
+  }
+
+  const handleBadgeClick = (e) => {
+    var eventkey = e.target.getAttribute('eventkey');
+    removeIngredient(eventkey)
+  };
+
 
   // This following section will display the form that takes the input from the recipe.
   return (
@@ -147,8 +158,14 @@ export default function Create(props) {
                 <Accordion.Body>
                   <Row>
                     <ListGroup variant="flush">
-                      {ingredientNames.map((IngName) => (
-                        <ListGroup.Item>{IngName}</ListGroup.Item>
+                      {
+                        ingredientNames.map((IngName, index) => (
+                        <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                          {IngName}
+                          <Badge eventkey={index} bg="dark" pill onClick={handleBadgeClick}>
+                          X
+                          </Badge>
+                          </ListGroup.Item>
                       ))}
                     </ListGroup>
                   </Row>
