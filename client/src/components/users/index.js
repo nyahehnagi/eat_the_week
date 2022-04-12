@@ -89,8 +89,8 @@ export default function GetUser(props) {
       <h3>Password Reset</h3>
       <Card>
         <Card.Body>
-          <Card.Title>User Name: {user.name}</Card.Title>
-          <Card.Text>User Email: {user.email}</Card.Text>
+          <Card.Title>Name: {user.name}</Card.Title>
+          <Card.Text>Email: {user.email}</Card.Text>
         </Card.Body>
       </Card>
       <form onSubmit={onSubmit}>
@@ -136,14 +136,18 @@ export default function GetUser(props) {
           </ul>
         </div>
         <br></br>
-        <div className="form-group">
-          <input
-            type="submit"
-            id="update"
-            value="Update"
-            className="btn btn-primary"
-          />
-        </div>
+        {validLength && hasNumber && upperCase && lowerCase ? (
+          <div className="form-group">
+            <input
+              type="submit"
+              id="update"
+              value="Update"
+              className="btn btn-primary"
+            />
+          </div>
+        ) : (
+          ""
+        )}
       </form>
     </Container>
   );
