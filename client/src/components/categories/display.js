@@ -46,7 +46,7 @@ export default function DisplayCategories(props) {
     <>
       {
         categoryNameList.map(optn => (
-        <option value={counter +=1 }>{optn}</option>
+        <option key={counter+=1}>{optn}</option>
         ))
       }
      </>
