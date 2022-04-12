@@ -6,11 +6,17 @@ import { Accordion, ListGroup, Row, Col, Button } from "react-bootstrap";
 
 
 export default function EditRecipe(props) {
+  
+  const initialIngredients = props.recipe.ingredients.map( name => name.ingredient_id.name)
+  const initialIngredientIds = props.recipe.ingredients.map( name => ({ingredient_id:name.ingredient_id._id}))
+  console.log("Initial", initialIngredients)     
+
+
   const [form, setForm] = useState(props.recipe);
   const [cookies, setCookie] = useCookies();
 
-  const [ingredients, setIngredients] = useState([]);
-  const [ingredientNames, setingredientNames] = useState([]);
+  const [ingredients, setIngredients] = useState(initialIngredientIds);
+  const [ingredientNames, setingredientNames] = useState(initialIngredients);
   const ingredientSelector = useRef(null);
 
   // This method will update the state properties.
@@ -23,7 +29,6 @@ export default function EditRecipe(props) {
 
   useEffect(() => {
     updateForm({ ingredients: ingredients });
-    return;
   }, [props.recipeId, ingredientNames.length]);
 
   async function onSubmit(e) {
@@ -49,9 +54,7 @@ export default function EditRecipe(props) {
       return;
     }
 
-    const updatedRecipe = await response.json();
-
-    //props.setRecipe(updatedRecipe)
+    //props.setingredientNames([])
     props.setRecipeId("");
     props.setReload(!props.state);
   }
@@ -67,10 +70,8 @@ export default function EditRecipe(props) {
     const ingredientId =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
 
-    console.log("Ingredient ID",ingredientId )
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat( {ingredient_id : ingredientId} ));
-    console.log("Ingredient IDs", ingredients)
     updateForm({ ingredients: ingredients })
   }
 
@@ -160,10 +161,6 @@ export default function EditRecipe(props) {
                       {ingredientNames.map((IngName) => (
                         <ListGroup.Item>{IngName}</ListGroup.Item>
                       ))}
-                      {/* {form.ingredients.map((ingredient) => (
-                        <ListGroup.Item>{ingredient.ingredient_id.name}</ListGroup.Item>
-                      ))} */}
-
                     </ListGroup>
                   </Row>
                   <Row>
