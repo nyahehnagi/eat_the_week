@@ -36,10 +36,10 @@ const Footer = () => (
             <a href="/">Home</a>
           </li>
           <li className="list-inline-item">
-            <a href="/recipe">My Recipes</a>
+            <a href="/recipe">Weekly Planner</a>
           </li>
           <li className="list-inline-item">
-            <a href="/recipe">Weekly Planner</a>
+            <a href="/findrecipe">Recipe Ideas</a>
           </li>
         </ul>
         <p className="copyright">Eat The Week © 2022</p>
