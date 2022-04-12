@@ -47,6 +47,7 @@ export default function ShowRecipes(props) {
   function editRecipe(recipeId, recipe) {
     props.setRecipeId(recipeId);
     props.setRecipe(recipe);
+    props.showEdit()
   }
 
   async function addToPlan(day, recipeId) {
@@ -95,14 +96,97 @@ export default function ShowRecipes(props) {
     props.setReload(!props.state);
   }
 
+  function partition(list = [], n = 1) {
+    const isPositiveInteger = Number.isSafeInteger(n) && n > 0;
+    if (!isPositiveInteger) {
+      throw new RangeError('n must be a positive integer');
+    }
+  
+    const partitions = [];
+  
+    for (let i = 0; i < list.length; i += n) {
+      const partition = list.slice(i, i+n);
+      partitions.push( partition );
+    }
+  
+    return partitions;
+  }
+
   // This method will map out the recipes
   function recipeList() {
-    //displayRecipe={displayRecipe}
-    const secondColumnStart = Math.floor(recipes.length / 2);
+    //const secondColumnStart = Math.floor(recipes.length / 2);
+
+    const partitions = partition(recipes, 4)
+    
     return (
       <Container>
         <Row>
-          <Col md="6">
+          <Col md="3">
+          {partitions.map((partition) => {
+            return partition.map((recipe, index) =>{
+              if(index == 0){
+                return (
+                  <Recipe
+                    recipe={recipe}
+                    removeRecipe={removeRecipe}
+                    editRecipe={editRecipe}
+                    addToPlan={addToPlan}
+                  />
+                );
+              }
+            })
+          })}
+          </Col>
+          <Col md="3">
+          {partitions.map((partition) => {
+            return partition.map((recipe, index) =>{
+              if(index == 1){
+                return (
+                  <Recipe
+                    recipe={recipe}
+                    removeRecipe={removeRecipe}
+                    editRecipe={editRecipe}
+                    addToPlan={addToPlan}
+                  />
+                );
+              }
+            })
+          })}
+          </Col>
+          <Col md="3">
+          {partitions.map((partition) => {
+            return partition.map((recipe, index) =>{
+              if(index == 2){
+                return (
+                  <Recipe
+                    recipe={recipe}
+                    removeRecipe={removeRecipe}
+                    editRecipe={editRecipe}
+                    addToPlan={addToPlan}
+                  />
+                );
+              }
+            })
+          })}
+          </Col>
+          <Col md="3">
+          {partitions.map((partition) => {
+            return partition.map((recipe, index) =>{
+              if(index == 3){
+                return (
+                  <Recipe
+                    recipe={recipe}
+                    removeRecipe={removeRecipe}
+                    editRecipe={editRecipe}
+                    addToPlan={addToPlan}
+                  />
+                );
+              }
+            })
+          })}
+         </Col>
+    
+          {/* <Col md="6">
             {recipes.slice(secondColumnStart).map((recipe) => {
               return (
                 <Recipe
@@ -125,7 +209,8 @@ export default function ShowRecipes(props) {
                 />
               );
             })}
-          </Col>
+          </Col> */}
+          
         </Row>
       </Container>
     );
