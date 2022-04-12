@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Accordion, ListGroup, Row, Col } from "react-bootstrap";
 import DisplayIngredients from "../ingredients/display";
@@ -57,22 +57,20 @@ export default function Create(props) {
     { label: "Wheat Free", value: 3 },
   ];
 
+  useEffect(() => {
+    updateForm({ ingredients: ingredients });
+  }, [ingredientNames.length]);
+
   // This method will update the state properties.
   function addIngredient() {
     const name = ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
     const ingredient_id =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
-
-    console.log("ID", ingredient_id);
-    console.log("Name", name);
-    console.log("Selected Index", selectedIndex);
-
+      
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat(ingredient_id));
-    console.log("Ingredients", ingredients);
-    console.log("Ingredient Names", ingredientNames);
-    updateForm({ ingredients: ingredients });
+    
   }
 
   // This following section will display the form that takes the input from the recipe.
