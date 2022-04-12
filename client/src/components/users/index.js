@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useCookies } from "react-cookie";
 import { Container } from "react-bootstrap";
 import { Card } from "react-bootstrap";
+import { usePasswordValidation } from "../../hooks/usePasswordValidation";
 
 //  const User = (props) => <div>{props.user.name}</div>;
 
@@ -21,6 +22,16 @@ export default function GetUser(props) {
       return { ...prev, ...value };
     });
   }
+
+  // Setup Password validation
+  const [validLength, hasNumber, upperCase, lowerCase, match, specialChar] =
+    usePasswordValidation({
+      password: form.password,
+    });
+
+    const setPass = (event) => {
+      updateForm({ ...form.password, password: event.target.value });
+    };
 
   // This method fetches the user details from the database.
   useEffect(() => {
@@ -91,8 +102,38 @@ export default function GetUser(props) {
             className="form-control"
             id="password"
             value={form.password}
-            onChange={(e) => updateForm({ password: e.target.value })}
+            onChange={setPass}
           />
+          <ul>
+            <li>
+              {validLength ? (
+                <span style={{ color: "green" }}>Valid Length</span>
+              ) : (
+                <span style={{ color: "red" }}>Valid Length</span>
+              )}
+            </li>
+            <li>
+              {hasNumber ? (
+                <span style={{ color: "green" }}>Has a Number</span>
+              ) : (
+                <span style={{ color: "red" }}>Has a Number</span>
+              )}
+            </li>
+            <li>
+              {upperCase ? (
+                <span style={{ color: "green" }}>UpperCase</span>
+              ) : (
+                <span style={{ color: "red" }}>UpperCase</span>
+              )}
+            </li>
+            <li>
+              {lowerCase ? (
+                <span style={{ color: "green" }}>LowerCase</span>
+              ) : (
+                <span style={{ color: "red" }}>LowerCase</span>
+              )}
+            </li>
+          </ul>
         </div>
         <br></br>
         <div className="form-group">
