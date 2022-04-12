@@ -142,22 +142,13 @@ export default function Create(props) {
               <label htmlFor="category">Select Category</label>
               <select
                 type="input"
-                className="form-control"
+                className="form-control mb-2"
                 id="category"
                 value={form.category}
                 onChange={(e) => updateForm({ category: e.target.value })}>
                 < DisplayCategories />
               </select>
-              <label htmlFor="ingredient"></label>
-              Select Ingredients
-              <select
-                type="input"
-                className="form-control"
-                id="ingredient"
-                value={form.ingredient}
-                onChange={(e) => updateForm({ ingredient: e.target.value })}>
-                < DisplayIngredients />
-              </select>
+
             </div>
 
           <Accordion defaultActiveKey="0">
@@ -173,7 +164,8 @@ export default function Create(props) {
                 </Row>
                 <Row>
                   <Col>
-                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                   < DisplayIngredients ingredientSelector={ingredientSelector}/>
+                    {/* <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
                       value={form.ingredient}
                       id="ingredient"
                       ref={ingredientSelector}
@@ -184,7 +176,7 @@ export default function Create(props) {
                         <option value={ingredient.name} key={ingredient.id} ing_id={ingredient.id}>{ingredient.name}</option>
                       ))}
                 
-                    </select>
+                    </select> */}
                   </Col>
      
                   <Col>
