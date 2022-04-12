@@ -40,13 +40,15 @@ export default function DisplayCategories(props) {
     });
   }
   const categoryNameList = categoryList();
-
+  let counter = 0;
   // This following  will return the category list of names
   return (
-    <div className="container-sm">
-      {categoryNameList.map((optn) => (
-        <option>{optn} </option>
-      ))}
-    </div>
+    <>
+      {
+        categoryNameList.map(optn => (
+        <option value={counter +=1 }>{optn}</option>
+        ))
+      }
+     </>
   );
 }

@@ -119,14 +119,18 @@ export default function EditRecipe(props) {
                 value={form.description || ""}
                 onChange={(e) => updateForm({ description: e.target.value })}
               />
+              <Row>
+              <Col md='5' style={{width:"50%",float:"left"}}>
               <label htmlFor="serves">Serves</label>
               <input
-                type="input"
+                type="input" 
                 className="form-control"
                 id="serves"
                 value={form.serves || ""}
                 onChange={(e) => updateForm({ serves: e.target.value })}
               />
+              </Col> 
+              <Col md='5' style={{width:"50%",float:"right"}}>
               <label htmlFor="prep_time">Preparation Time</label>
               <input
                 type="input"
@@ -135,6 +139,8 @@ export default function EditRecipe(props) {
                 value={form.prep_time || ""}
                 onChange={(e) => updateForm({ prep_time: e.target.value })}
               />
+            </Col>
+            </Row>
               <label htmlFor="method">Method</label>
               <input
                 type="input"
