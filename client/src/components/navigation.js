@@ -49,6 +49,7 @@ export default function Navigation() {
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="/user">Reset Password</NavDropdown.Item>
                 </NavDropdown>
+                <Nav.Link href="/order">Place Order</Nav.Link>
               </Nav>
             ) : (
               ""
