@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState, useRef } from "react";
 import { useCookies } from "react-cookie";
 
 export default function DisplayIngredients(props) {
   const [ingredients, setIngredients] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies();
-  const navigate = useNavigate();
 
   // This method fetches the ingredients from the database.
   useEffect(() => {
@@ -33,22 +31,34 @@ export default function DisplayIngredients(props) {
   }, [ingredients.length, props.state]);
 
   // This method will map out the ingredients into an array of ingredient names
-  function ingredientList() { 
+  function ingredientList() {
     return ingredients.map((ingredient) => {
-      const ingredientValue = ingredient 
-      return ingredientValue.name;
+      const ingredientValue = ingredient;
+      return ingredientValue;
     });
   }
   const ingredientNameList = ingredientList();
- 
+
   // This following  will return the ingredient list of names
   return (
     <>
-      {
-        ingredientNameList.map(optn => (
-        <option>{ optn } </option>
-        ))
-      }
+      <select
+        className="form-select form-select-lg mb-3"
+        aria-label=".form-select-lg example"
+        id="ingredient"
+        ref={props.ingredientSelector}
+      >
+        <option selected>Select Ingredient</option>
+        {ingredientNameList.map((ingredient) => (
+          <option
+            value={ingredient.name}
+            key={ingredient._id}
+            ing_id={ingredient._id}
+          >
+            {ingredient.name}
+          </option>
+        ))}
+      </select>
     </>
   );
 }

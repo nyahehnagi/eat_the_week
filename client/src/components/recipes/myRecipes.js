@@ -14,23 +14,37 @@ export default function MyRecipes() {
   return (
     <Container fluid="md" className="">
       <Row>
-        <Col md='12'>
-          <Planner state={state} setReload={setReload} planner={planner} setPlanner={setPlanner} />
+        <Col md="12">
+          <Planner
+            state={state}
+            setReload={setReload}
+            planner={planner}
+            setPlanner={setPlanner}
+          />
         </Col>
       </Row>
       <Row>
-        <Col md='5'>
-        {!recipeId ? (
-          <CreateRecipe state={state} setReload={setReload} />
+        <Col md="5">
+          {!recipeId ? (
+            <CreateRecipe state={state} setReload={setReload} />
           ) : (
-          <EditRecipe state={state} setReload={setReload} recipeId={recipeId} setRecipeId={setRecipeId}/>
-          )
-        }
+            <EditRecipe
+              state={state}
+              setReload={setReload}
+              recipeId={recipeId}
+              setRecipeId={setRecipeId}
+            />
+          )}
         </Col>
-        <Col md='7'>
-          <ShowRecipes state={state} setReload={setReload} setRecipeId={setRecipeId} planner={planner} setPlanner={setPlanner}/>
+        <Col md="7">
+          <ShowRecipes
+            state={state}
+            setReload={setReload}
+            setRecipeId={setRecipeId}
+            planner={planner}
+            setPlanner={setPlanner}
+          />
         </Col>
-
       </Row>
     </Container>
   );
