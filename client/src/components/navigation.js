@@ -47,7 +47,7 @@ export default function Navigation() {
                     Search for Recipe Ideas
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/user">Edit Profile</NavDropdown.Item>
+                  <NavDropdown.Item href="/user">Reset Password</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
             ) : (
