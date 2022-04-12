@@ -22,7 +22,6 @@ const UserSchema = new mongoose.Schema(
 );
 
 UserSchema.pre("save", async function (next) {
-
   const hash = await bcrypt.hash(this.password, saltRounds);
 
   this.password = hash;
@@ -30,7 +29,6 @@ UserSchema.pre("save", async function (next) {
 });
 
 UserSchema.pre("updateOne", async function (next) {
-
   const hash = await bcrypt.hash(this.password, saltRounds);
 
   this.password = hash;

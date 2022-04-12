@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useCookies } from "react-cookie";
-import DisplayCategories  from "../categories/display";
+import DisplayCategories from "../categories/display";
 import DisplayIngredients from "../ingredients/display";
-import { Row, Col, Button } from "react-bootstrap";
+import { Accordion, ListGroup, Row, Col, Button } from "react-bootstrap";
 
 export default function EditRecipe(props) {
   const [form, setForm] = useState({});
   const [cookies, setCookie] = useCookies();
+
+  const [ingredients, setIngredients] = useState([]);
+  const [ingredientNames, setingredientNames] = useState([]);
+  const ingredientSelector = useRef(null);
 
   // This method will update the state properties.
   function updateForm(value) {
@@ -22,7 +26,7 @@ export default function EditRecipe(props) {
         headers: {
           Authorization: `Bearer ${cookies.token}`,
         },
-      })
+      });
 
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
@@ -49,7 +53,7 @@ export default function EditRecipe(props) {
 
     const recipe = { ...form };
 
-    console.log("edited recipe",recipe )
+    console.log("edited recipe", recipe);
 
     // This will send a put request to update the data in the database.
     await fetch(`/recipes/${props.recipeId}`, {
@@ -58,16 +62,33 @@ export default function EditRecipe(props) {
         Authorization: `Bearer ${cookies.token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({recipe}),
+      body: JSON.stringify({ recipe }),
     });
 
-    props.setRecipeId("")
+    props.setRecipeId("");
     props.setReload(!props.state);
   }
 
-  function handleCancelClick(){
-    props.setRecipeId("")
+  function handleCancelClick() {
+    props.setRecipeId("");
     props.setReload(!props.state);
+  }
+
+  function addIngredient() {
+    const name = ingredientSelector.current.value;
+    const selectedIndex = ingredientSelector.current.options.selectedIndex;
+    const ingredient_id =
+      ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
+
+    console.log("ID", ingredient_id);
+    console.log("Name", name);
+    console.log("Selected Index", selectedIndex);
+
+    setingredientNames(ingredientNames.concat(name));
+    setIngredients(ingredients.concat(ingredient_id));
+    console.log("Ingredients", ingredients);
+    console.log("Ingredient Names", ingredientNames);
+    updateForm({ ingredients: ingredients });
   }
 
   // This following section will display the form that takes the input from the recipe.
@@ -129,27 +150,50 @@ export default function EditRecipe(props) {
                 id="image"
                 value={form.image || ""}
                 onChange={(e) => updateForm({ image: e.target.value })}
-                />
+              />
               <label htmlFor="category">Select Category</label>
               <select
                 type="input"
-                className="form-control"
+                className="form-control mb-2"
                 id="category"
                 value={form.category}
-                onChange={(e) => updateForm({ category: e.target.value })}>
-              < DisplayCategories />
-            </select>
-            <label htmlFor="ingredient"></label>
-            Select Ingredients
-            <select
-              type="input"
-              className="form-control"
-              id="ingredient"
-              value={form.ingredient}
-              onChange={(e) => updateForm({ ingredient: e.target.value })}>
-            < DisplayIngredients/>
-            </select>
+                onChange={(e) => updateForm({ category: e.target.value })}
+              >
+                <DisplayCategories />
+              </select>
             </div>
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Add Ingredients</Accordion.Header>
+                <Accordion.Body>
+                  <Row>
+                    <ListGroup variant="flush">
+                      {ingredientNames.map((IngName) => (
+                        <ListGroup.Item>{IngName}</ListGroup.Item>
+                      ))}
+                    </ListGroup>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <DisplayIngredients
+                        ingredientSelector={ingredientSelector}
+                      />
+                    </Col>
+
+                    <Col>
+                      <input
+                        type="text"
+                        id="add-ingredient"
+                        value="Add Ingredient"
+                        className="btn btn-dark mt-2"
+                        readOnly={true}
+                        onClick={() => addIngredient()}
+                      />
+                    </Col>
+                  </Row>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
 
             <div className="form-group">
               <input
@@ -158,9 +202,10 @@ export default function EditRecipe(props) {
                 value="Update"
                 className="btn btn-dark mt-2 me-1"
               />
-              <Button onClick={handleCancelClick} className="btn btn-dark mt-2">Cancel</Button>
+              <Button onClick={handleCancelClick} className="btn btn-dark mt-2">
+                Cancel
+              </Button>
             </div>
-            
           </form>
         </Col>
       </Row>

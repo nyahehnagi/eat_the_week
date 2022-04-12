@@ -7,15 +7,15 @@ const UsersController = require("../controllers/users");
 router.post("/", UsersController.Create);
 
 router.get(
-    "/",
-    passport.authenticate("jwt", { session: false }),
-    UsersController.Index
-  );
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  UsersController.Index
+);
 
-  router.put(
-    "/",
-    passport.authenticate("jwt", { session: false }),
-    UsersController.Update
-  );
+router.put(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  UsersController.Update
+);
 
 module.exports = router;
