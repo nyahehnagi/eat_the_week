@@ -44,12 +44,12 @@ export default function ShowRecipes(props) {
     props.setReload(!props.state);
   }
 
-  function editRecipe(recipeId) {
+  function editRecipe(recipeId, recipe) {
     props.setRecipeId(recipeId);
+    props.setRecipe(recipe);
   }
 
   async function addToPlan(day, recipeId) {
-    let planner = {};
     let newPlan = [];
 
     const weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];

@@ -16,7 +16,7 @@ export default function Recipe(props) {
   };
 
   const handleEditClick = (e) => {
-    props.editRecipe(props.recipe._id);
+    props.editRecipe(props.recipe._id, props.recipe);
   };
 
   const [show, setShow] = useState(false);

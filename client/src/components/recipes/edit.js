@@ -4,8 +4,9 @@ import DisplayCategories from "../categories/display";
 import DisplayIngredients from "../ingredients/display";
 import { Accordion, ListGroup, Row, Col, Button } from "react-bootstrap";
 
+
 export default function EditRecipe(props) {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState(props.recipe);
   const [cookies, setCookie] = useCookies();
 
   const [ingredients, setIngredients] = useState([]);
@@ -14,47 +15,32 @@ export default function EditRecipe(props) {
 
   // This method will update the state properties.
   function updateForm(value) {
+
     return setForm((prev) => {
       return { ...prev, ...value };
     });
   }
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`/recipes/${props.recipeId}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${cookies.token}`,
-        },
-      });
 
-      if (!response.ok) {
-        const message = `An error has occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const recipe = await response.json();
-      if (!recipe) {
-        window.alert(`Record with id ${props.recipeId} not found`);
-        return;
-      }
-
-      setForm(recipe);
-    }
-
-    fetchData();
+    props.recipe.ingredients.map((ingredient) => {
+      setIngredients(ingredients.concat(ingredient.ingredient_id._id))
+    })
+    
+    // setForm(props.recipe)
 
     return;
-  }, [props.recipeId]);
+  }, [props.recipeId, ingredientNames.length]);
 
   async function onSubmit(e) {
     e.preventDefault();
 
     const recipe = { ...form };
 
+    console.log("edited recipe", recipe);
+
     // This will send a put request to update the data in the database.
-    await fetch(`/recipes/${props.recipeId}`, {
+    const response = await fetch(`/recipes/${props.recipeId}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${cookies.token}`,
@@ -63,6 +49,16 @@ export default function EditRecipe(props) {
       body: JSON.stringify({ recipe }),
     });
 
+    if (!response.ok) {
+      const message = `An error has occurred: ${response.statusText}`;
+      window.alert(message);
+      return;
+    }
+
+    const updatedRecipe = await response.json();
+
+    props.setRecipe(updatedRecipe)
+    
     props.setRecipeId("");
     props.setReload(!props.state);
   }
@@ -75,13 +71,14 @@ export default function EditRecipe(props) {
   function addIngredient() {
     const name = ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
-    const ingredient_id =
+    const ingredientId =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
 
+    console.log("Ingredient ID",ingredientId )
     setingredientNames(ingredientNames.concat(name));
-    setIngredients(ingredients.concat(ingredient_id));
-
-    updateForm({ ingredients: ingredients });
+    setIngredients(ingredients.concat( {ingredient_id : ingredientId} ));
+    console.log("Ingredient IDs", ingredients)
+    updateForm({ ingredients: ingredients })
   }
 
   // This following section will display the form that takes the input from the recipe.
@@ -170,6 +167,10 @@ export default function EditRecipe(props) {
                       {ingredientNames.map((IngName) => (
                         <ListGroup.Item>{IngName}</ListGroup.Item>
                       ))}
+                      {/* {form.ingredients.map((ingredient) => (
+                        <ListGroup.Item>{ingredient.ingredient_id.name}</ListGroup.Item>
+                      ))} */}
+
                     </ListGroup>
                   </Row>
                   <Row>

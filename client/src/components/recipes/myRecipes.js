@@ -10,6 +10,7 @@ export default function MyRecipes() {
   const [state, setReload] = useState(false);
   const [recipeId, setRecipeId] = useState("");
   const [planner, setPlanner] = useState("");
+  const [recipe, setRecipe] = useState({});
 
   return (
     <Container fluid="md" className="">
@@ -33,6 +34,8 @@ export default function MyRecipes() {
               setReload={setReload}
               recipeId={recipeId}
               setRecipeId={setRecipeId}
+              recipe={recipe}
+              setRecipe={setRecipe}
             />
           )}
         </Col>
@@ -43,6 +46,7 @@ export default function MyRecipes() {
             setRecipeId={setRecipeId}
             planner={planner}
             setPlanner={setPlanner}
+            setRecipe={setRecipe}
           />
         </Col>
       </Row>

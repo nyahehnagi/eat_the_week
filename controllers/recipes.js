@@ -54,7 +54,8 @@ const RecipesController = {
   },
 
   Update: (req, res) => {
-
+    console.log("Recipe Body", req.body.recipe)
+    
     Recipe.findOneAndUpdate({ _id: req.params.id }, req.body.recipe).exec(
       (err, recipe) => {
         if (err) throw err;
