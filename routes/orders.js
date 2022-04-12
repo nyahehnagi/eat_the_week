@@ -3,6 +3,10 @@ const router = express.Router();
 
 const OrdersController = require("../controllers/orders");
 
-router.get("/", OrdersController.Create);
+router.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  OrdersController.Create
+);
 
 module.exports = router;

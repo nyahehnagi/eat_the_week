@@ -12,6 +12,7 @@ import "./style.css";
 import MyUnits from "./components/units/myUnits";
 import MyCategories from "./components/categories/myCategories";
 import SearchRec from "./components/findrecipes/searchRec";
+import Orders from "./components/orders";
 
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/unit/" element={<MyUnits />} />
           <Route path="/category/" element={<MyCategories />} />
           <Route path="/findrecipe/" element={<SearchRec />} />
+          <Route path="/order/" element={<Orders />} />
         </Routes>
 
         <Footer className="border p-2 mt-auto" style={{

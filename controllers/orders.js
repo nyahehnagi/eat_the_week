@@ -4,7 +4,7 @@ const OrdersController = {
   Create: (req, res) => {
     const order = new Order({
       user_id: req.user._id,
-      date: req.order_date
+      date: req.orderDate
     });
     order.save((err, result) => {
       if (err) {
