@@ -73,10 +73,6 @@ export default function Planner(props) {
 
   return (
     <Container className="border border-secondary rounded-top rounded-bottom mb-2 mt-2">
-      <Button onClick={handleOrderClick} className="btn btn-dark mt-2">
-        Place Order
-      </Button>
-
       <Row>
         <Col className="d-flex justify-content-center">
           <h3>Your Week Ahead</h3>

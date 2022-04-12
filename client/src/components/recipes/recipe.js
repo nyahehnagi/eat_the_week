@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Badge } from "react-bootstrap";
 import {
   Row,
   Col,
@@ -36,7 +36,7 @@ export default function Recipe(props) {
         <Card.Header onClick={handleShow} style={{ cursor: "pointer" }}>
           <Card.Title>{props.recipe.name}</Card.Title>
         </Card.Header>
-        <Card.Body>
+        <Card.Body >
           <Row className="mb-2">
             <Col>
               <Card.Img
@@ -54,12 +54,16 @@ export default function Recipe(props) {
 
           <Row>
             <Col>
-              <Button
+
+              <Badge bg="dark" pill onClick={handleRemoveClick}>
+              X
+              </Badge>
+              {/* <Button
                 onClick={handleRemoveClick}
                 className="btn btn-danger btn-sm ps-1 pe-1  "
               >
                 Remove
-              </Button>
+              </Button> */}
             </Col>
 
             <Col className="d-flex justify-content-end">
