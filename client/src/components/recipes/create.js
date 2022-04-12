@@ -68,8 +68,12 @@ export default function Create(props) {
     
     console.log("ID",ingredient_id )
     console.log("Name",name )
+    console.log("Selected Index",selectedIndex )
+    
     setingredientNames(ingredientNames.concat(name))
     setIngredients(ingredients.concat(ingredient_id))
+    console.log("Ingredients",ingredients )
+    console.log("Ingredient Names",ingredientNames )
     updateForm({ ingredients : ingredients })
   }
 
@@ -159,18 +163,6 @@ export default function Create(props) {
                 <Row>
                   <Col>
                    < DisplayIngredients ingredientSelector={ingredientSelector}/>
-                    {/* <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
-                      value={form.ingredient}
-                      id="ingredient"
-                      ref={ingredientSelector}
-                      >
-
-                      <option selected>Select Ingredient</option>
-                      {Ingredient.map((ingredient) => (
-                        <option value={ingredient.name} key={ingredient.id} ing_id={ingredient.id}>{ingredient.name}</option>
-                      ))}
-                
-                    </select> */}
                   </Col>
      
                   <Col>
