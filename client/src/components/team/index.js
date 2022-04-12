@@ -1,4 +1,4 @@
-import { Row, Col, Container, Card, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 export default function Team() {
   return (
@@ -8,12 +8,13 @@ export default function Team() {
         <Col md="2">
           <h4> Claire </h4>
           <img src="https://ca.slack-edge.com/T03ALA7H4-U02QBFTSM3M-02e2ce9cc7bf-512" className="img-fluid" alt="claire" style={{width:"100px", height:"100px"}} />
-          <p> "Is Kirsty there Brom so I can have a word?"" </p>
+          <p> "If only we could just..." </p>
+          <p> "I'm just gonna need a cup of tea" </p>
         </Col>
         <Col md="2">
           <h4> Shirley </h4>
           <img src="https://ca.slack-edge.com/T03ALA7H4-U02Q8GW763F-6dd1c9ecbf4e-512" className="img-fluid" alt="shirley" style={{width:"100px", height:"100px"}} />
-          <p> "It's not posh it's South African"</p>
+          <p> "" </p>
         </Col>
         <Col md="2">    
           <h4> Jane </h4>

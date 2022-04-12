@@ -1,7 +1,17 @@
 import React from "react";
 import "../style.css";
+import { useCookies } from "react-cookie";
 
-const Footer = () => (
+export default function Footer () {
+
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+const cookie = document.cookie.replace(
+  /(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/,
+  "$1"
+);
+
+return (
   <>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,14 +45,17 @@ const Footer = () => (
           <li className="list-inline-item">
             <a href="/">Home</a>
           </li>
+          {cookie ? (
           <li className="list-inline-item">
             <a href="/recipe">Weekly Planner</a>
           </li>
+          ) : ""
+          }
           <li className="list-inline-item">
             <a href="/findrecipe">Recipe Ideas</a>
           </li>
           <li className="list-inline-item">
-            <a href="/findrecipe">Meet the Team</a>
+            <a href="/team">Meet the Team</a>
           </li>
         </ul>
         <p className="copyright">Eat The Week © 2022</p>
@@ -50,5 +63,4 @@ const Footer = () => (
     </div>
   </>
 );
-
-export default Footer;
+};
