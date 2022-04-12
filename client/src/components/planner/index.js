@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { Row, Col, Container, Card } from "react-bootstrap";
+import { Row, Col, Container, Card, Button } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
 export default function Planner(props) {
   //const [planner, setPlanner] = useState("");
   const [cookies, setCookie] = useCookies();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getPlanner() {
@@ -65,17 +67,22 @@ export default function Planner(props) {
     }
   }
 
+  const handleOrderClick = () => {
+    navigate("/order")
+  }
+
   return (
-  <Container className="border border-secondary rounded-top rounded-bottom mb-2 mt-2">
-    <Row>
-      <Col className="d-flex justify-content-center">
-        <h3>Your Week Ahead</h3>
-      </Col>
-    </Row>
+    <Container className="border border-secondary rounded-top rounded-bottom mb-2 mt-2">
+      <Button onClick={handleOrderClick} className="btn btn-dark mt-2">Place Order</Button>
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <h3>Your Week Ahead</h3>
+        </Col>
+      </Row>
   
-    <Row id="recipePlanlist">
-      {recipePlanList()} 
-    </Row>
-  </Container>
+      <Row id="recipePlanlist">
+        {recipePlanList()} 
+      </Row>
+    </Container>
   );
 }
