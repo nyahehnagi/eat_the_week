@@ -52,6 +52,7 @@ export default function EditRecipe(props) {
     }
 
     props.setRecipeId("");
+    props.closeCanvas()
     props.setReload(!props.state);
   }
 
@@ -187,8 +188,8 @@ export default function EditRecipe(props) {
                       <input
                         type="text"
                         id="add-ingredient"
-                        value="Add Ingredient"
-                        className="btn btn-dark mt-2"
+                        value="Add"
+                        className="btn btn-dark mt-2 btn-sm w-50"
                         readOnly={true}
                         onClick={() => addIngredient()}
                       />
@@ -205,9 +206,6 @@ export default function EditRecipe(props) {
                 value="Update"
                 className="btn btn-dark mt-2 me-1"
               />
-              <Button onClick={handleCancelClick} className="btn btn-dark mt-2">
-                Cancel
-              </Button>
             </div>
           </form>
         </Col>

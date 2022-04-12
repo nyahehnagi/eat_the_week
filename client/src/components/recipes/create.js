@@ -170,18 +170,18 @@ export default function Create(props) {
                     </ListGroup>
                   </Row>
                   <Row>
-                    <Col>
+                    <Col className="me-auto">
                       <DisplayIngredients
                         ingredientSelector={ingredientSelector}
                       />
                     </Col>
 
-                    <Col>
+                    <Col >
                       <input
                         type="text"
                         id="add-ingredient"
-                        value="Add Ingredient"
-                        className="btn btn-dark mt-2"
+                        value="Add"
+                        className="btn btn-dark mt-2 btn-sm w-50"
                         readOnly={true}
                         onClick={() => addIngredient()}
                       />
