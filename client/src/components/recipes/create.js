@@ -1,11 +1,10 @@
 import React, { useState, useRef } from "react";
 import { useCookies } from "react-cookie";
-import { Accordion, ListGroup, Row, Col, Dropdown, Button } from "react-bootstrap";
+import { Accordion, ListGroup, Row, Col } from "react-bootstrap";
 import DisplayIngredients from "../ingredients/display";
-import DisplayCategories  from "../categories/display";
+import DisplayCategories from "../categories/display";
 
 export default function Create(props) {
-
   const [ingredients, setIngredients] = useState([]);
   const [ingredientNames, setingredientNames] = useState([]);
   const ingredientSelector = useRef(null);
@@ -21,12 +20,11 @@ export default function Create(props) {
 
   const [cookies, setCookie] = useCookies();
 
-
   function updateForm(value) {
     return setForm((prev) => {
       return { ...prev, ...value };
     });
-  }  
+  }
 
   // This function will handle the submission.
   async function onSubmit(e) {
@@ -35,7 +33,7 @@ export default function Create(props) {
     // When a post request is sent to the create url, add a new record to the database.
     const recipe = { ...form };
 
-    console.log("Create Recipe", JSON.stringify({ recipe }))
+    console.log("Create Recipe", JSON.stringify({ recipe }));
 
     await fetch("/recipes", {
       method: "POST",
@@ -59,22 +57,22 @@ export default function Create(props) {
     { label: "Wheat Free", value: 3 },
   ];
 
-
   // This method will update the state properties.
-  function addIngredient(){
-    const name = ingredientSelector.current.value
-    const selectedIndex = ingredientSelector.current.options.selectedIndex
-    const ingredient_id = ingredientSelector.current.options[selectedIndex].getAttribute('ing_id')
-    
-    console.log("ID",ingredient_id )
-    console.log("Name",name )
-    console.log("Selected Index",selectedIndex )
-    
-    setingredientNames(ingredientNames.concat(name))
-    setIngredients(ingredients.concat(ingredient_id))
-    console.log("Ingredients",ingredients )
-    console.log("Ingredient Names",ingredientNames )
-    updateForm({ ingredients : ingredients })
+  function addIngredient() {
+    const name = ingredientSelector.current.value;
+    const selectedIndex = ingredientSelector.current.options.selectedIndex;
+    const ingredient_id =
+      ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
+
+    console.log("ID", ingredient_id);
+    console.log("Name", name);
+    console.log("Selected Index", selectedIndex);
+
+    setingredientNames(ingredientNames.concat(name));
+    setIngredients(ingredients.concat(ingredient_id));
+    console.log("Ingredients", ingredients);
+    console.log("Ingredient Names", ingredientNames);
+    updateForm({ ingredients: ingredients });
   }
 
   // This following section will display the form that takes the input from the recipe.
@@ -143,45 +141,44 @@ export default function Create(props) {
                 className="form-control mb-2"
                 id="category"
                 value={form.category}
-                onChange={(e) => updateForm({ category: e.target.value })}>
-                < DisplayCategories />
+                onChange={(e) => updateForm({ category: e.target.value })}
+              >
+                <DisplayCategories />
               </select>
-
             </div>
 
-          <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Add Ingredients</Accordion.Header>
-              <Accordion.Body>
-                <Row>
-                <ListGroup variant="flush">
-                  {ingredientNames.map((IngName) => (
-                        <ListGroup.Item >{IngName}</ListGroup.Item>
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Add Ingredients</Accordion.Header>
+                <Accordion.Body>
+                  <Row>
+                    <ListGroup variant="flush">
+                      {ingredientNames.map((IngName) => (
+                        <ListGroup.Item>{IngName}</ListGroup.Item>
                       ))}
-                </ListGroup>
-                </Row>
-                <Row>
-                  <Col>
-                   < DisplayIngredients ingredientSelector={ingredientSelector}/>
-                  </Col>
-     
-                  <Col>
-                    <input
-                    type="text"
-                    id="add-ingredient"
-                    value="Add Ingredient"
-                    className="btn btn-dark mt-2"
-                    readOnly={true}
-                    onClick={() => addIngredient()}
-                    />
-                  </Col>
-                </Row>
+                    </ListGroup>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <DisplayIngredients
+                        ingredientSelector={ingredientSelector}
+                      />
+                    </Col>
 
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>    
-
-
+                    <Col>
+                      <input
+                        type="text"
+                        id="add-ingredient"
+                        value="Add Ingredient"
+                        className="btn btn-dark mt-2"
+                        readOnly={true}
+                        onClick={() => addIngredient()}
+                      />
+                    </Col>
+                  </Row>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
 
             <div className="form-group">
               <input

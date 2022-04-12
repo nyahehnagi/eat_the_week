@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const RecipeSchema = new mongoose.Schema(
   {
     name: String,
@@ -9,16 +8,19 @@ const RecipeSchema = new mongoose.Schema(
     description: String,
     method: String,
     ingredient: String,
-    ingredients: [{
-      ingredient_id: { 
+    ingredients: [
+      {
+        ingredient_id: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Ingredient"
-        }
-    }],
+          ref: "Ingredient",
+        },
+      },
+    ],
 
     image: {
       type: String,
-      default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png'
+      default:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png",
     },
     category: {
       type: String,

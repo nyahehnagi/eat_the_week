@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const UnitSchema = new mongoose.Schema({
-  name: String
+  name: String,
 });
 
 const Unit = mongoose.model("Unit", UnitSchema);

@@ -5,7 +5,6 @@ export default function DisplayIngredients(props) {
   const [ingredients, setIngredients] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies();
 
-
   // This method fetches the ingredients from the database.
   useEffect(() => {
     async function getIngredients() {
@@ -32,27 +31,33 @@ export default function DisplayIngredients(props) {
   }, [ingredients.length, props.state]);
 
   // This method will map out the ingredients into an array of ingredient names
-  function ingredientList() { 
+  function ingredientList() {
     return ingredients.map((ingredient) => {
-      const ingredientValue = ingredient 
+      const ingredientValue = ingredient;
       return ingredientValue;
     });
   }
   const ingredientNameList = ingredientList();
- 
+
   // This following  will return the ingredient list of names
   return (
     <>
-      <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
-
+      <select
+        className="form-select form-select-lg mb-3"
+        aria-label=".form-select-lg example"
         id="ingredient"
         ref={props.ingredientSelector}
-        >
+      >
         <option selected>Select Ingredient</option>
         {ingredientNameList.map((ingredient) => (
-          <option value={ingredient.name} key={ingredient._id} ing_id={ingredient._id}>{ingredient.name}</option>
+          <option
+            value={ingredient.name}
+            key={ingredient._id}
+            ing_id={ingredient._id}
+          >
+            {ingredient.name}
+          </option>
         ))}
-  
       </select>
     </>
   );

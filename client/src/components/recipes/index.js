@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import Recipe from "./recipe";
-import { Row, Col, Container} from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 export default function ShowRecipes(props) {
   const [recipes, setRecipes] = useState([]);
   const [cookies, setCookie] = useCookies();
 
-  console.log(props) 
+  console.log(props);
 
   useEffect(() => {
     async function getRecipes() {
@@ -46,38 +46,41 @@ export default function ShowRecipes(props) {
     props.setReload(!props.state);
   }
 
-  function editRecipe(recipeId){
-    props.setRecipeId(recipeId)
+  function editRecipe(recipeId) {
+    props.setRecipeId(recipeId);
   }
 
-  async function addToPlan(day, recipeId){
-    let planner = {}
-    let newPlan = []
+  async function addToPlan(day, recipeId) {
+    let planner = {};
+    let newPlan = [];
 
-    const weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
+    const weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
     const times = 7;
 
-    for(let i=0; i<times;i++) {
-      let planItem = {}
-      if (weekDays[i] === day){ 
-        planItem =  {"day": weekDays[i], "recipe_id" : {_id : recipeId}} 
-      }else{
+    for (let i = 0; i < times; i++) {
+      let planItem = {};
+      if (weekDays[i] === day) {
+        planItem = { day: weekDays[i], recipe_id: { _id: recipeId } };
+      } else {
         if (props.planner) {
-          if (props.planner.plan[i].recipe_id){
-            planItem =  {"day": weekDays[i], "recipe_id" : {_id : props.planner.plan[i].recipe_id._id}}
-          }else{
-            planItem =  {"day": weekDays[i]}
+          if (props.planner.plan[i].recipe_id) {
+            planItem = {
+              day: weekDays[i],
+              recipe_id: { _id: props.planner.plan[i].recipe_id._id },
+            };
+          } else {
+            planItem = { day: weekDays[i] };
           }
-        }else{
-          planItem =  {"day": weekDays[i]}
+        } else {
+          planItem = { day: weekDays[i] };
         }
       }
 
-      newPlan.push(planItem)
+      newPlan.push(planItem);
     }
 
     // Commit the plan to the data Database
-    const payload = `{"planner":${JSON.stringify({"plan": newPlan})}}`
+    const payload = `{"planner":${JSON.stringify({ plan: newPlan })}}`;
 
     await fetch("/planners", {
       method: "POST",
@@ -91,36 +94,53 @@ export default function ShowRecipes(props) {
       return;
     });
 
-    props.setReload(!props.state)
-
+    props.setReload(!props.state);
   }
 
   // This method will map out the recipes
   function recipeList() {
     //displayRecipe={displayRecipe}
     const secondColumnStart = Math.floor(recipes.length / 2);
-    return(
-    <Container>
-    <Row>
-        <Col md='6'>
-            {recipes.slice(0,secondColumnStart).map((recipe) => {
-              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
-            })}       
-        </Col>
-        <Col md='6'>
+    return (
+      <Container>
+        <Row>
+          <Col md="6">
+            {recipes.slice(0, secondColumnStart).map((recipe) => {
+              return (
+                <Recipe
+                  recipe={recipe}
+                  removeRecipe={removeRecipe}
+                  editRecipe={editRecipe}
+                  addToPlan={addToPlan}
+                />
+              );
+            })}
+          </Col>
+          <Col md="6">
             {recipes.slice(secondColumnStart).map((recipe) => {
-              return <Recipe recipe={recipe} removeRecipe={removeRecipe} editRecipe={editRecipe} addToPlan={addToPlan} />;
-            })}             
-        </Col>
-    </Row>
-    </Container>
-    )
+              return (
+                <Recipe
+                  recipe={recipe}
+                  removeRecipe={removeRecipe}
+                  editRecipe={editRecipe}
+                  addToPlan={addToPlan}
+                />
+              );
+            })}
+          </Col>
+        </Row>
+      </Container>
+    );
   }
 
   // This following will display the recipes
   return (
     <div className="container-sm">
-      <Row><Col className="d-flex justify-content-center"><h3>My Recipes</h3></Col></Row>
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <h3>My Recipes</h3>
+        </Col>
+      </Row>
       <div id="recipeList">{recipeList()}</div>
     </div>
   );
