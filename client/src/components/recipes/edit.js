@@ -53,8 +53,6 @@ export default function EditRecipe(props) {
 
     const recipe = { ...form };
 
-    console.log("edited recipe", recipe);
-
     // This will send a put request to update the data in the database.
     await fetch(`/recipes/${props.recipeId}`, {
       method: "PUT",
@@ -80,14 +78,9 @@ export default function EditRecipe(props) {
     const ingredient_id =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
 
-    console.log("ID", ingredient_id);
-    console.log("Name", name);
-    console.log("Selected Index", selectedIndex);
-
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat(ingredient_id));
-    console.log("Ingredients", ingredients);
-    console.log("Ingredient Names", ingredientNames);
+
     updateForm({ ingredients: ingredients });
   }
 

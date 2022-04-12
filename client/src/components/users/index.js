@@ -38,7 +38,6 @@ export default function GetUser(props) {
         return;
       }
       const user = await response.json();
-      console.log(user);
       setUser(user);
     }
 

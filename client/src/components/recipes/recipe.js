@@ -11,8 +11,6 @@ import {
 
 export default function Recipe(props) {
 
-  console.log("Recipe Details",props.recipe );
-
   const handleRemoveClick = () => {
     props.removeRecipe(props.recipe._id);
   };

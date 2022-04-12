@@ -32,8 +32,6 @@ export default function Create(props) {
     // When a post request is sent to the create url, add a new record to the database.
     const recipe = { ...form };
 
-    console.log("Create Recipe", JSON.stringify({ recipe }));
-
     await fetch("/recipes", {
       method: "POST",
       headers: {

@@ -7,8 +7,6 @@ export default function ShowRecipes(props) {
   const [recipes, setRecipes] = useState([]);
   const [cookies, setCookie] = useCookies();
 
-  console.log(props);
-
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch("/recipes", {
