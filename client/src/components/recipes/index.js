@@ -7,8 +7,6 @@ export default function ShowRecipes(props) {
   const [recipes, setRecipes] = useState([]);
   const [cookies, setCookie] = useCookies();
 
-  console.log(props);
-
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch("/recipes", {
@@ -46,12 +44,12 @@ export default function ShowRecipes(props) {
     props.setReload(!props.state);
   }
 
-  function editRecipe(recipeId) {
+  function editRecipe(recipeId, recipe) {
     props.setRecipeId(recipeId);
+    props.setRecipe(recipe);
   }
 
   async function addToPlan(day, recipeId) {
-    let planner = {};
     let newPlan = [];
 
     const weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
@@ -105,7 +103,7 @@ export default function ShowRecipes(props) {
       <Container>
         <Row>
           <Col md="6">
-            {recipes.slice(0, secondColumnStart).map((recipe) => {
+            {recipes.slice(secondColumnStart).map((recipe) => {
               return (
                 <Recipe
                   recipe={recipe}
@@ -117,7 +115,7 @@ export default function ShowRecipes(props) {
             })}
           </Col>
           <Col md="6">
-            {recipes.slice(secondColumnStart).map((recipe) => {
+            {recipes.slice(0, secondColumnStart).map((recipe) => {
               return (
                 <Recipe
                   recipe={recipe}

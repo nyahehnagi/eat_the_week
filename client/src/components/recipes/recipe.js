@@ -3,10 +3,10 @@ import { Card, Button } from "react-bootstrap";
 import {
   Row,
   Col,
-  Container,
   Dropdown,
   DropdownButton,
   Modal,
+  ListGroup,
 } from "react-bootstrap";
 
 export default function Recipe(props) {
@@ -15,7 +15,7 @@ export default function Recipe(props) {
   };
 
   const handleEditClick = (e) => {
-    props.editRecipe(props.recipe._id);
+    props.editRecipe(props.recipe._id, props.recipe);
   };
 
   const [show, setShow] = useState(false);
@@ -158,7 +158,13 @@ export default function Recipe(props) {
               </Row>
               <Row className="mb-2">
                 <h4>Ingredients</h4>
-                {props.recipe.ingredients}
+                <ListGroup variant="flush">
+                  {props.recipe.ingredients.map((ingredient) => (
+                    <ListGroup.Item>
+                      {ingredient.ingredient_id.name}
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
               </Row>
               <Row>
                 <hr></hr>

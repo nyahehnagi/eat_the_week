@@ -5,11 +5,18 @@ import DisplayIngredients from "../ingredients/display";
 import { Accordion, ListGroup, Row, Col, Button } from "react-bootstrap";
 
 export default function EditRecipe(props) {
-  const [form, setForm] = useState({});
+  const initialIngredients = props.recipe.ingredients.map(
+    (name) => name.ingredient_id.name
+  );
+  const initialIngredientIds = props.recipe.ingredients.map((name) => ({
+    ingredient_id: name.ingredient_id._id,
+  }));
+
+  const [form, setForm] = useState(props.recipe);
   const [cookies, setCookie] = useCookies();
 
-  const [ingredients, setIngredients] = useState([]);
-  const [ingredientNames, setingredientNames] = useState([]);
+  const [ingredients, setIngredients] = useState(initialIngredientIds);
+  const [ingredientNames, setingredientNames] = useState(initialIngredients);
   const ingredientSelector = useRef(null);
 
   // This method will update the state properties.
@@ -20,43 +27,16 @@ export default function EditRecipe(props) {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`/recipes/${props.recipeId}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${cookies.token}`,
-        },
-      });
-
-      if (!response.ok) {
-        const message = `An error has occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const recipe = await response.json();
-      if (!recipe) {
-        window.alert(`Record with id ${props.recipeId} not found`);
-        return;
-      }
-
-      setForm(recipe);
-    }
-
-    fetchData();
-
-    return;
-  }, [props.recipeId]);
+    updateForm({ ingredients: ingredients });
+  }, [props.recipeId, ingredientNames.length]);
 
   async function onSubmit(e) {
     e.preventDefault();
 
     const recipe = { ...form };
 
-    console.log("edited recipe", recipe);
-
     // This will send a put request to update the data in the database.
-    await fetch(`/recipes/${props.recipeId}`, {
+    const response = await fetch(`/recipes/${props.recipeId}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${cookies.token}`,
@@ -64,6 +44,12 @@ export default function EditRecipe(props) {
       },
       body: JSON.stringify({ recipe }),
     });
+
+    if (!response.ok) {
+      const message = `An error has occurred: ${response.statusText}`;
+      window.alert(message);
+      return;
+    }
 
     props.setRecipeId("");
     props.setReload(!props.state);
@@ -77,17 +63,11 @@ export default function EditRecipe(props) {
   function addIngredient() {
     const name = ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
-    const ingredient_id =
+    const ingredientId =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
 
-    console.log("ID", ingredient_id);
-    console.log("Name", name);
-    console.log("Selected Index", selectedIndex);
-
     setingredientNames(ingredientNames.concat(name));
-    setIngredients(ingredients.concat(ingredient_id));
-    console.log("Ingredients", ingredients);
-    console.log("Ingredient Names", ingredientNames);
+    setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
     updateForm({ ingredients: ingredients });
   }
 
@@ -120,27 +100,27 @@ export default function EditRecipe(props) {
                 onChange={(e) => updateForm({ description: e.target.value })}
               />
               <Row>
-              <Col md='5' style={{width:"50%",float:"left"}}>
-              <label htmlFor="serves">Serves</label>
-              <input
-                type="input" 
-                className="form-control"
-                id="serves"
-                value={form.serves || ""}
-                onChange={(e) => updateForm({ serves: e.target.value })}
-              />
-              </Col> 
-              <Col md='5' style={{width:"50%",float:"right"}}>
-              <label htmlFor="prep_time">Preparation Time</label>
-              <input
-                type="input"
-                className="form-control"
-                id="prep_time"
-                value={form.prep_time || ""}
-                onChange={(e) => updateForm({ prep_time: e.target.value })}
-              />
-            </Col>
-            </Row>
+                <Col md="5" style={{ width: "50%", float: "left" }}>
+                  <label htmlFor="serves">Serves</label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="serves"
+                    value={form.serves || ""}
+                    onChange={(e) => updateForm({ serves: e.target.value })}
+                  />
+                </Col>
+                <Col md="5" style={{ width: "50%", float: "right" }}>
+                  <label htmlFor="prep_time">Preparation Time</label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="prep_time"
+                    value={form.prep_time || ""}
+                    onChange={(e) => updateForm({ prep_time: e.target.value })}
+                  />
+                </Col>
+              </Row>
               <label htmlFor="method">Method</label>
               <input
                 type="input"

@@ -1,16 +1,16 @@
-const Order = require("../models/order")
+const Order = require("../models/order");
 
 const OrdersController = {
   Create: (req, res) => {
     const order = new Order({
       user_id: req.user._id,
-      date: req.orderDate
+      date: req.orderDate,
     });
     order.save((err, result) => {
       if (err) {
         throw err;
       }
-      res.json(result)
+      res.json(result);
     });
   },
 };

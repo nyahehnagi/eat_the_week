@@ -48,7 +48,6 @@ export default function DisplayIngredients(props) {
         id="ingredient"
         ref={props.ingredientSelector}
       >
-        <option selected>Select Ingredient</option>
         {ingredientNameList.map((ingredient) => (
           <option
             value={ingredient.name}
