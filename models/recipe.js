@@ -8,6 +8,7 @@ const RecipeSchema = new mongoose.Schema(
     description: String,
     method: String,
     ingredient: String,
+    ingredientNames: [],
     ingredients: [
       {
         ingredient_id: {

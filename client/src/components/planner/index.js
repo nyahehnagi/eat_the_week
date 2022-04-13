@@ -48,9 +48,7 @@ export default function Planner(props) {
               <Card.Title>
               {plan.recipe_id.name}  
               <p></p>
-              <Badge eventkey={plan.day} bg="dark" pill onClick={handleRemove}>
-                X
-              </Badge>         
+       
               </Card.Title>
               ) : (
                 <Card.Title>Add Recipe</Card.Title>

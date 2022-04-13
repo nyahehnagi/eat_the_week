@@ -11,10 +11,11 @@ export default function Create(props) {
 
   const [form, setForm] = useState({
     name: "",
-    category: "Vegan",
+    category: "Favourite",
     unit: "grams",
     qty: "",
     ingredients: [{}],
+    ingredientNames: []
   });
 
   const [cookies, setCookie] = useCookies();
@@ -29,8 +30,9 @@ export default function Create(props) {
   async function onSubmit(e) {
     e.preventDefault();
 
-    // When a post request is sent to the create url, add a new record to the database.
     const recipe = { ...form };
+    
+    console.log("recipe", JSON.stringify({ recipe }) )
 
     await fetch("/recipes", {
       method: "POST",
@@ -50,14 +52,18 @@ export default function Create(props) {
 
   useEffect(() => {
     updateForm({ ingredients: ingredients });
+    updateForm({ ingredientNames: ingredientNames });
   }, [ingredientNames.length]);
 
-  // This method will update the state properties.
   const addIngredient = () => {
-    const name = ingredientSelector.current.value;
+    //const name = ingredientSelector.current.value;
+    
+    const totalqty = form.qty + " "
+    const name = totalqty + ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
     const ingredientId =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
+      console.log(ingredientNames)
 
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
@@ -173,10 +179,21 @@ export default function Create(props) {
                     </ListGroup>
                   </Row>
                   <Row>
-                    <Col className="me-auto">
+                    <Col >
+                    {/* <label htmlFor="qty">Ingredient</label> */}
                       <DisplayIngredients
                         ingredientSelector={ingredientSelector}
                       />
+                    </Col>
+                    <Col className="">
+                      {/* <label htmlFor="qty">Quantity</label> */}
+                        <input
+                        type="input"
+                        className="form-control"
+                        id="qty"
+                        value={form.qty}
+                        onChange={(e) => updateForm({ qty: e.target.value })}
+                        />
                     </Col>
 
                     <Col>
@@ -184,7 +201,7 @@ export default function Create(props) {
                         type="text"
                         id="add-ingredient"
                         value="Add"
-                        className="btn btn-dark mt-2 btn-sm w-50"
+                        className="btn btn-dark btn-sm w-50 pb-2"
                         readOnly={true}
                         onClick={() => addIngredient()}
                       />
