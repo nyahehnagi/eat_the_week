@@ -178,8 +178,8 @@ export default function Recipe(props) {
               <Row>
                 <hr></hr>
               </Row>
-              <Row className="mb-2">
-                <h4>Ingredients</h4>
+              <Row className="mb-2" >
+                <h4 style={{color:"hsl(0,0%,11%)"}}>Ingredients</h4>
                 <ListGroup variant="flush">
                   {props.recipe.ingredientNames.map((ingredient) => (
                     <ListGroup.Item>
@@ -192,7 +192,7 @@ export default function Recipe(props) {
                 <hr></hr>
               </Row>
               <Row>
-                <h4>Method</h4>
+                <h4 style={{color:"hsl(0,0%,11%)"}}>Method</h4>
                 {props.recipe.method}
               </Row>
             </Card.Body>
