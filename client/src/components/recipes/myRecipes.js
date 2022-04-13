@@ -64,12 +64,22 @@ export default function MyRecipes() {
           />
         </Col>
       </Row>
-      <Row>
-        <Col>
-        <Button variant="dark" onClick={handleShow} ref={manageRecipeButton}>
+      <Row >
+        <Col className="d-flex mt-3 ps-5">
+        <Button 
+          variant="dark" 
+          onClick={handleShow} ref={manageRecipeButton}
+          >
           Create Recipe
         </Button>
         </Col>
+        <Col className="d-flex justify-content-center mt-3 ">
+          <h3>My Recipes</h3>
+        </Col>
+        <Col>
+
+        </Col>
+
       </Row> 
       <Row>
         <Col md="12">

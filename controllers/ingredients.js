@@ -2,7 +2,10 @@ const Ingredient = require("../models/ingredient");
 
 const IngredientsController = {
   Index: (req, res) => {
-    Ingredient.find((err, ingredients) => {
+    Ingredient
+    .find()
+    .sort({name: "ascending"})
+    .exec((err, ingredients) => {
       if (err) {
         throw err;
       }

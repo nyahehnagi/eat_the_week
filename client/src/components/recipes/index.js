@@ -131,7 +131,6 @@ export default function ShowRecipes(props) {
     
   // This method will map out the recipes
   function recipeList() {
-    //const secondColumnStart = Math.floor(recipes.length / 2);
 
     const partitions = partition(recipes, 4)
     
@@ -158,11 +157,6 @@ export default function ShowRecipes(props) {
   // This following will display the recipes
   return (
     <div className="container-sm">
-      <Row>
-        <Col className="d-flex justify-content-center">
-          <h3>My Recipes</h3>
-        </Col>
-      </Row>
       <div id="recipeList">{recipeList()}</div>
     </div>
   );
