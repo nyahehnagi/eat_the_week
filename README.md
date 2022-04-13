@@ -1,6 +1,15 @@
 # Eat The Week
 
-An app designed to allow users to save their favourite recipes, shop for ingredients and find new inspiration for cooking.
+An app designed to allow users to save their favourite recipes, create a weekly planner, find new inspiration for cooking and add ingredients to their shopping order.
+
+---
+
+## 👏 Contributors
+- [Ben Hall](https://github.com/Ledders26)
+- [Bromley Jones](https://github.com/nyahehnagi)
+- [Claire Nelson](https://github.com/nelsonclaire)
+- [Jane Parsons](https://github.com/jparsons-git)
+- [Shirley Macfarlane](https://github.com/ShirleyMacfarlane)
 
 ---
 

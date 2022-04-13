@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Row, Col, Container, Offcanvas, Button} from "react-bootstrap";
+import { Row, Col, Container, Offcanvas, Button } from "react-bootstrap";
 
 import ShowRecipes from "./index";
 import CreateRecipe from "./create";
@@ -17,64 +17,28 @@ export default function MyRecipes() {
 
   const handleClose = () => {
     setShow(false);
-    setRecipeId("")
-  }
+    setRecipeId("");
+  };
   const handleShow = () => setShow(true);
 
   const clickOffCanvas = () => {
-    manageRecipeButton.current.click()
-  }
+    manageRecipeButton.current.click();
+  };
   const clickCloseCanvas = () => {
-    const el = document.querySelector(".btn-close")
-    el.click()
-  }
+    const el = document.querySelector(".btn-close");
+    el.click();
+  };
 
   return (
-    <div className="out-container">
-      <Container fluid="md" className="">
-          
-        <Offcanvas show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
-
-        </Offcanvas.Header>
+    <Container fluid="md" className="">
+      <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas.Header closeButton></Offcanvas.Header>
         <Offcanvas.Body>
-        {!recipeId ? (
+          {!recipeId ? (
             <CreateRecipe state={state} setReload={setReload} />
-            ) : (
-              <EditRecipe
-                closeCanvas={clickCloseCanvas}
-                state={state}
-                setReload={setReload}
-                recipeId={recipeId}
-                setRecipeId={setRecipeId}
-                recipe={recipe}
-                setRecipe={setRecipe}
-              />
-            )}
-        </Offcanvas.Body>
-        </Offcanvas>
-
-        <Row>
-          <Col md="12">
-            <Planner
-              state={state}
-              setReload={setReload}
-              planner={planner}
-              setPlanner={setPlanner}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          <Button variant="dark" onClick={handleShow} ref={manageRecipeButton}>
-            Create Recipe
-          </Button>
-          </Col>
-        </Row> 
-        <Row>
-          <Col md="12">
-            <ShowRecipes
-              showEdit={clickOffCanvas}
+          ) : (
+            <EditRecipe
+              closeCanvas={clickCloseCanvas}
               state={state}
               setReload={setReload}
               setRecipeId={setRecipeId}
@@ -82,9 +46,44 @@ export default function MyRecipes() {
               setPlanner={setPlanner}
               setRecipe={setRecipe}
             />
-          </Col>
-        </Row>
-      </Container>
-    </div>
+          )}
+        </Offcanvas.Body>
+      </Offcanvas>
+
+      <Row>
+        <Col md="12">
+          <Planner
+            state={state}
+            setReload={setReload}
+            planner={planner}
+            setPlanner={setPlanner}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col className="d-flex mt-4 ms-4 ">
+          <Button variant="dark" onClick={handleShow} ref={manageRecipeButton}>
+            Create Recipe
+          </Button>
+        </Col>
+        <Col className="d-flex justify-content-center mt-3 ">
+          <h3>My Recipes</h3>
+        </Col>
+        <Col></Col>
+      </Row>
+      <Row>
+        <Col md="12">
+          <ShowRecipes
+            showEdit={clickOffCanvas}
+            state={state}
+            setReload={setReload}
+            setRecipeId={setRecipeId}
+            planner={planner}
+            setPlanner={setPlanner}
+            setRecipe={setRecipe}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 }

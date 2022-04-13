@@ -52,18 +52,17 @@ export default function EditRecipe(props) {
     }
 
     props.setRecipeId("");
-    props.closeCanvas()
+    props.closeCanvas();
     props.setReload(!props.state);
   }
 
   const handleCancelClick = () => {
-  
     props.setRecipeId("");
     props.setReload(!props.state);
-    props.closeCanvas()
-  }
+    props.closeCanvas();
+  };
 
-  const addIngredient= () => {
+  const addIngredient = () => {
     const name = ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
     const ingredientId =
@@ -72,16 +71,16 @@ export default function EditRecipe(props) {
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
     updateForm({ ingredients: ingredients });
-  }
+  };
 
   const removeIngredient = (index) => {
-    setingredientNames(ingredientNames.filter((_, idx) => idx != index ));
-    setIngredients(ingredients.filter((_, idx) => idx != index ));
-  }
+    setingredientNames(ingredientNames.filter((_, idx) => idx != index));
+    setIngredients(ingredients.filter((_, idx) => idx != index));
+  };
 
   const handleBadgeClick = (e) => {
-    var eventkey = e.target.getAttribute('eventkey');
-    removeIngredient(eventkey)
+    var eventkey = e.target.getAttribute("eventkey");
+    removeIngredient(eventkey);
   };
 
   // This following section will display the form that takes the input from the recipe.
@@ -166,14 +165,19 @@ export default function EditRecipe(props) {
                 <Accordion.Header>Add Ingredients</Accordion.Header>
                 <Accordion.Body>
                   <Row>
-                    <ListGroup variant="flush" >
+                    <ListGroup variant="flush">
                       {ingredientNames.map((IngName, index) => (
                         <ListGroup.Item className="d-flex justify-content-between align-items-start">
                           {IngName}
-                          <Badge eventkey={index} bg="dark" pill onClick={handleBadgeClick}>
-                          X
+                          <Badge
+                            eventkey={index}
+                            bg="dark"
+                            pill
+                            onClick={handleBadgeClick}
+                          >
+                            X
                           </Badge>
-                          </ListGroup.Item>
+                        </ListGroup.Item>
                       ))}
                     </ListGroup>
                   </Row>

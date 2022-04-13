@@ -29,9 +29,9 @@ export default function GetUser(props) {
       password: form.password,
     });
 
-    const setPass = (event) => {
-      updateForm({ ...form.password, password: event.target.value });
-    };
+  const setPass = (event) => {
+    updateForm({ ...form.password, password: event.target.value });
+  };
 
   // This method fetches the user details from the database.
   useEffect(() => {

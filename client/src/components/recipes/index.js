@@ -47,7 +47,7 @@ export default function ShowRecipes(props) {
   function editRecipe(recipeId, recipe) {
     props.setRecipeId(recipeId);
     props.setRecipe(recipe);
-    props.showEdit()
+    props.showEdit();
   }
 
   async function addToPlan(day, recipeId) {
@@ -99,71 +99,67 @@ export default function ShowRecipes(props) {
   function partition(list = [], n = 1) {
     const isPositiveInteger = Number.isSafeInteger(n) && n > 0;
     if (!isPositiveInteger) {
-      throw new RangeError('n must be a positive integer');
+      throw new RangeError("n must be a positive integer");
     }
-  
+
     const partitions = [];
-  
+
     for (let i = 0; i < list.length; i += n) {
-      const partition = list.slice(i, i+n);
-      partitions.push( partition );
+      const partition = list.slice(i, i + n);
+      partitions.push(partition);
     }
-  
+
     return partitions;
   }
 
-  const getRecipesAtIndex = (partitions, idx) =>{
-      return partitions.map((partition) => {
-        return partition.map((recipe, index) =>{
-          if(index == idx){
-            return (
-              <Recipe
-                recipe={recipe}
-                removeRecipe={removeRecipe}
-                editRecipe={editRecipe}
-                addToPlan={addToPlan}
-              />
-            );
-          }
-        })
-      })
-    }
-    
+  const getRecipesAtIndex = (partitions, idx) => {
+    return partitions.map((partition) => {
+      return partition.map((recipe, index) => {
+        if (index == idx) {
+          return (
+            <Recipe
+              recipe={recipe}
+              removeRecipe={removeRecipe}
+              editRecipe={editRecipe}
+              addToPlan={addToPlan}
+            />
+          );
+        }
+      });
+    });
+  };
+
   // This method will map out the recipes
   function recipeList() {
-    //const secondColumnStart = Math.floor(recipes.length / 2);
+    const partitions = partition(recipes, 4);
 
-    const partitions = partition(recipes, 4)
-    
     return (
-      <Container>
+
         <Row>
-          <Col md="3">
-            {getRecipesAtIndex(partitions,0)}
-          </Col>
-          <Col md="3">
-            {getRecipesAtIndex(partitions,1)}
-          </Col>
-          <Col md="3">
-            {getRecipesAtIndex(partitions,2)}
-          </Col>
-          <Col md="3">
-            {getRecipesAtIndex(partitions,3)}
-         </Col>
+          <Col md="3">{getRecipesAtIndex(partitions, 0)}</Col>
+          <Col md="3">{getRecipesAtIndex(partitions, 1)}</Col>
+          <Col md="3">{getRecipesAtIndex(partitions, 2)}</Col>
+          <Col md="3">{getRecipesAtIndex(partitions, 3)}</Col>
         </Row>
-      </Container>
+
     );
   }
 
   // This following will display the recipes
   return (
     <div className="container-sm">
+      {recipes.length == 0 ? (
+      <Container>
       <Row>
-        <Col className="d-flex justify-content-center">
-          <h3>My Recipes</h3>
+        <Col className="d-flex justify-content-center mt-3 ">
+          <div id="recipeList">You have no recipes, go ahead and create some delicious platters</div>
         </Col>
       </Row>
-      <div id="recipeList">{recipeList()}</div>
+      </Container>
+        
+      ) :(
+        <div id="recipeList">{recipeList()}</div>
+      )}
     </div>
   );
 }

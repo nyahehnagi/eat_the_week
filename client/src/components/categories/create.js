@@ -52,16 +52,8 @@ export default function Create(props) {
             value={form.name}
             onChange={(e) => updateForm({ name: e.target.value })}
           />
-          <label htmlFor="image">Image</label>
-          <input
-            type="input"
-            className="form-control"
-            id="image"
-            value={form.image}
-            onChange={(e) => updateForm({ image: e.target.value })}
-          />
         </div>
-
+        <p></p>
         <div className="form-group">
           <input
             type="submit"
