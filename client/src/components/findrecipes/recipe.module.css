@@ -1,11 +1,11 @@
 .recipe{
-  border-bottom: 0.5px solid white;
+  border: 0.5px solid hsl(0, 0%, 11%);
   margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background: hsl(0, 0%, 11%);
-  color: hsl(0, 0%, 90%);
+  background: white;
+  color: hsl(0, 0%, 11%);
   align-items: center;
   min-width: 40%;
   
