@@ -56,7 +56,8 @@ export default function Register() {
       <Container className="container-sm">
         <form onSubmit={onSubmit} className="register-form">
           <div className="form-group">
-            <label htmlFor="name">Name</label>
+            <br></br>
+            <label htmlFor="name"><h5>Name</h5></label>
             <input
               type="name"
               className="form-control"
@@ -65,9 +66,9 @@ export default function Register() {
               onChange={(e) => updateForm({ name: e.target.value })}
             />
           </div>
-
+          <br></br>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email"><h5>Email</h5></label>
             <input
               type="email"
               className="form-control"
@@ -76,9 +77,9 @@ export default function Register() {
               onChange={(e) => updateForm({ email: e.target.value })}
             />
           </div>
-
+          <br></br>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password"><h5>Password</h5></label>
             <input
               type="password"
               className="form-control"
@@ -86,6 +87,7 @@ export default function Register() {
               value={form.password}
               onChange={setPass}
             />
+            <br></br>
             <ul className="pass-val">
               <li>
                 {validLength ? (
@@ -117,7 +119,6 @@ export default function Register() {
               </li>
             </ul>
           </div>
-          <br></br>
           <br></br>
           <br></br>
           <br></br>
