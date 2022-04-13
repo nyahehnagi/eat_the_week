@@ -206,7 +206,7 @@ export default function Recipe(props) {
           </Card>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="info" onClick={handlePrint}>
+          <Button variant="dark" onClick={handlePrint}>
             Print
           </Button>
           <Button variant="dark" onClick={handleClose}>
