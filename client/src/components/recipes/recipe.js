@@ -182,9 +182,9 @@ export default function Recipe(props) {
               <Row className="mb-2">
                 <h4>Ingredients</h4>
                 <ListGroup variant="flush">
-                  {props.recipe.ingredients.map((ingredient) => (
+                  {props.recipe.ingredientNames.map((ingredient) => (
                     <ListGroup.Item>
-                      {ingredient.ingredient_id.name}
+                      {ingredient}
                     </ListGroup.Item>
                   ))}
                 </ListGroup>

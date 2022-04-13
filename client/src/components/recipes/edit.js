@@ -5,8 +5,8 @@ import DisplayIngredients from "../ingredients/display";
 import { Accordion, ListGroup, Row, Col, Button, Badge } from "react-bootstrap";
 
 export default function EditRecipe(props) {
-  const initialIngredients = props.recipe.ingredients.map(
-    (name) => name.ingredient_id.name
+  const initialIngredients = props.recipe.ingredientNames.map(
+    (name) => name
   );
   const initialIngredientIds = props.recipe.ingredients.map((name) => ({
     ingredient_id: name.ingredient_id._id,
@@ -28,13 +28,14 @@ export default function EditRecipe(props) {
 
   useEffect(() => {
     updateForm({ ingredients: ingredients });
+    updateForm({ ingredientNames: ingredientNames });
   }, [props.recipeId, ingredientNames.length]);
 
   async function onSubmit(e) {
     e.preventDefault();
 
     const recipe = { ...form };
-
+    
     // This will send a put request to update the data in the database.
     const response = await fetch(`/recipes/${props.recipeId}`, {
       method: "PUT",
@@ -63,14 +64,18 @@ export default function EditRecipe(props) {
   };
 
   const addIngredient = () => {
-    const name = ingredientSelector.current.value;
+    const totalqty = form.qty + " "
+    const name = totalqty + ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
     const ingredientId =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
+      console.log(ingredientNames)
+
 
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
     updateForm({ ingredients: ingredients });
+    updateForm({ ingredientNames: ingredientNames });
   };
 
   const removeIngredient = (index) => {
@@ -187,13 +192,22 @@ export default function EditRecipe(props) {
                         ingredientSelector={ingredientSelector}
                       />
                     </Col>
-
+                    <Col className="">
+                      {/* <label htmlFor="qty">Quantity</label> */}
+                        <input
+                        type="input"
+                        className="form-control"
+                        id="qty"
+                        value={form.qty}
+                        onChange={(e) => updateForm({ qty: e.target.value })}
+                        />
+                    </Col>
                     <Col>
                       <input
                         type="text"
                         id="add-ingredient"
                         value="Add"
-                        className="btn btn-dark mt-2 btn-sm w-50"
+                        className="btn btn-dark btn-sm w-50 pb-2"
                         readOnly={true}
                         onClick={() => addIngredient()}
                       />

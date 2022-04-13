@@ -32,8 +32,6 @@ export default function Create(props) {
 
     const recipe = { ...form };
     
-    console.log("recipe", JSON.stringify({ recipe }) )
-
     await fetch("/recipes", {
       method: "POST",
       headers: {
@@ -63,7 +61,7 @@ export default function Create(props) {
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
     const ingredientId =
       ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
-      console.log(ingredientNames)
+
 
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
