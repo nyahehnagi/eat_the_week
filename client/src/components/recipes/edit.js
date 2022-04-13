@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useCookies } from "react-cookie";
-import DisplayCategories  from "../categories/display";
+import DisplayCategories from "../categories/display";
 import DisplayIngredients from "../ingredients/display";
-import { Row, Col, Button } from "react-bootstrap";
+import { Accordion, ListGroup, Row, Col, Button, Badge } from "react-bootstrap";
 
 export default function EditRecipe(props) {
-  const [form, setForm] = useState({});
+  const initialIngredients = props.recipe.ingredients.map(
+    (name) => name.ingredient_id.name
+  );
+  const initialIngredientIds = props.recipe.ingredients.map((name) => ({
+    ingredient_id: name.ingredient_id._id,
+  }));
+
+  const [form, setForm] = useState(props.recipe);
   const [cookies, setCookie] = useCookies();
+
+  const [ingredients, setIngredients] = useState(initialIngredientIds);
+  const [ingredientNames, setingredientNames] = useState(initialIngredients);
+  const ingredientSelector = useRef(null);
 
   // This method will update the state properties.
   function updateForm(value) {
@@ -16,59 +27,61 @@ export default function EditRecipe(props) {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(`/recipes/${props.recipeId}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${cookies.token}`,
-        },
-      })
-
-      if (!response.ok) {
-        const message = `An error has occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const recipe = await response.json();
-      if (!recipe) {
-        window.alert(`Record with id ${props.recipeId} not found`);
-        return;
-      }
-
-      setForm(recipe);
-    }
-
-    fetchData();
-
-    return;
-  }, [props.recipeId]);
+    updateForm({ ingredients: ingredients });
+  }, [props.recipeId, ingredientNames.length]);
 
   async function onSubmit(e) {
     e.preventDefault();
 
     const recipe = { ...form };
 
-    console.log("edited recipe",recipe )
-
     // This will send a put request to update the data in the database.
-    await fetch(`/recipes/${props.recipeId}`, {
+    const response = await fetch(`/recipes/${props.recipeId}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${cookies.token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({recipe}),
+      body: JSON.stringify({ recipe }),
     });
 
-    props.setRecipeId("")
+    if (!response.ok) {
+      const message = `An error has occurred: ${response.statusText}`;
+      window.alert(message);
+      return;
+    }
+
+    props.setRecipeId("");
+    props.closeCanvas();
     props.setReload(!props.state);
   }
 
-  function handleCancelClick(){
-    props.setRecipeId("")
+  const handleCancelClick = () => {
+    props.setRecipeId("");
     props.setReload(!props.state);
-  }
+    props.closeCanvas();
+  };
+
+  const addIngredient = () => {
+    const name = ingredientSelector.current.value;
+    const selectedIndex = ingredientSelector.current.options.selectedIndex;
+    const ingredientId =
+      ingredientSelector.current.options[selectedIndex].getAttribute("ing_id");
+
+    setingredientNames(ingredientNames.concat(name));
+    setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
+    updateForm({ ingredients: ingredients });
+  };
+
+  const removeIngredient = (index) => {
+    setingredientNames(ingredientNames.filter((_, idx) => idx != index));
+    setIngredients(ingredients.filter((_, idx) => idx != index));
+  };
+
+  const handleBadgeClick = (e) => {
+    var eventkey = e.target.getAttribute("eventkey");
+    removeIngredient(eventkey);
+  };
 
   // This following section will display the form that takes the input from the recipe.
   return (
@@ -98,22 +111,28 @@ export default function EditRecipe(props) {
                 value={form.description || ""}
                 onChange={(e) => updateForm({ description: e.target.value })}
               />
-              <label htmlFor="serves">Serves</label>
-              <input
-                type="input"
-                className="form-control"
-                id="serves"
-                value={form.serves || ""}
-                onChange={(e) => updateForm({ serves: e.target.value })}
-              />
-              <label htmlFor="prep_time">Preparation Time</label>
-              <input
-                type="input"
-                className="form-control"
-                id="prep_time"
-                value={form.prep_time || ""}
-                onChange={(e) => updateForm({ prep_time: e.target.value })}
-              />
+              <Row>
+                <Col md="5" style={{ width: "50%", float: "left" }}>
+                  <label htmlFor="serves">Serves</label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="serves"
+                    value={form.serves || ""}
+                    onChange={(e) => updateForm({ serves: e.target.value })}
+                  />
+                </Col>
+                <Col md="5" style={{ width: "50%", float: "right" }}>
+                  <label htmlFor="prep_time">Preparation Time</label>
+                  <input
+                    type="input"
+                    className="form-control"
+                    id="prep_time"
+                    value={form.prep_time || ""}
+                    onChange={(e) => updateForm({ prep_time: e.target.value })}
+                  />
+                </Col>
+              </Row>
               <label htmlFor="method">Method</label>
               <input
                 type="input"
@@ -129,27 +148,60 @@ export default function EditRecipe(props) {
                 id="image"
                 value={form.image || ""}
                 onChange={(e) => updateForm({ image: e.target.value })}
-                />
+              />
               <label htmlFor="category">Select Category</label>
               <select
                 type="input"
-                className="form-control"
+                className="form-control mb-2"
                 id="category"
                 value={form.category}
-                onChange={(e) => updateForm({ category: e.target.value })}>
-              < DisplayCategories />
-            </select>
-            <label htmlFor="ingredient"></label>
-            Select Ingredients
-            <select
-              type="input"
-              className="form-control"
-              id="ingredient"
-              value={form.ingredient}
-              onChange={(e) => updateForm({ ingredient: e.target.value })}>
-            < DisplayIngredients/>
-            </select>
+                onChange={(e) => updateForm({ category: e.target.value })}
+              >
+                <DisplayCategories />
+              </select>
             </div>
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Add Ingredients</Accordion.Header>
+                <Accordion.Body>
+                  <Row>
+                    <ListGroup variant="flush">
+                      {ingredientNames.map((IngName, index) => (
+                        <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                          {IngName}
+                          <Badge
+                            eventkey={index}
+                            bg="dark"
+                            pill
+                            onClick={handleBadgeClick}
+                          >
+                            X
+                          </Badge>
+                        </ListGroup.Item>
+                      ))}
+                    </ListGroup>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <DisplayIngredients
+                        ingredientSelector={ingredientSelector}
+                      />
+                    </Col>
+
+                    <Col>
+                      <input
+                        type="text"
+                        id="add-ingredient"
+                        value="Add"
+                        className="btn btn-dark mt-2 btn-sm w-50"
+                        readOnly={true}
+                        onClick={() => addIngredient()}
+                      />
+                    </Col>
+                  </Row>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
 
             <div className="form-group">
               <input
@@ -158,9 +210,7 @@ export default function EditRecipe(props) {
                 value="Update"
                 className="btn btn-dark mt-2 me-1"
               />
-              <Button onClick={handleCancelClick} className="btn btn-dark mt-2">Cancel</Button>
             </div>
-            
           </form>
         </Col>
       </Row>

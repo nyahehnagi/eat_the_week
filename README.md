@@ -324,56 +324,54 @@ curl "http://localhost:4000/planners/" \
 On success, the above command returns JSON structured like this:
 
 {
-  "_id":"1",
-  "user_id":"1",
-  "plan":[
-    {
-      "_id":"1",
-      "day":"Monday",
-      "recipe":
-      {
-        "category":"",
-        "_id":"1",
-        "name":"eggs",
-        "serves":1,
-        "prep_time":1,
-        "description":"delicious",
-        "method":"boil em",
-        "ingredient":"",
-        "user_id":"1",
-        "createdAt":"2022-04-07T21:02:13.928Z",
-        "updatedAt":"2022-04-07T21:32:39.847Z",
-        "__v":0,
-        "image":""
-      }
-    }
-    ],
-    "__v":0
-  }
-
+"\_id":"1",
+"user_id":"1",
+"plan":[
+{
+"_id":"1",
+"day":"Monday",
+"recipe":
+{
+"category":"",
+"_id":"1",
+"name":"eggs",
+"serves":1,
+"prep_time":1,
+"description":"delicious",
+"method":"boil em",
+"ingredient":"",
+"user_id":"1",
+"createdAt":"2022-04-07T21:02:13.928Z",
+"updatedAt":"2022-04-07T21:32:39.847Z",
+"__v":0,
+"image":""
+}
+}
+],
+"\_\_v":0
+}
 
 ### POST /planners
 
 Creates a new plan for the user_id given as a token in the authorization header
 
-  curl "http://localhost:4000/planners"   -X POST   -H "Content-Type: application/json"  -H "Authorization: Bearer <token here>" -d '{ "planner": {"plan": [{"day": "Monday","recipe_id":"1" },{"day": "Tuesday", "recipe_id":"2"}] } }'
+curl "http://localhost:4000/planners" -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <token here>" -d '{ "planner": {"plan": [{"day": "Monday","recipe_id":"1" },{"day": "Tuesday", "recipe_id":"2"}] } }'
 
 On success the above command returns JSON structured like this:
 
 {
-  "_id":"1",
-  "user_id":"1",
-  "plan":
-    [
-    {
-      "_id":"1",
-      "day":"Monday",
-      "recipe_id":"1"
-    }
-    ],
-  "__v":0
+"\_id":"1",
+"user_id":"1",
+"plan":
+[
+{
+"_id":"1",
+"day":"Monday",
+"recipe_id":"1"
 }
-
+],
+"\_\_v":0
+}
 
 ## Environment Configuration
 

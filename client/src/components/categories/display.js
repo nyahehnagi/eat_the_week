@@ -33,22 +33,20 @@ export default function DisplayCategories(props) {
   }, [categories.length, props.state]);
 
   // This method will map out the categories into an array of category names
-  function categoryList() { 
+  function categoryList() {
     return categories.map((category) => {
-      const categoryValue = category 
+      const categoryValue = category;
       return categoryValue.name;
     });
   }
   const categoryNameList = categoryList();
- 
+  let counter = 0;
   // This following  will return the category list of names
   return (
-    <div className="container-sm">
-      {
-        categoryNameList.map(optn => (
-        <option>{ optn } </option>
-        ))
-      }
-    </div>
+    <>
+      {categoryNameList.map((optn) => (
+        <option key={(counter += 1)}>{optn}</option>
+      ))}
+    </>
   );
 }

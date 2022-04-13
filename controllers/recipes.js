@@ -4,20 +4,22 @@ const RecipesController = {
   Index: (req, res) => {
     userId = req.user._id;
 
-    Recipe.find({
-      user_id: userId,
-    }).exec((err, recipes) => {
-      if (err) throw err;
+    Recipe.find({ user_id: userId })
+      .populate("ingredients.ingredient_id")
+      .exec((err, recipes) => {
+        if (err) throw err;
 
-      res.json(recipes);
-    });
+        res.json(recipes);
+      });
   },
 
   Show: (req, res) => {
-    Recipe.findOne({ _id: req.params.id }).exec((err, recipe) => {
-      if (err) throw err;
-      res.json(recipe);
-    });
+    Recipe.findOne({ _id: req.params.id })
+      .populate("ingredients.ingredient_id")
+      .exec((err, recipe) => {
+        if (err) throw err;
+        res.json(recipe);
+      });
   },
 
   Create: (req, res) => {
@@ -27,11 +29,10 @@ const RecipesController = {
       prep_time: req.body.recipe.prep_time,
       description: req.body.recipe.description,
       method: req.body.recipe.method,
-      ingredient: req.body.recipe.ingredient,
-      recipe_ingredients: req.body.recipe.recipe_ingredients,
+      ingredients: req.body.recipe.ingredients,
       image: req.body.recipe.image,
       category: req.body.recipe.category,
-      user_id: req.user._id
+      user_id: req.user._id,
     });
     recipe.save((err, result) => {
       if (err) {
@@ -53,8 +54,8 @@ const RecipesController = {
   },
 
   Update: (req, res) => {
-    console.log("Inside Update Recipe Id",req.params.id )
-    console.log("Inside Update Body",req.body.recipe )
+    console.log("Recipe Body", req.body.recipe);
+
     Recipe.findOneAndUpdate({ _id: req.params.id }, req.body.recipe).exec(
       (err, recipe) => {
         if (err) throw err;

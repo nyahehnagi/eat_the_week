@@ -36,7 +36,7 @@ export default function Create(props) {
     });
 
     setForm({ name: "" });
-    props.setReload(!props.state)
+    props.setReload(!props.state);
   }
   // This following section will display the form that takes the input from the category.
   return (
