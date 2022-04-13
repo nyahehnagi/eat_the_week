@@ -1,8 +1,8 @@
 .SearchRec{
     min-height: 100vh;
-    background: white;
-    background-color: white;
-    border-color: white;
+    background: hsl(0, 0%, 90%);
+    background-color: hsl(0, 0%, 90%);
+    border-color: hsl(0, 0%, 90%);
    }
    
    .search-form{
