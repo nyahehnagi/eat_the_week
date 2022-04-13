@@ -76,20 +76,14 @@ export default function Recipe(props) {
             </Col>
 
             <Col className="d-flex justify-content-end">
-              <OverlayTrigger
-                placement="top"
-                delay="500"
-                overlay={
-                  <Tooltip id="plan_recipe">Edit your recipe.</Tooltip>
-                }
-              >
+              
               <Button
                 onClick={handleEditClick}
                 className="btn btn-dark btn-sm "
               >
                 Edit
               </Button>
-              </OverlayTrigger>
+     
               <OverlayTrigger
                 placement="top"
                 delay="500"
