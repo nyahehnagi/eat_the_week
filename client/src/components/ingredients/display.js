@@ -43,7 +43,7 @@ export default function DisplayIngredients(props) {
   return (
     <>
       <select
-        className="form-select form-select-lg mb-3"
+        className="form-select  "
         aria-label=".form-select-lg example"
         id="ingredient"
         ref={props.ingredientSelector}

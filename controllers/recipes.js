@@ -32,6 +32,7 @@ const RecipesController = {
       ingredients: req.body.recipe.ingredients,
       image: req.body.recipe.image,
       category: req.body.recipe.category,
+      ingredientNames: req.body.recipe.ingredientNames,
       user_id: req.user._id,
     });
     recipe.save((err, result) => {
