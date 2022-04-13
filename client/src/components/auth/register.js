@@ -52,7 +52,7 @@ export default function Register() {
   }
 
   return (
-    //<div className="out-container">
+    <div className="out-container">
       <Container className="container-sm">
         <form onSubmit={onSubmit} className="register-form">
           <div className="form-group">
