@@ -22,6 +22,7 @@ export default function ShowRecipes(props) {
         return;
       }
 
+      
       const recipes = await response.json();
       setRecipes(recipes);
     }
