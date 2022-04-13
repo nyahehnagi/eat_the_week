@@ -1,4 +1,4 @@
-.out-container{
+.out-container {
   border-style: solid;
   border-width: 10px;
   min-height: 100vh;
@@ -6,16 +6,98 @@
   background-color: hsl(0, 0%, 11%);
   border-color: hsl(0, 0%, 90%);
   color: hsl(0, 0%, 90%);
+  text-align: center;
  }
 
-.container-sm{ 
-   display: inline-box;
-  /* float:none; */
-  /* width: 100vh; */
+ .logon-form {
+  position: absolute;
+  margin: auto;
+  top: 200px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 320px;
+  width: 500px;
+  background-color: rgb(56, 55, 55);
+  border-style: double;
+  border-color: hsl(0, 0%, 90%);
+  border-width: 3px;
+ }
+
+ .register-form {
+  position: absolute;
+  margin: auto;
+  top: 200px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 380px;
+  width: 500px;
+  background-color: rgb(56, 55, 55);
+  border-style: double;
+  border-color: hsl(0, 0%, 90%);
+  border-width: 3px;
+ }
+ 
+ .pass-val {
+   position: absolute;
+   text-align: center;
+   list-style-position: inside;
+   left: 30%
+ }
+
+.container-sm { 
+  display: inline-box;
   min-height: calc(100vh - 300px);
   background-color: hsl(0, 0%, 11%);
-
   color: hsl(0, 0%, 90%);
+}
+
+
+h1 {
+  color: hsl(0, 0%, 90%);
+  text-align: center;
+  font-weight: lighter;
+}
+
+h3 {
+  color: hsl(0, 0%, 90%);
+  text-align: center;
+  font-weight: lighter;
+}
+
+p {
+  color: hsl(0, 0%, 90%);
+}
+
+label {
+  color: hsl(0, 0%, 90%);
+  text-align: center;
+}
+
+input[type="password"], textarea {
+  background-color: hsl(0, 0%, 90%);
+  width: 40%;
+  position: relative;
+  left: 30%;
+}
+
+input[type="email"], textarea {
+  background-color: hsl(0, 0%, 90%);
+  width: 40%;
+  position: relative;
+  left: 30%;
+}
+
+input[type="name"], textarea {
+  background-color: hsl(0, 0%, 90%);
+  width: 40%;
+  position: relative;
+  left: 30%;
+}
+
+input:focus{
+  background-color: hsl(0, 0%, 90%);
 }
 
 .navbar-custom {

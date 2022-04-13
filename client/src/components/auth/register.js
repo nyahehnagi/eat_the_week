@@ -54,8 +54,7 @@ export default function Register() {
   return (
     <div className="out-container">
       <Container className="container-sm">
-        <h3>Register User</h3>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="register-form">
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
@@ -87,7 +86,7 @@ export default function Register() {
               value={form.password}
               onChange={setPass}
             />
-            <ul>
+            <ul className="pass-val">
               <li>
                 {validLength ? (
                   <span style={{ color: "green" }}>Valid Length</span>
@@ -125,7 +124,7 @@ export default function Register() {
                 type="submit"
                 id="create-user"
                 value="Create User"
-                className="btn btn-primary"
+                className="btn btn-secondary"
               />
             </div>
           ) : (

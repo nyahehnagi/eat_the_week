@@ -42,21 +42,21 @@ export default function Logon(props) {
   return (
     <div className="out-container">
       <Container className="container-sm">
-        <h3>Log on</h3>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="logon-form">
+        <br></br>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email"><h4>Email</h4></label>
             <input
               type="email"
               className="form-control"
               id="email"
               value={form.email}
               onChange={(e) => updateForm({ email: e.target.value })}
-            />
+              />
           </div>
-
+              <p>*we will not share your email</p>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password"><h4>Password</h4></label>
             <input
               type="password"
               className="form-control"
@@ -65,13 +65,14 @@ export default function Logon(props) {
               onChange={(e) => updateForm({ password: e.target.value })}
             />
           </div>
+          <br></br>
 
           <div className="form-group">
             <input
               type="submit"
               id="logon"
               value="Log On"
-              className="btn btn-primary"
+              className="btn btn-secondary"
             />
           </div>
         </form>
@@ -79,3 +80,4 @@ export default function Logon(props) {
     </div>
   );
 }
+
