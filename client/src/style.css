@@ -3,6 +3,17 @@
   border-width: 10px;
   min-height: 100vh;
   background: hsl(0, 0%, 90%);
+  background-color: hsl(0, 0%, 90%);
+  border-color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 90%);
+  text-align: center;
+ }
+
+.home-container {
+  border-style: solid;
+  border-width: 10px;
+  min-height: 70vh;
+  background: hsl(0, 0%, 90%);
   background-color: hsl(0, 0%, 11%);
   border-color: hsl(0, 0%, 90%);
   color: hsl(0, 0%, 90%);
@@ -18,7 +29,7 @@
   right: 0;
   height: 320px;
   width: 500px;
-  background-color: rgb(56, 55, 55);
+  background-color: hsl(0, 0%, 11%);
   border-style: double;
   border-color: hsl(0, 0%, 90%);
   border-width: 3px;
@@ -33,7 +44,7 @@
   right: 0;
   height: 380px;
   width: 500px;
-  background-color: rgb(56, 55, 55);
+  background-color: hsl(0, 0%, 11%);
   border-style: double;
   border-color: hsl(0, 0%, 90%);
   border-width: 3px;
@@ -49,7 +60,7 @@
 .container-sm { 
   display: inline-box;
   min-height: calc(100vh - 300px);
-  background-color: hsl(0, 0%, 11%);
+  background-color: hsl(0, 0%, 90%);
   color: hsl(0, 0%, 90%);
 }
 

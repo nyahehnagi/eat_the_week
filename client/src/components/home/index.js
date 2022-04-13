@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="out-container">
+    <div className="home-container">
       {/* <div className="p-3 mb-2 bg-body text-dark"> */}
       <div className="p-3 mb-2 text-dark">
         <div className="logo d-flex justify-content-center">

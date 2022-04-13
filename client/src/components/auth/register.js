@@ -123,7 +123,7 @@ export default function Register() {
               <input
                 type="submit"
                 id="create-user"
-                value="Create User"
+                value="Register"
                 className="btn btn-secondary"
               />
             </div>
