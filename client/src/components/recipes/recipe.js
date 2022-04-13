@@ -179,7 +179,7 @@ export default function Recipe(props) {
                 <hr></hr>
               </Row>
               <Row className="mb-2">
-                <h4>Ingredients</h4>
+                <h3>Ingredients</h3>
                 <ListGroup variant="flush">
                   {props.recipe.ingredientNames.map((ingredient) => (
                     <ListGroup.Item>
@@ -192,7 +192,7 @@ export default function Recipe(props) {
                 <hr></hr>
               </Row>
               <Row>
-                <h4>Method</h4>
+                <h3>Method</h3>
                 {props.recipe.method}
               </Row>
             </Card.Body>
