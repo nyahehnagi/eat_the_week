@@ -46,16 +46,16 @@ export default function Recipe(props) {
         </OverlayTrigger>
         <Card.Body>
           <Row className="mb-2">
-            <Col md="4">
+            <Col >
               <Card.Img
                 src={props.recipe.image}
-                style={{ width: 60, height: 60 }}
+                style={{ width: 100, height: 60 }}
                 alt="Card Image"
               />
             </Col>
 
-            <Col>
-              <Card.Text>{props.recipe.description}</Card.Text>
+            <Col >
+              <Card.Text className="">{props.recipe.description}</Card.Text>
               <Card.Text>Serves: {props.recipe.serves}</Card.Text>
             </Col>
           </Row>
