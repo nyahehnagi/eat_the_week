@@ -8,7 +8,7 @@ const APP_KEY = process.env.REACT_APP_APP_KEY;
 export default function SearchRec() {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("chicken");
+  const [query, setQuery] = useState("waitrose");
   const [state, setReload] = useState(false);
 
   useEffect(() => {

@@ -126,7 +126,6 @@ export default function Recipe(props) {
           </Row>
         </Card.Body>
       </Card>
-
       <Modal
         show={show}
         onHide={handleClose}
@@ -151,7 +150,7 @@ export default function Recipe(props) {
                     src={props.recipe.image}
                     style={{ width: 150, height: 90 }}
                     alt="Card Image"
-                  />
+                    />
                 </Col>
                 <Col className="text-sm text-center">
                   <p className="block mb-0">Category</p>

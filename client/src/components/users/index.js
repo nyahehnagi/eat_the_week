@@ -103,35 +103,35 @@ export default function GetUser(props) {
             id="password"
             value={form.password}
             onChange={setPass}
-          />
+            />
           <ul>
             <li>
               {validLength ? (
                 <span style={{ color: "green" }}>Valid Length</span>
-              ) : (
-                <span style={{ color: "red" }}>Valid Length</span>
-              )}
+                ) : (
+                  <span style={{ color: "red" }}>Valid Length</span>
+                  )}
             </li>
             <li>
               {hasNumber ? (
                 <span style={{ color: "green" }}>Has a Number</span>
-              ) : (
-                <span style={{ color: "red" }}>Has a Number</span>
-              )}
+                ) : (
+                  <span style={{ color: "red" }}>Has a Number</span>
+                  )}
             </li>
             <li>
               {upperCase ? (
                 <span style={{ color: "green" }}>UpperCase</span>
-              ) : (
-                <span style={{ color: "red" }}>UpperCase</span>
-              )}
+                ) : (
+                  <span style={{ color: "red" }}>UpperCase</span>
+                  )}
             </li>
             <li>
               {lowerCase ? (
                 <span style={{ color: "green" }}>LowerCase</span>
-              ) : (
-                <span style={{ color: "red" }}>LowerCase</span>
-              )}
+                ) : (
+                  <span style={{ color: "red" }}>LowerCase</span>
+                  )}
             </li>
           </ul>
         </div>
@@ -143,11 +143,11 @@ export default function GetUser(props) {
               id="update"
               value="Update"
               className="btn btn-primary"
-            />
+              />
           </div>
         ) : (
           ""
-        )}
+          )}
       </form>
     </Container>
   );

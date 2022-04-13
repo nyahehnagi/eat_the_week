@@ -41,9 +41,9 @@ export default function MyRecipes() {
               closeCanvas={clickCloseCanvas}
               state={state}
               setReload={setReload}
-              recipeId={recipeId}
               setRecipeId={setRecipeId}
-              recipe={recipe}
+              planner={planner}
+              setPlanner={setPlanner}
               setRecipe={setRecipe}
             />
           )}

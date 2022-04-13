@@ -1,16 +1,17 @@
-.recipe {
-  border-radius: 10px;
-  box-shadow: 0px 5px 20px rgb(71, 71, 71);
+.recipe{
+  border: 0.5px solid hsl(0, 0%, 11%);
   margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   background: white;
+  color: hsl(0, 0%, 11%);
   align-items: center;
   min-width: 40%;
+  
 }
-.image {
-  border-radius: 50%;
+.image{
+  border: 50%;
   width: 100px;
   height: 100px;
 }
