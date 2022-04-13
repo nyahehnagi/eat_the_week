@@ -18,7 +18,7 @@ export default function DisplayCategories(props) {
       });
 
       if (!response.ok) {
-        const message =`An error occurred: ${response.statusText}`;
+        const message = `An error occurred: ${response.statusText}`;
         window.alert(message);
         return;
       }
@@ -44,11 +44,9 @@ export default function DisplayCategories(props) {
   // This following  will return the category list of names
   return (
     <>
-      {
-        categoryNameList.map(optn => (
-        <option key={counter+=1}>{optn}</option>
-        ))
-      }
-     </>
+      {categoryNameList.map((optn) => (
+        <option key={(counter += 1)}>{optn}</option>
+      ))}
+    </>
   );
 }
