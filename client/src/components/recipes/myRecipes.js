@@ -61,7 +61,7 @@ export default function MyRecipes() {
         </Col>
       </Row>
       <Row>
-        <Col className="d-flex mt-3 ps-5 ">
+        <Col className="d-flex mt-4 ms-4 ">
           <Button variant="dark" onClick={handleShow} ref={manageRecipeButton}>
             Create Recipe
           </Button>

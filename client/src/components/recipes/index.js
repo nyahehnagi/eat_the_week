@@ -134,14 +134,14 @@ export default function ShowRecipes(props) {
     const partitions = partition(recipes, 4);
 
     return (
-      <Container>
+
         <Row>
           <Col md="3">{getRecipesAtIndex(partitions, 0)}</Col>
           <Col md="3">{getRecipesAtIndex(partitions, 1)}</Col>
           <Col md="3">{getRecipesAtIndex(partitions, 2)}</Col>
           <Col md="3">{getRecipesAtIndex(partitions, 3)}</Col>
         </Row>
-      </Container>
+
     );
   }
 
