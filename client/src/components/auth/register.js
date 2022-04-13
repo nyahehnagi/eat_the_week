@@ -117,7 +117,11 @@ export default function Register() {
               </li>
             </ul>
           </div>
-
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           {validLength && hasNumber && upperCase && lowerCase ? (
             <div className="form-group">
               <input

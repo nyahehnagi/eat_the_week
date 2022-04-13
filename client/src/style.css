@@ -5,7 +5,7 @@
   background: hsl(0, 0%, 90%);
   background-color: hsl(0, 0%, 90%);
   border-color: hsl(0, 0%, 90%);
-  color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 11%);
   text-align: center;
  }
 
@@ -33,6 +33,7 @@
   border-style: double;
   border-color: hsl(0, 0%, 90%);
   border-width: 3px;
+  color: hsl(0, 0%, 90%);
  }
 
  .register-form {
@@ -48,6 +49,7 @@
   border-style: double;
   border-color: hsl(0, 0%, 90%);
   border-width: 3px;
+  color: hsl(0, 0%, 90%);
  }
  
  .pass-val {
@@ -60,29 +62,28 @@
 .container-sm { 
   display: inline-box;
   min-height: calc(100vh - 300px);
-  background-color: hsl(0, 0%, 90%);
-  color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 11%);
 }
 
 
 h1 {
-  color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 11%);
   text-align: center;
   font-weight: lighter;
 }
 
 h3 {
-  color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 11%);
   text-align: center;
   font-weight: lighter;
 }
 
 p {
-  color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 11%);
 }
 
 label {
-  color: hsl(0, 0%, 90%);
+  color: hsl(0, 0%, 11%);
   text-align: center;
 }
 

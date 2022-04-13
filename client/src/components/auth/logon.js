@@ -54,7 +54,8 @@ export default function Logon(props) {
               onChange={(e) => updateForm({ email: e.target.value })}
               />
           </div>
-              <p>*we will not share your email</p>
+              *we will not share your 
+              <br></br>
           <div className="form-group">
             <label htmlFor="password"><h4>Password</h4></label>
             <input

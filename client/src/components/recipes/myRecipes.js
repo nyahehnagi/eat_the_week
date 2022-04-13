@@ -66,7 +66,7 @@ export default function MyRecipes() {
             Create Recipe
           </Button>
         </Col>
-        <Col className="d-flex justify-content-center mt-3 ">
+        <Col className=" justify-content-center mt-3 ">
           <h3>My Recipes</h3>
         </Col>
         <Col></Col>
