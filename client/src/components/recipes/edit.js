@@ -52,15 +52,17 @@ export default function EditRecipe(props) {
     }
 
     props.setRecipeId("");
+    props.closeCanvas();
     props.setReload(!props.state);
   }
 
   const handleCancelClick = () => {
     props.setRecipeId("");
     props.setReload(!props.state);
-  }
+    props.closeCanvas();
+  };
 
-  const addIngredient= () => {
+  const addIngredient = () => {
     const name = ingredientSelector.current.value;
     const selectedIndex = ingredientSelector.current.options.selectedIndex;
     const ingredientId =
@@ -69,16 +71,16 @@ export default function EditRecipe(props) {
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
     updateForm({ ingredients: ingredients });
-  }
+  };
 
   const removeIngredient = (index) => {
-    setingredientNames(ingredientNames.filter((_, idx) => idx != index ));
-    setIngredients(ingredients.filter((_, idx) => idx != index ));
-  }
+    setingredientNames(ingredientNames.filter((_, idx) => idx != index));
+    setIngredients(ingredients.filter((_, idx) => idx != index));
+  };
 
   const handleBadgeClick = (e) => {
-    var eventkey = e.target.getAttribute('eventkey');
-    removeIngredient(eventkey)
+    var eventkey = e.target.getAttribute("eventkey");
+    removeIngredient(eventkey);
   };
 
   // This following section will display the form that takes the input from the recipe.
@@ -163,14 +165,19 @@ export default function EditRecipe(props) {
                 <Accordion.Header>Add Ingredients</Accordion.Header>
                 <Accordion.Body>
                   <Row>
-                    <ListGroup variant="flush" >
+                    <ListGroup variant="flush">
                       {ingredientNames.map((IngName, index) => (
                         <ListGroup.Item className="d-flex justify-content-between align-items-start">
                           {IngName}
-                          <Badge eventkey={index} bg="dark" pill onClick={handleBadgeClick}>
-                          X
+                          <Badge
+                            eventkey={index}
+                            bg="dark"
+                            pill
+                            onClick={handleBadgeClick}
+                          >
+                            X
                           </Badge>
-                          </ListGroup.Item>
+                        </ListGroup.Item>
                       ))}
                     </ListGroup>
                   </Row>
@@ -185,8 +192,8 @@ export default function EditRecipe(props) {
                       <input
                         type="text"
                         id="add-ingredient"
-                        value="Add Ingredient"
-                        className="btn btn-dark mt-2"
+                        value="Add"
+                        className="btn btn-dark mt-2 btn-sm w-50"
                         readOnly={true}
                         onClick={() => addIngredient()}
                       />
@@ -203,9 +210,6 @@ export default function EditRecipe(props) {
                 value="Update"
                 className="btn btn-dark mt-2 me-1"
               />
-              <Button onClick={handleCancelClick} className="btn btn-dark mt-2">
-                Cancel
-              </Button>
             </div>
           </form>
         </Col>

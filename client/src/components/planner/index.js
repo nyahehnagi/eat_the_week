@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { Row, Col, Container, Card, Button } from "react-bootstrap";
+import { Row, Col, Container, Card } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
 export default function Planner(props) {
@@ -72,11 +72,7 @@ export default function Planner(props) {
   };
 
   return (
-    <Container className="border border-secondary rounded-top rounded-bottom mb-2 mt-2">
-      <Button onClick={handleOrderClick} className="btn btn-dark mt-2">
-        Place Order
-      </Button>
-
+    <Container className="mb-2 mt-2">
       <Row>
         <Col className="d-flex justify-content-center">
           <h3>Your Week Ahead</h3>

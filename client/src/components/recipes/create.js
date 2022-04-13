@@ -61,18 +61,17 @@ export default function Create(props) {
 
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
-  }
-
-  const removeIngredient = (index) => {
-    setingredientNames(ingredientNames.filter((_, idx) => idx != index ));
-    setIngredients(ingredients.filter((_, idx) => idx != index ));
-  }
-
-  const handleBadgeClick = (e) => {
-    var eventkey = e.target.getAttribute('eventkey');
-    removeIngredient(eventkey)
   };
 
+  const removeIngredient = (index) => {
+    setingredientNames(ingredientNames.filter((_, idx) => idx != index));
+    setIngredients(ingredients.filter((_, idx) => idx != index));
+  };
+
+  const handleBadgeClick = (e) => {
+    var eventkey = e.target.getAttribute("eventkey");
+    removeIngredient(eventkey);
+  };
 
   // This following section will display the form that takes the input from the recipe.
   return (
@@ -158,19 +157,23 @@ export default function Create(props) {
                 <Accordion.Body>
                   <Row>
                     <ListGroup variant="flush">
-                      {
-                        ingredientNames.map((IngName, index) => (
+                      {ingredientNames.map((IngName, index) => (
                         <ListGroup.Item className="d-flex justify-content-between align-items-start">
                           {IngName}
-                          <Badge eventkey={index} bg="dark" pill onClick={handleBadgeClick}>
-                          X
+                          <Badge
+                            eventkey={index}
+                            bg="dark"
+                            pill
+                            onClick={handleBadgeClick}
+                          >
+                            X
                           </Badge>
-                          </ListGroup.Item>
+                        </ListGroup.Item>
                       ))}
                     </ListGroup>
                   </Row>
                   <Row>
-                    <Col>
+                    <Col className="me-auto">
                       <DisplayIngredients
                         ingredientSelector={ingredientSelector}
                       />
@@ -180,8 +183,8 @@ export default function Create(props) {
                       <input
                         type="text"
                         id="add-ingredient"
-                        value="Add Ingredient"
-                        className="btn btn-dark mt-2"
+                        value="Add"
+                        className="btn btn-dark mt-2 btn-sm w-50"
                         readOnly={true}
                         onClick={() => addIngredient()}
                       />
