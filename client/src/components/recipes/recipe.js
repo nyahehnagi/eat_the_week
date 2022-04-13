@@ -155,7 +155,7 @@ export default function Recipe(props) {
                 <Col className="text-sm text-center">
                   <Card.Img
                     src={props.recipe.image}
-                    style={{ width: 80, height: 80 }}
+                    style={{ width: 150, height: 90 }}
                     alt="Card Image"
                   />
                 </Col>
