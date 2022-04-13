@@ -132,6 +132,6 @@ export default function Register() {
           )}
         </form>
       </Container>
-    //</div>
+    </div>
   );
 }
