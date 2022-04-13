@@ -20,6 +20,17 @@ export default function Create(props) {
 
   const [cookies, setCookie] = useCookies();
 
+  const [enableSave, setEnableSave] = useState(false);
+  function handleEnableSave(value) {
+    if (value.name.length > 0) {
+      setEnableSave(true);
+    }
+    else {
+      setEnableSave(false);
+    }
+    updateForm(value);
+  }
+
   function updateForm(value) {
     return setForm((prev) => {
       return { ...prev, ...value };
@@ -95,7 +106,7 @@ export default function Create(props) {
                 className="form-control"
                 id="name"
                 value={form.name}
-                onChange={(e) => updateForm({ name: e.target.value })}
+                onChange={(e) => handleEnableSave({ name: e.target.value })}
               />
               <label htmlFor="description">Recipe Description</label>
               <input
@@ -209,6 +220,7 @@ export default function Create(props) {
               </Accordion.Item>
             </Accordion>
 
+            {enableSave &&     
             <div className="form-group">
               <input
                 type="submit"
@@ -217,6 +229,7 @@ export default function Create(props) {
                 className="btn btn-dark mt-2"
               />
             </div>
+            }
           </form>
         </Col>
       </Row>

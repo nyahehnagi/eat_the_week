@@ -2,7 +2,9 @@ const Category = require("../models/category");
 
 const CategoriesController = {
   Index: (req, res) => {
-    Category.find((err, categories) => {
+    Category.find()
+    .sort({ name: "ascending" })
+    .exec((err, categories) => {
       if (err) {
         throw err;
       }
