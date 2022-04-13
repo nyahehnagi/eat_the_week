@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Button, Badge } from "react-bootstrap";
+import { Card, Button, Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
 import {
   Row,
   Col,
@@ -33,10 +33,18 @@ export default function Recipe(props) {
   return (
     <>
       <Card className="mt-2" border="secondary">
+        <OverlayTrigger
+                placement="top"
+                delay="500"
+                overlay={
+                  <Tooltip id="view_recipe">Click to view and print recipe details.</Tooltip>
+                }
+              >
         <Card.Header onClick={handleShow} style={{ cursor: "pointer" }}>
           <Card.Title>{props.recipe.name}</Card.Title>
         </Card.Header>
-        <Card.Body >
+        </OverlayTrigger>
+        <Card.Body>
           <Row className="mb-2">
             <Col>
               <Card.Img
@@ -54,25 +62,41 @@ export default function Recipe(props) {
 
           <Row>
             <Col>
-
-              <Badge bg="dark" pill onClick={handleRemoveClick}>
-              X
-              </Badge>
-              {/* <Button
-                onClick={handleRemoveClick}
-                className="btn btn-danger btn-sm ps-1 pe-1  "
+              <OverlayTrigger
+                placement="bottom"
+                delay="500"
+                overlay={
+                  <Tooltip id="remove_recipe">Remove recipe.</Tooltip>
+                }
               >
-                Remove
-              </Button> */}
+                <Badge bg="dark" pill onClick={handleRemoveClick}>
+                  X
+                </Badge>
+              </OverlayTrigger>
             </Col>
 
             <Col className="d-flex justify-content-end">
+              <OverlayTrigger
+                placement="top"
+                delay="500"
+                overlay={
+                  <Tooltip id="plan_recipe">Edit your recipe.</Tooltip>
+                }
+              >
               <Button
                 onClick={handleEditClick}
                 className="btn btn-dark btn-sm "
               >
                 Edit
               </Button>
+              </OverlayTrigger>
+              <OverlayTrigger
+                placement="top"
+                delay="500"
+                overlay={
+                  <Tooltip id="plan_recipe">Add recipe to your week ahead.</Tooltip>
+                }
+              >
               <DropdownButton
                 onSelect={handleSelect}
                 variant="dark"
@@ -103,6 +127,7 @@ export default function Recipe(props) {
                   Sunday
                 </Dropdown.Item>
               </DropdownButton>
+              </OverlayTrigger>
             </Col>
           </Row>
         </Card.Body>

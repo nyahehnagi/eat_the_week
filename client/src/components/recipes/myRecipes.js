@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Row, Col, Container, Offcanvas, Button} from "react-bootstrap";
+import { Row, Col, Container, Offcanvas, Button } from "react-bootstrap";
 
 import ShowRecipes from "./index";
 import CreateRecipe from "./create";
@@ -17,29 +17,25 @@ export default function MyRecipes() {
 
   const handleClose = () => {
     setShow(false);
-    setRecipeId("")
-  }
+    setRecipeId("");
+  };
   const handleShow = () => setShow(true);
 
   const clickOffCanvas = () => {
-    manageRecipeButton.current.click()
-  }
+    manageRecipeButton.current.click();
+  };
   const clickCloseCanvas = () => {
-    const el = document.querySelector(".btn-close")
-    el.click()
-  }
+    const el = document.querySelector(".btn-close");
+    el.click();
+  };
 
   return (
-
     <Container fluid="md" className="">
-         
       <Offcanvas show={show} onHide={handleClose}>
-      <Offcanvas.Header closeButton>
-
-      </Offcanvas.Header>
-      <Offcanvas.Body>
-      {!recipeId ? (
-          <CreateRecipe state={state} setReload={setReload} />
+        <Offcanvas.Header closeButton></Offcanvas.Header>
+        <Offcanvas.Body>
+          {!recipeId ? (
+            <CreateRecipe state={state} setReload={setReload} />
           ) : (
             <EditRecipe
               closeCanvas={clickCloseCanvas}
@@ -51,7 +47,7 @@ export default function MyRecipes() {
               setRecipe={setRecipe}
             />
           )}
-      </Offcanvas.Body>
+        </Offcanvas.Body>
       </Offcanvas>
 
       <Row>
@@ -64,23 +60,17 @@ export default function MyRecipes() {
           />
         </Col>
       </Row>
-      <Row >
+      <Row>
         <Col className="d-flex mt-3 ps-5">
-        <Button 
-          variant="dark" 
-          onClick={handleShow} ref={manageRecipeButton}
-          >
-          Create Recipe
-        </Button>
+          <Button variant="dark" onClick={handleShow} ref={manageRecipeButton}>
+            Create Recipe
+          </Button>
         </Col>
         <Col className="d-flex justify-content-center mt-3 ">
           <h3>My Recipes</h3>
         </Col>
-        <Col>
-
-        </Col>
-
-      </Row> 
+        <Col></Col>
+      </Row>
       <Row>
         <Col md="12">
           <ShowRecipes

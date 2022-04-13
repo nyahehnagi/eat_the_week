@@ -61,18 +61,17 @@ export default function Create(props) {
 
     setingredientNames(ingredientNames.concat(name));
     setIngredients(ingredients.concat({ ingredient_id: ingredientId }));
-  }
-
-  const removeIngredient = (index) => {
-    setingredientNames(ingredientNames.filter((_, idx) => idx != index ));
-    setIngredients(ingredients.filter((_, idx) => idx != index ));
-  }
-
-  const handleBadgeClick = (e) => {
-    var eventkey = e.target.getAttribute('eventkey');
-    removeIngredient(eventkey)
   };
 
+  const removeIngredient = (index) => {
+    setingredientNames(ingredientNames.filter((_, idx) => idx != index));
+    setIngredients(ingredients.filter((_, idx) => idx != index));
+  };
+
+  const handleBadgeClick = (e) => {
+    var eventkey = e.target.getAttribute("eventkey");
+    removeIngredient(eventkey);
+  };
 
   // This following section will display the form that takes the input from the recipe.
   return (
@@ -158,14 +157,18 @@ export default function Create(props) {
                 <Accordion.Body>
                   <Row>
                     <ListGroup variant="flush">
-                      {
-                        ingredientNames.map((IngName, index) => (
+                      {ingredientNames.map((IngName, index) => (
                         <ListGroup.Item className="d-flex justify-content-between align-items-start">
                           {IngName}
-                          <Badge eventkey={index} bg="dark" pill onClick={handleBadgeClick}>
-                          X
+                          <Badge
+                            eventkey={index}
+                            bg="dark"
+                            pill
+                            onClick={handleBadgeClick}
+                          >
+                            X
                           </Badge>
-                          </ListGroup.Item>
+                        </ListGroup.Item>
                       ))}
                     </ListGroup>
                   </Row>
@@ -176,7 +179,7 @@ export default function Create(props) {
                       />
                     </Col>
 
-                    <Col >
+                    <Col>
                       <input
                         type="text"
                         id="add-ingredient"
