@@ -46,7 +46,7 @@ export default function Recipe(props) {
         </OverlayTrigger>
         <Card.Body>
           <Row className="mb-2">
-            <Col>
+            <Col md="4">
               <Card.Img
                 src={props.recipe.image}
                 style={{ width: 60, height: 60 }}
@@ -60,7 +60,7 @@ export default function Recipe(props) {
             </Col>
           </Row>
 
-          <Row>
+          <Row d-flex>
             <Col>
               <OverlayTrigger
                 placement="bottom"
