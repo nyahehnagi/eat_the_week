@@ -148,7 +148,18 @@ export default function ShowRecipes(props) {
   // This following will display the recipes
   return (
     <div className="container-sm">
-      <div id="recipeList">{recipeList()}</div>
+      {recipes.length == 0 ? (
+      <Container>
+      <Row>
+        <Col className="d-flex justify-content-center mt-3 ">
+          <div id="recipeList">You have no recipes, go ahead and create some delicious platters</div>
+        </Col>
+      </Row>
+      </Container>
+        
+      ) :(
+        <div id="recipeList">{recipeList()}</div>
+      )}
     </div>
   );
 }
